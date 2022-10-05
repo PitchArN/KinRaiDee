@@ -1,15 +1,20 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import {useState} from 'react';
 
-function StartScreen() {
-  const StartHandler = () => {
-    
+
+function StartScreen({onStart}) {
+  const [userState,setUserState] = useState('');
+  const PressStartHandler = () => {
+    let state = '1';
+    onStart(state);
   };
+
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Pressable onPress={StartHandler}>
+      <Pressable android_disableSound={true} onPress={PressStartHandler}>
         <View style={styles.container}>
           <Image
             style={styles.logo}
@@ -29,17 +34,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor: "#0A257B",
   },
   text: {
     fontSize: 18,
     paddingTop: 300,
+    color: 'white'
   },
   logo: {
     maxHeight: 50,
     resizeMode: "contain",
-  },
-  screenpress: {
-    opacity: 0,
-  },
+  }
 });
