@@ -1,75 +1,87 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import GestureRecognizer, {
   swipeDirections,
 } from "react-native-swipe-gestures";
 
+import {
+  Question,
+  Ans_up,
+  Ans_down,
+  Ans_left,
+  Ans_right,
+} from "../constant/QuestionAndChoiceDirection";
+import DisplayResultScreen from "./DisplayResultScreen";
+
 class SwipeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      myText: "Swipe Screen",
-      gestureName: "none",
-      backgroundColor: "#fff",
+      myText: Question[0],
+      questionState: 0,
+      selected: "none",
     };
   }
 
-  onSwipeUp(gestureState) {
-    this.setState({ myText: "Up" });
+  onSwipeUp() {
+    this.setState({
+      selected: Ans_up[this.questionState],
+      questionState: this.state.questionState + 1,
+      myText: Question[this.state.questionState + 1],
+    });
   }
 
-  onSwipeDown(gestureState) {
-    this.setState({ myText: "Down" });
+  onSwipeDown() {
+    this.setState({
+      questionState: this.state.questionState + 1,
+      myText: Question[this.state.questionState + 1],
+    });
   }
 
-  onSwipeLeft(gestureState) {
-    this.setState({ myText: "Left" });
+  onSwipeLeft() {
+    this.setState({
+      questionState: this.state.questionState + 1,
+      myText: Question[this.state.questionState + 1],
+    });
   }
 
-  onSwipeRight(gestureState) {
-    this.setState({ myText: "Right" });
+  onSwipeRight() {
+    this.setState({
+      questionState: this.state.questionState + 1,
+      myText: Question[this.state.questionState + 1],
+    });
   }
 
-  onSwipe(gestureName, gestureState) {
-    const { SWIPE_UP, SWIPE_DOWN, SWIPE_LEFT, SWIPE_RIGHT } = swipeDirections;
-    this.setState({ gestureName: gestureName });
-    switch (gestureName) {
-      case SWIPE_UP:
-        this.setState();
-        break;
-      case SWIPE_DOWN:
-        this.setState();
-        break;
-      case SWIPE_LEFT:
-        this.setState();
-        break;
-      case SWIPE_RIGHT:
-        this.setState();
-        break;
-    }
-  }
-
-  render() {
+  renderElements() {
     const config = {
       velocityThreshold: 0.2,
       directionalOffsetThreshold: 80,
     };
 
-    return (
-      <GestureRecognizer
-        onSwipe={(direction, state) => this.onSwipe(direction, state)}
-        onSwipeUp={(state) => this.onSwipeUp(state)}
-        onSwipeDown={(state) => this.onSwipeDown(state)}
-        onSwipeLeft={(state) => this.onSwipeLeft(state)}
-        onSwipeRight={(state) => this.onSwipeRight(state)}
-        config={config}
-        style={styles.container}
-      >
-        <StatusBar style="auto" />
-        <Text style={styles.text}>{this.state.myText}</Text>
-      </GestureRecognizer>
-    );
+    if (this.state.questionState < 4) {
+      return (
+        <GestureRecognizer
+          onSwipeUp={() => this.onSwipeUp()}
+          onSwipeDown={() => this.onSwipeDown()}
+          onSwipeLeft={() => this.onSwipeLeft()}
+          onSwipeRight={() => this.onSwipeRight()}
+          config={config}
+          style={styles.container}
+        >
+          <StatusBar style="auto" />
+          <Text style={styles.text}>{this.state.myText}</Text>
+          <Text style={styles.text}>{this.state.questionState}</Text>
+          <Text style={styles.text}>{this.state.selected}</Text>
+        </GestureRecognizer>
+      );
+    } else {
+      return <DisplayResultScreen />;
+    }
+  }
+
+  render() {
+    return this.renderElements();
   }
 }
 
