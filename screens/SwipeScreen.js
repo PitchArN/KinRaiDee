@@ -1,9 +1,7 @@
 import React, { Component, useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import GestureRecognizer, {
-  swipeDirections,
-} from "react-native-swipe-gestures";
+import GestureRecognizer from "react-native-swipe-gestures";
 
 import {
   Question,
@@ -14,75 +12,64 @@ import {
 } from "../constant/QuestionAndChoiceDirection";
 import DisplayResultScreen from "./DisplayResultScreen";
 
-class SwipeScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      myText: Question[0],
-      questionState: 0,
-      selected: "none",
-    };
+function SwipeScreen() {
+  let selection = [];
+
+  
+  const config = {
+    velocityThreshold: 0.2,
+    directionalOffsetThreshold: 80,
+  };
+
+  const [questionState, setQuestionState] = useState(0);
+  const [currentQuestion,setCurrentQuestion] = useState(Question[0]);
+
+  function SwipeUpHandler() {
+    selection[questionState] = Ans_up[questionState];
+    setQuestionState(questionState + 1);
+    setCurrentQuestion(Question[questionState + 1]);
   }
 
-  onSwipeUp() {
-    this.setState({
-      selected: Ans_up[this.questionState],
-      questionState: this.state.questionState + 1,
-      myText: Question[this.state.questionState + 1],
-    });
+  function SwipeDownHandler() {
+    selection[questionState] = Ans_down[questionState];
+    setQuestionState(questionState + 1);
+    setCurrentQuestion(Question[questionState + 1]);
   }
 
-  onSwipeDown() {
-    this.setState({
-      questionState: this.state.questionState + 1,
-      myText: Question[this.state.questionState + 1],
-    });
+  function SwipeLeftHandler() {
+    selection[questionState] = Ans_left[questionState];
+    setQuestionState(questionState + 1);
+    setCurrentQuestion(Question[questionState + 1]);
   }
 
-  onSwipeLeft() {
-    this.setState({
-      questionState: this.state.questionState + 1,
-      myText: Question[this.state.questionState + 1],
-    });
+  function SwipeRightHandler() {
+    selection[questionState] = Ans_right[questionState];
+    setQuestionState(questionState + 1);
+    setCurrentQuestion(Question[questionState + 1]);
   }
 
-  onSwipeRight() {
-    this.setState({
-      questionState: this.state.questionState + 1,
-      myText: Question[this.state.questionState + 1],
-    });
+  let renderElements = (
+    <GestureRecognizer
+      onSwipeUp={SwipeUpHandler}
+      onSwipeDown={SwipeDownHandler}
+      onSwipeLeft={SwipeLeftHandler}
+      onSwipeRight={SwipeRightHandler}
+      config={config}
+      style={styles.container}
+    >
+      <StatusBar style="auto" />
+      <Text style={styles.text}>{currentQuestion}</Text>
+      <Text style={styles.text}>{questionState}</Text>
+      <Text style={styles.text}>{}</Text>
+    </GestureRecognizer>
+  );
+
+  if (questionState > 3 || questionState < 0) {
+
+    renderElements = <DisplayResultScreen />;
   }
 
-  renderElements() {
-    const config = {
-      velocityThreshold: 0.2,
-      directionalOffsetThreshold: 80,
-    };
-
-    if (this.state.questionState < 4) {
-      return (
-        <GestureRecognizer
-          onSwipeUp={() => this.onSwipeUp()}
-          onSwipeDown={() => this.onSwipeDown()}
-          onSwipeLeft={() => this.onSwipeLeft()}
-          onSwipeRight={() => this.onSwipeRight()}
-          config={config}
-          style={styles.container}
-        >
-          <StatusBar style="auto" />
-          <Text style={styles.text}>{this.state.myText}</Text>
-          <Text style={styles.text}>{this.state.questionState}</Text>
-          <Text style={styles.text}>{this.state.selected}</Text>
-        </GestureRecognizer>
-      );
-    } else {
-      return <DisplayResultScreen />;
-    }
-  }
-
-  render() {
-    return this.renderElements();
-  }
+  return renderElements;
 }
 
 export default SwipeScreen;
