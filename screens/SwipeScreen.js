@@ -13,9 +13,8 @@ import {
 import DisplayResultScreen from "./DisplayResultScreen";
 
 function SwipeScreen() {
-  let selection = [];
 
-  
+
   const config = {
     velocityThreshold: 0.2,
     directionalOffsetThreshold: 80,
@@ -23,27 +22,28 @@ function SwipeScreen() {
 
   const [questionState, setQuestionState] = useState(0);
   const [currentQuestion,setCurrentQuestion] = useState(Question[0]);
+  const [answerArray, setAnswerArray] = useState('');
 
   function SwipeUpHandler() {
-    selection[questionState] = Ans_up[questionState];
+    setAnswerArray([...answerArray, Ans_up[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
   }
 
   function SwipeDownHandler() {
-    selection[questionState] = Ans_down[questionState];
+    setAnswerArray([...answerArray, Ans_down[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
   }
 
   function SwipeLeftHandler() {
-    selection[questionState] = Ans_left[questionState];
+    setAnswerArray([...answerArray, Ans_left[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
   }
 
   function SwipeRightHandler() {
-    selection[questionState] = Ans_right[questionState];
+    setAnswerArray([...answerArray, Ans_right[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
   }
@@ -60,13 +60,16 @@ function SwipeScreen() {
       <StatusBar style="auto" />
       <Text style={styles.text}>{currentQuestion}</Text>
       <Text style={styles.text}>{questionState}</Text>
-      <Text style={styles.text}>{}</Text>
+
+      {/* <Text style={styles.text}>{console.log(answerArray)}</Text>  */}
+      
     </GestureRecognizer>
   );
 
-  if (questionState > 3 || questionState < 0) {
+  if (questionState > 3 ) {
+    
 
-    renderElements = <DisplayResultScreen />;
+    renderElements = <DisplayResultScreen onSelected={answerArray}/>;
   }
 
   return renderElements;
