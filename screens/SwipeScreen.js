@@ -2,6 +2,7 @@ import React, { Component, useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
+import { LinearGradient } from 'expo-linear-gradient';
 
 import {
   Question,
@@ -60,22 +61,42 @@ function SwipeScreen() {
       <StatusBar style="auto" />
       <Text style={styles.text}>{currentQuestion}</Text>
       <Text style={styles.text}>{questionState}</Text>
-
       {/* <Text style={styles.text}>{console.log(answerArray)}</Text>  */}
       <View style={styles.HeaderRectangle}><Text style={styles.text}>{currentQuestion}</Text></View>
 
-      <View style={styles.upArea}>
+      <LinearGradient colors={['#ff8f8f', '#FFFFFFA5']} style={styles.upArea}
+      start={{ x: 0.5, y: 0 }}
+      end={{ x: 0.5, y: 1 }}
+      >
         <Text Style={styles.text2}>Swipe Up Answer</Text>
-      </View>
+      </LinearGradient>
 
       <View style={styles.leftAndRightArea}>
-        <View style={styles.rightArea}><Text Style={styles.text2}>Swipe Right Answer</Text></View>
-        <View style={styles.leftArea}><Text Style={styles.text2}>Swipe Left Answer</Text></View>
+        <LinearGradient colors={['#97e0ff', '#FFFFFFA5']} 
+        style={styles.rightArea} 
+        start={{ x: 0, y: 0.5 }}
+        end={{ x: 1, y: 0.5 }}
+        >
+          <Text Style={styles.text2}>
+            Swipe Right Answer
+          </Text>
+          </LinearGradient>
+        <LinearGradient colors={['#8fffbc', '#FFFFFFA5'] } style={styles.leftArea} 
+        start={{ x: 1, y: 0.5 }}
+        end={{ x: 0, y: 0.5 }}
+        >
+            <Text Style={styles.text2}>
+              Swipe Left Answer
+            </Text>
+          </LinearGradient>
       </View>
 
 
 
-      <View style= {styles.downArea}><Text Style={styles.text2}>Swipe Down Answer</Text></View>
+      <LinearGradient colors={['#ffdb80', '#FFFFFFA5']} style= {styles.downArea} 
+      start = {{ x: 0.5, y: 1}} 
+      end = {{x: 0.5,y:0}}
+    ><Text Style={styles.text2}>Swipe Down Answer</Text></LinearGradient>
 
 
       <View style={styles.FooterRectangle}><Text Style={styles.text}>Double Tap To Back </Text></View>
@@ -104,6 +125,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "white",
   },
+  buttonText: {
+    fontSize: 18,
+    //fontFamily: 'Gill Sans',
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+    backgroundColor: 'transparent',
+  },
 
 //texts
   text1: {
@@ -129,19 +158,21 @@ HeaderRectangle:{
   width: '100%',
   alignItems: "center",
   backgroundColor: '#454545',
+  justifyContent: 'center',
 },
 FooterRectangle:{
   height: '10%',
   width: '100%',
   alignItems: "center",
   backgroundColor: '#454545',
+  justifyContent: 'center',
 },
 
 //Area To Swipe
-  centerQuestion:{
+  centerScreen:{
     height: '100%',
     width: '40%',
-    backgroundColor: '#454545',
+    //backgroundColor: '#454545',
   },
   leftAndRightArea:{
     height: '50%',
@@ -154,24 +185,32 @@ FooterRectangle:{
     alignSelf: 'flex-end',
     height: '100%',
     width: '50%',
-    backgroundColor: '#97e0ff',
+    //backgroundColor: '#97e0ff',
+    justifyContent: 'center',
+    alignItems: "center",
   },
   leftArea: {
     alignSelf: 'flex-start',
     height: '100%',
     width: '50%',
-    backgroundColor: '#8fffbc',
+    //backgroundColor: '#8fffbc',
+    justifyContent: 'center',
+    alignItems: "center",
   },
   downArea: {
     alignSelf: 'flex-end',
     height: '15%',
     width: '100%',
-    backgroundColor: '#ffdb80',
+    //backgroundColor: '#ffdb80',
+    justifyContent: 'center',
+    alignItems: "center",
   },
   upArea: {
     alignSelf: 'flex-start',
     height: '15%',
     width: '100%',
-    backgroundColor: '#ff8f8f',
+    //backgroundColor: '#ff8f8f',
+    justifyContent: 'center',
+    alignItems: "center",
   }
 });
