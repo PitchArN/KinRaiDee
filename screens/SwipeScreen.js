@@ -62,7 +62,23 @@ function SwipeScreen() {
       <Text style={styles.text}>{questionState}</Text>
 
       {/* <Text style={styles.text}>{console.log(answerArray)}</Text>  */}
-      
+      <View style={styles.HeaderRectangle}><Text style={styles.text}>{currentQuestion}</Text></View>
+
+      <View style={styles.upArea}>
+        <Text Style={styles.text2}>Swipe Up Answer</Text>
+      </View>
+
+      <View style={styles.leftAndRightArea}>
+        <View style={styles.rightArea}><Text Style={styles.text2}>Swipe Right Answer</Text></View>
+        <View style={styles.leftArea}><Text Style={styles.text2}>Swipe Left Answer</Text></View>
+      </View>
+
+
+
+      <View style= {styles.downArea}><Text Style={styles.text2}>Swipe Down Answer</Text></View>
+
+
+      <View style={styles.FooterRectangle}><Text Style={styles.text}>Double Tap To Back </Text></View>
     </GestureRecognizer>
   );
 
@@ -80,11 +96,82 @@ export default SwipeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
+    backgroundColor: '#ffffff'
   },
   text: {
     fontSize: 18,
     color: "white",
   },
+
+//texts
+  text1: {
+    textAlign: 'center',
+    verticalAlign: 'center',
+    fontSize: 18,
+    //fontFamily: 'Inter',
+    lineHeight: 'auto',
+    color: '#ffffff',
+  },
+  text2: {
+    textAlign: 'center',
+    verticalAlign: 'top',
+    fontSize: 12,
+    //fontFamily: 'Inter',
+    lineHeight: 'auto',
+    color: '#000000',
+  },
+ 
+//header and footer rectangle
+HeaderRectangle:{
+  height: '15%',
+  width: '100%',
+  alignItems: "center",
+  backgroundColor: '#454545',
+},
+FooterRectangle:{
+  height: '10%',
+  width: '100%',
+  alignItems: "center",
+  backgroundColor: '#454545',
+},
+
+//Area To Swipe
+  centerQuestion:{
+    height: '100%',
+    width: '40%',
+    backgroundColor: '#454545',
+  },
+  leftAndRightArea:{
+    height: '50%',
+    width:'100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flex: 2,
+  },
+  rightArea: {
+    alignSelf: 'flex-end',
+    height: '100%',
+    width: '50%',
+    backgroundColor: '#97e0ff',
+  },
+  leftArea: {
+    alignSelf: 'flex-start',
+    height: '100%',
+    width: '50%',
+    backgroundColor: '#8fffbc',
+  },
+  downArea: {
+    alignSelf: 'flex-end',
+    height: '15%',
+    width: '100%',
+    backgroundColor: '#ffdb80',
+  },
+  upArea: {
+    alignSelf: 'flex-start',
+    height: '15%',
+    width: '100%',
+    backgroundColor: '#ff8f8f',
+  }
 });
