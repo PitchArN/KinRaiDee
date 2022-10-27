@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import StartScreen from "./screens/StartScreen";
-import {useState} from 'react';
+import {useState } from 'react';
 import SwipeScreen from "./screens/SwipeScreen";
 import { useFonts } from 'expo-font';
+
 
 export default function App() {
   const [userState,setUserState] = useState('');
@@ -25,6 +26,8 @@ export default function App() {
     'BaiJam-SemiBold': require('./assets/fonts/BaiJamjuree-SemiBold.ttf'),
     'BaiJam-SemiBoldItalic': require('./assets/fonts/BaiJamjuree-SemiBoldItalic.ttf'),
   });
+
+  
   
   function StartHandler(state) {
     setUserState(state);

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { LinearGradient } from "expo-linear-gradient";
 
 function DisplayResultScreen({onSelected}) {
   const [userState, setUserState] = useState("");
@@ -12,11 +13,15 @@ function DisplayResultScreen({onSelected}) {
 
 
   return (
-    <View style={styles.container}>
+    <LinearGradient 
+      colors={["#ff8f8f", "#FFFFFF", "#FFFFFF", "#ffdb80"]}
+      start={{ x: 1, y: 1 }}
+      end={{ x: 0, y: 0 }}
+      style={styles.container}>
       <StatusBar style="auto" />
       <Text style={styles.text}>Screen DisplayResultScreen</Text>
       <Text style={styles.text}>{onSelected}</Text>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -29,7 +34,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontSize: 18,
-    color: "white",
+    fontSize: 32,
+    paddingTop: 300,
+    color: "#000000",
+    fontFamily: "BaiJam-Bold",
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });

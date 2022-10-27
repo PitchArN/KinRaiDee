@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {useState} from 'react';
+import { LinearGradient } from "expo-linear-gradient";
 
 
 function StartScreen({onStart}) {
@@ -12,7 +13,11 @@ function StartScreen({onStart}) {
 
 
   return (
-    <View style={styles.container}>
+    <LinearGradient 
+      colors={["#ff8f8f", "#FFFFFF", "#FFFFFF", "#ffdb80"]}
+      start={{ x: 1, y: 1 }}
+      end={{ x: 0, y: 0 }}
+      style={styles.container}>
       <StatusBar style="auto" />
       <Pressable android_disableSound={true} onPress={PressStartHandler}>
         <View style={styles.container}>
@@ -23,7 +28,7 @@ function StartScreen({onStart}) {
           <Text style={styles.text}>Tap to start</Text>
         </View>
       </Pressable>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -34,15 +39,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#0A257B",
+    //backgroundColor: "#FFFFFFFF",
   },
   text: {
-    fontSize: 18,
+    fontSize: 32,
     paddingTop: 300,
-    color: 'white'
+    color: "#000000",
+    fontFamily: "BaiJam-Bold",
+    fontWeight: "bold",
+    textAlign: "center",
   },
   logo: {
-    maxHeight: 50,
+    maxWidth: "100%" ,
     resizeMode: "contain",
   }
 });

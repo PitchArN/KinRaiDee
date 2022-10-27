@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
-import DoubleClicker from "react-native-single-double-click";
+import DoubleClicker from "react-native-double-tap";
 
 import {
   Question,
@@ -67,7 +67,7 @@ function SwipeScreen() {
     >
       <StatusBar style="auto" />
       <DoubleClicker
-        onDoubleClick={DoubleTapHandler}
+        doubleTap={DoubleTapHandler}
         style={styles.DoubleTapContainer}
       >
         <View style={styles.container}>
@@ -80,7 +80,7 @@ function SwipeScreen() {
 
           {/*Header Showing Question*/}
           <View style={styles.HeaderRectangle}>
-            <Text style={styles.text}>{currentQuestion}</Text>
+            <Text style={styles.whiteText}>{currentQuestion}</Text>
           </View>
 
           <LinearGradient
@@ -97,19 +97,23 @@ function SwipeScreen() {
             >
               {/* All Elements in swipe area are here*/}
 
-              <Text style={styles.text2}>{Ans_up[questionState]}</Text>
+              <View style={styles.midArea} >
+                <Text style={styles.text2} >{Ans_up[questionState]}</Text>
+              </View>
 
-              <View style={styles.midArea}>
+              <View style={styles.midArea} >
                 <Text style={styles.text2}>{Ans_left[questionState]}</Text>
                 <Text style={styles.text2}>{Ans_right[questionState]}</Text>
               </View>
-
-              <Text style={styles.text2}>{Ans_down[questionState]}</Text>
+      
+              <View style={styles.midArea} >
+                <Text style={styles.text2}>{Ans_down[questionState]}</Text>
+              </View>
             </LinearGradient>
           </LinearGradient>
 
           <View style={styles.FooterRectangle}>
-            <Text Style={styles.text}>Double Tap To Back </Text>
+            <Text Style={styles.whiteText}>Double Tap To Back </Text>
           </View>
         </View>
       </DoubleClicker>
@@ -133,7 +137,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
 
-  text: {
+  whiteText: {
     fontSize: 24,
     color: "white",
     fontWeight: "bold",
@@ -180,8 +184,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     flex: 3,
     justifyContent: "space-around",
-    //alignItems: 'center',
-    //alignContent: 'space-around',
   },
   midArea: {
     width: "100%",
