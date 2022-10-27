@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from 'expo-linear-gradient';
 
+
 import {
   Question,
   Ans_up,
@@ -59,53 +60,50 @@ function SwipeScreen() {
       style={styles.container}
     >
       <StatusBar style="auto" />
+      
+      {/* 
+      Test Display Output
+      <Text style={styles.text}>{console.log(answerArray)}</Text>
       <Text style={styles.text}>{currentQuestion}</Text>
-      <Text style={styles.text}>{questionState}</Text>
-      {/* <Text style={styles.text}>{console.log(answerArray)}</Text>  */}
-      <View style={styles.HeaderRectangle}><Text style={styles.text}>{currentQuestion}</Text></View>
-
-      <LinearGradient colors={['#ff8f8f', '#FFFFFFA5']} style={styles.upArea}
-      start={{ x: 0.5, y: 0 }}
-      end={{ x: 0.5, y: 1 }}
-      >
-        <Text Style={styles.text2}>Swipe Up Answer</Text>
-      </LinearGradient>
-
-      <View style={styles.leftAndRightArea}>
-        <LinearGradient colors={['#97e0ff', '#FFFFFFA5']} 
-        style={styles.rightArea} 
-        start={{ x: 0, y: 0.5 }}
-        end={{ x: 1, y: 0.5 }}
-        >
-          <Text Style={styles.text2}>
-            Swipe Right Answer
-          </Text>
-          </LinearGradient>
-        <LinearGradient colors={['#8fffbc', '#FFFFFFA5'] } style={styles.leftArea} 
-        start={{ x: 1, y: 0.5 }}
-        end={{ x: 0, y: 0.5 }}
-        >
-            <Text Style={styles.text2}>
-              Swipe Left Answer
-            </Text>
-          </LinearGradient>
+      <Text style={styles.text}>{questionState}</Text>  
+      */}
+      
+      {/*Header Showing Question*/}
+      <View style={styles.HeaderRectangle}>
+        <Text style={styles.text}>
+          {currentQuestion}
+        </Text>
       </View>
 
+      <LinearGradient 
+        colors={['#ff8f8f8c', '#FFFFFF00', '#FFFFFF00','#ffdb808c']}
+        start={{ x: 0.5, y: 0 }}
+        end={{ x: 0.5, y: 1 }}
+        style={styles.swipeArea}>
+      <LinearGradient 
+        colors={['#97e0ff8c', '#FFFFFF00', '#FFFFFF00','#8fffbc8c']}
+        start={{ x: 1, y: 0.5 }}
+        end={{ x: 0, y: 0.5 }}
+        style={styles.swipeFillArea}>
+      {/* All Elements in swipe area are here*/}
+      
+      <Text style={styles.text2}>{Ans_up[questionState]}</Text>
 
+      <View style={styles.midArea}>
+        <Text style={styles.text2}>{Ans_left[questionState]}</Text>
+        <Text style={styles.text2}>{Ans_right[questionState]}</Text>
+      </View>
 
-      <LinearGradient colors={['#ffdb80', '#FFFFFFA5']} style= {styles.downArea} 
-      start = {{ x: 0.5, y: 1}} 
-      end = {{x: 0.5,y:0}}
-    ><Text Style={styles.text2}>Swipe Down Answer</Text></LinearGradient>
-
+      <Text style={styles.text2}>{Ans_down[questionState]}</Text>
+      
+      </LinearGradient>
+      </LinearGradient>
 
       <View style={styles.FooterRectangle}><Text Style={styles.text}>Double Tap To Back </Text></View>
     </GestureRecognizer>
   );
 
   if (questionState > 3 ) {
-    
-
     renderElements = <DisplayResultScreen onSelected={answerArray}/>;
   }
 
@@ -122,95 +120,62 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff'
   },
   text: {
-    fontSize: 18,
+    fontSize: 24,
     color: "white",
-  },
-  buttonText: {
-    fontSize: 18,
-    //fontFamily: 'Gill Sans',
+    fontWeight: "bold",
     textAlign: 'center',
-    margin: 10,
+    verticalAlign: 'top',
+    fontFamily: 'BaiJam-Bold',
     color: '#ffffff',
-    backgroundColor: 'transparent',
   },
 
 //texts
-  text1: {
+  text2: {
+    fontSize: 24,    
+    fontWeight: "bold",
     textAlign: 'center',
     verticalAlign: 'center',
-    fontSize: 18,
-    //fontFamily: 'Inter',
-    lineHeight: 'auto',
-    color: '#ffffff',
-  },
-  text2: {
-    textAlign: 'center',
-    verticalAlign: 'top',
-    fontSize: 12,
-    //fontFamily: 'Inter',
-    lineHeight: 'auto',
+    fontFamily: 'BaiJam-Bold',
     color: '#000000',
+
   },
  
 //header and footer rectangle
 HeaderRectangle:{
-  height: '15%',
+  height: '25%',
   width: '100%',
   alignItems: "center",
   backgroundColor: '#454545',
   justifyContent: 'center',
 },
 FooterRectangle:{
-  height: '10%',
+  height: '5%',
   width: '100%',
-  alignItems: "center",
+  alignItems: 'center',
   backgroundColor: '#454545',
   justifyContent: 'center',
 },
 
 //Area To Swipe
-  centerScreen:{
-    height: '100%',
-    width: '40%',
-    //backgroundColor: '#454545',
-  },
-  leftAndRightArea:{
-    height: '50%',
+  swipeArea:{
+    height: '70%',
     width:'100%',
+  },
+  swipeFillArea:{
+    height: '100%',
+    width:'100%',
+    flexDirection: 'column',
+    flex: 3,
+    justifyContent: 'space-around',
+    //alignItems: 'center',
+    //alignContent: 'space-around',
+    
+  },
+  midArea: {
+    width: '100%',
     flexDirection: 'row',
-    justifyContent: 'center',
-    flex: 2,
+    flex:2,
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
-  rightArea: {
-    alignSelf: 'flex-end',
-    height: '100%',
-    width: '50%',
-    //backgroundColor: '#97e0ff',
-    justifyContent: 'center',
-    alignItems: "center",
-  },
-  leftArea: {
-    alignSelf: 'flex-start',
-    height: '100%',
-    width: '50%',
-    //backgroundColor: '#8fffbc',
-    justifyContent: 'center',
-    alignItems: "center",
-  },
-  downArea: {
-    alignSelf: 'flex-end',
-    height: '15%',
-    width: '100%',
-    //backgroundColor: '#ffdb80',
-    justifyContent: 'center',
-    alignItems: "center",
-  },
-  upArea: {
-    alignSelf: 'flex-start',
-    height: '15%',
-    width: '100%',
-    //backgroundColor: '#ff8f8f',
-    justifyContent: 'center',
-    alignItems: "center",
-  }
 });
