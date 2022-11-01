@@ -3,7 +3,7 @@ import StartScreen from "./screens/StartScreen";
 import {useState, useEffect, useCallback } from 'react';
 import SwipeScreen from "./screens/SwipeScreen";
 import { useFonts } from 'expo-font';
-import {fontToLoad} from "./LoadFont";
+import {fontToLoad} from "./constant/LoadFont";
 
 export default function App() {
   const [userState,setUserState] = useState('');

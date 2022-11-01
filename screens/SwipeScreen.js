@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
+import * as Speech from "expo-speech";
 
 
 import {
@@ -11,7 +12,7 @@ import {
   Ans_down,
   Ans_left,
   Ans_right,
-} from "../constant/QuestionAndChoiceDirection";
+} from "../constant/EssentialQuestion";
 
 import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
@@ -27,25 +28,25 @@ function SwipeScreen() {
   const [answerArray, setAnswerArray] = useState("");
 
   function SwipeUpHandler() {
-    setAnswerArray([...answerArray, Ans_up[questionState]]);
+    setAnswerArray([...answerArray,","+ Ans_up[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
   }
 
   function SwipeDownHandler() {
-    setAnswerArray([...answerArray, Ans_down[questionState]]);
+    setAnswerArray([...answerArray,","+  Ans_down[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
   }
 
   function SwipeLeftHandler() {
-    setAnswerArray([...answerArray, Ans_left[questionState]]);
+    setAnswerArray([...answerArray,","+  Ans_left[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
   }
 
   function SwipeRightHandler() {
-    setAnswerArray([...answerArray, Ans_right[questionState]]);
+    setAnswerArray([...answerArray,","+  Ans_right[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
   }
@@ -81,8 +82,8 @@ function SwipeScreen() {
     */}
 
           {/*Header Showing Question*/}
-          <View style={styles.HeaderRectangle}>
-            <Text style={styles.whiteText}>{currentQuestion}</Text>
+          <View style={styles.HeaderRectangle} >
+            <Text style={styles.whiteText} >{currentQuestion}</Text>
           </View>
 
           <LinearGradient
@@ -122,11 +123,12 @@ function SwipeScreen() {
     </GestureRecognizer>
   );
 
-  if (questionState > 3) {
+  if (questionState > Question.length-1) {
     renderElements = <DisplayResultScreen onSelected={answerArray} />;
   }
-
+  
   return renderElements;
+  
 }
 
 export default SwipeScreen;
@@ -139,6 +141,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
 
+
+
+  //texts  
   whiteText: {
     fontSize: 24,
     color: "white",
@@ -148,8 +153,6 @@ const styles = StyleSheet.create({
     fontFamily: "BaiJamBold",
     color: "#ffffff",
   },
-
-  //texts
   text2: {
     fontSize: 24,
     fontWeight: "bold",

@@ -10,8 +10,6 @@ function DisplayResultScreen({onSelected}) {
     setUserState(select);
   }
 
-  const ansArray = String(onSelected).split(',');
-
 
 
   return (
@@ -21,12 +19,10 @@ function DisplayResultScreen({onSelected}) {
       end={{ x: 0, y: 0 }}
       style={styles.container}>
       <StatusBar style="auto" />
-      <Text style={styles.text}>Do you want to search</Text>
-      <Text style={styles.answer}>{ansArray[1]}</Text>
-      <Text style={styles.text}>sorted by</Text>
-      <Text style={styles.answer}>{ansArray[3]}</Text>
+      <Text style={styles.text}>Screen DisplayResultScreen</Text>
+      <Text style={styles.text}>{onSelected}</Text>
     </LinearGradient>
-  ); 
+  );
 }
 
 export default DisplayResultScreen;
@@ -40,19 +36,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontSize: 26,
-    //paddingTop: 300,
+    fontSize: 32,
+    paddingTop: 300,
     color: "#000000",
     fontFamily: "BaiJamBold",
     fontWeight: "bold",
     textAlign: "center",
   },
-  answer:{
-    fontSize: 36,
-    color: "#000000",
-    fontFamily: "BaiJamBold",
-    fontWeight: "bold",
-    textAlign: "center",
-
-  }
 });
