@@ -29,6 +29,8 @@ export default DisplayResultScreen;
 
 const styles = StyleSheet.create({
   container: {
+    width:"100%",
+    height:"100%",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     paddingTop: 300,
     color: "#000000",
-    fontFamily: "BaiJam-Bold",
+    fontFamily: "BaiJamBold",
     fontWeight: "bold",
     textAlign: "center",
   },

@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
-import DoubleClicker from "react-native-double-tap";
+
 
 import {
   Question,
@@ -12,7 +12,9 @@ import {
   Ans_left,
   Ans_right,
 } from "../constant/QuestionAndChoiceDirection";
+
 import DisplayResultScreen from "./DisplayResultScreen";
+import DoubleTap from "../components/DoubleTap";
 
 function SwipeScreen() {
   const config = {
@@ -66,7 +68,7 @@ function SwipeScreen() {
       style={styles.container}
     >
       <StatusBar style="auto" />
-      <DoubleClicker
+      <DoubleTap
         doubleTap={DoubleTapHandler}
         style={styles.DoubleTapContainer}
       >
@@ -116,7 +118,7 @@ function SwipeScreen() {
             <Text Style={styles.whiteText}>Double Tap To Back </Text>
           </View>
         </View>
-      </DoubleClicker>
+      </DoubleTap>
     </GestureRecognizer>
   );
 
