@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     verticalAlign: "top",
-    fontFamily: "BaiJam-Bold",
+    fontFamily: "BaiJamBold",
     color: "#ffffff",
   },
 
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     verticalAlign: "center",
-    fontFamily: "BaiJam-Bold",
+    fontFamily: "BaiJamBold",
     color: "#000000",
   },
 

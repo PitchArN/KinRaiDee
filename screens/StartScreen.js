@@ -20,7 +20,7 @@ function StartScreen({onStart}) {
       style={styles.container}>
       <StatusBar style="auto" />
       <Pressable android_disableSound={true} onPress={PressStartHandler}>
-        <View style={styles.container}>
+        <View style={styles.logoSpace}>
           <Image
             style={styles.logo}
             source={require("../assets/kinraideelogo.png")}
@@ -36,6 +36,14 @@ export default StartScreen;
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    //backgroundColor: "#FFFFFFFF",
+  },
+  logoSpace: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -45,7 +53,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     paddingTop: 300,
     color: "#000000",
-    fontFamily: "BaiJam-Bold",
+    fontFamily: "BaiJamBold",
     fontWeight: "bold",
     textAlign: "center",
   },
