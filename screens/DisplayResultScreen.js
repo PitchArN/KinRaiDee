@@ -53,6 +53,5 @@ const styles = StyleSheet.create({
     fontFamily: "BaiJamBold",
     fontWeight: "bold",
     textAlign: "center",
-
   }
 });
