@@ -57,10 +57,10 @@ CafeQuestion[2]= "Do you want to go coffee shop?"; CafeKey[2]="coffee shop";
 BarQuestion[0]="Do you want to call to the bar?";//phone filter
 BarKey[0]="phone";
 
-BarQuestion[1]="Do you want to go wine bar?";CafeKey[1]="wine bar";
-BarQuestion[2]="Do you want to go cocktail bar?";CafeKey[2]="cocktail bar";
+BarQuestion[1]="Do you want to go wine bar?";BarKey[1]="wine bar";
+BarQuestion[2]="Do you want to go cocktail bar?";BarKey[2]="cocktail bar";
 
 
 
 
-export { RestaurantQuestion,BakeryQuestion,CafeQuestion,BarQuestion };
+export { RestaurantQuestion,BakeryQuestion,CafeQuestion,BarQuestion,RestaurantKey,BakeryKey,CafeKey,BarKey };

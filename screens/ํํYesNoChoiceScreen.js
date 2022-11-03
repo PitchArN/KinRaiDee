@@ -5,75 +5,85 @@ import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Speech from "expo-speech";
 
-
 import {
-  Question,
-  Ans_up,
-  Ans_down,
-  Ans_left,
-  Ans_right,
-} from "../constant/EssentialQuestion";
+  RestaurantQuestion,
+  CafeQuestion,
+  BakeryQuestion,
+  BarQuestion,
+  BarKey,
+  CafeKey,
+  BakeryKey,
+  RestaurantKey,
+} from "../constant/FilterQuestion";
 
 import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
-import YesNoChoiceScreen from "./ํํYesNoChoiceScreen";
 
-function SwipeScreen() {
+function YesNoChoiceScreen({ onSelected }) {
   const config = {
     velocityThreshold: 0.2,
     directionalOffsetThreshold: 80,
   };
 
   const [questionState, setQuestionState] = useState(0);
-  const [currentQuestion, setCurrentQuestion] = useState(Question[0]);
+  
   const [answerArray, setAnswerArray] = useState("");
 
-  function SwipeUpHandler() {
-    setAnswerArray([...answerArray,Ans_up[questionState]]);
-    setQuestionState(questionState + 1);
-    setCurrentQuestion(Question[questionState + 1]);
+  let QuestionArray = [''];
+  let FilterSelectedChoice = [''];
+
+  if (onSelected[0] === "Restaurant") {
+    QuestionArray = RestaurantQuestion;
+    FilterSelectedChoice = RestaurantKey;
+
+  } else if (onSelected[0] === "Bar") {
+    QuestionArray = BarQuestion;
+    FilterSelectedChoice = BarKey;
+
+  } else if (onSelected[0] === "Bakery") {
+    QuestionArray = BakeryQuestion;
+    FilterSelectedChoice = BakeryKey;
+
+  } else {
+    QuestionArray = CafeQuestion;
+    FilterSelectedChoice = CafeKey;
+
   }
 
-  function SwipeDownHandler() {
-    setAnswerArray([...answerArray,  Ans_down[questionState]]);
-    setQuestionState(questionState + 1);
-    setCurrentQuestion(Question[questionState + 1]);
-  }
+  const [currentQuestion, setCurrentQuestion] = useState(QuestionArray[questionState]);
 
   function SwipeLeftHandler() {
-    setAnswerArray([...answerArray,  Ans_left[questionState]]);
+    //Select No
+    setAnswerArray([...answerArray,","+ "-"]);
     setQuestionState(questionState + 1);
-    setCurrentQuestion(Question[questionState + 1]);
+    setCurrentQuestion(QuestionArray[questionState + 1]);
   }
 
   function SwipeRightHandler() {
-    setAnswerArray([...answerArray,  Ans_right[questionState]]);
+    //Select Yes
+    setAnswerArray([...answerArray,","+ FilterSelectedChoice[questionState]]);
     setQuestionState(questionState + 1);
-    setCurrentQuestion(Question[questionState + 1]);
+    setCurrentQuestion(QuestionArray[questionState + 1]);
   }
 
   function DoubleTapHandler() {
+    //back to previous question
     if (questionState > 0) {
       answerArray.pop();
       setQuestionState(questionState - 1);
-      setCurrentQuestion(Question[questionState - 1]);
+      setCurrentQuestion(QuestionArray[questionState - 1]);
     }
   }
 
   let renderElements = (
     <GestureRecognizer
-      onSwipeUp={SwipeUpHandler}
-      onSwipeDown={SwipeDownHandler}
       onSwipeLeft={SwipeLeftHandler}
       onSwipeRight={SwipeRightHandler}
       config={config}
       style={styles.container}
     >
       <StatusBar style="auto" />
-      <DoubleTap
-        doubleTap={DoubleTapHandler}
-        style={styles.DoubleTapContainer}
-      >
+      <DoubleTap doubleTap={DoubleTapHandler} style={styles.DoubleTapContainer}>
         <View style={styles.container}>
           {/* 
       Test Display Output
@@ -83,8 +93,8 @@ function SwipeScreen() {
     */}
 
           {/*Header Showing Question*/}
-          <View style={styles.HeaderRectangle} >
-            <Text style={styles.whiteText} >{currentQuestion}</Text>
+          <View style={styles.HeaderRectangle}>
+            <Text style={styles.whiteText}>{currentQuestion}</Text>
           </View>
 
           <LinearGradient
@@ -101,17 +111,17 @@ function SwipeScreen() {
             >
               {/* All Elements in swipe area are here*/}
 
-              <View style={styles.midArea} >
-                <Text style={styles.text2} >{Ans_up[questionState]}</Text>
+              <View style={styles.midArea}>
+                <Text style={styles.text2}>{}</Text>
               </View>
 
-              <View style={styles.midArea} >
-                <Text style={styles.text2}>{Ans_left[questionState]}</Text>
-                <Text style={styles.text2}>{Ans_right[questionState]}</Text>
+              <View style={styles.midArea}>
+                <Text style={styles.text2}>No</Text>
+                <Text style={styles.text2}>Yes</Text>
               </View>
-      
-              <View style={styles.midArea} >
-                <Text style={styles.text2}>{Ans_down[questionState]}</Text>
+
+              <View style={styles.midArea}>
+                <Text style={styles.text2}>{}</Text>
               </View>
             </LinearGradient>
           </LinearGradient>
@@ -124,15 +134,14 @@ function SwipeScreen() {
     </GestureRecognizer>
   );
 
-  if (questionState > Question.length-1) {
-    renderElements = <YesNoChoiceScreen onSelected={answerArray} />;
+  if (questionState > QuestionArray.length - 1) {
+    renderElements = <DisplayResultScreen onSelected={answerArray} type={onSelected[0]} sortBy={onSelected[1]}  />;
   }
-  
+
   return renderElements;
-  
 }
 
-export default SwipeScreen;
+export default YesNoChoiceScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -142,9 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
 
-
-
-  //texts  
+  //texts
   whiteText: {
     fontSize: 24,
     color: "white",

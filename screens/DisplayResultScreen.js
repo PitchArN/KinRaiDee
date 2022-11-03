@@ -3,12 +3,9 @@ import { Text, View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 
-function DisplayResultScreen({onSelected}) {
-  const [userState, setUserState] = useState("");
+function DisplayResultScreen({onSelected , sortBy, type}) {
 
-  function SelectedHandler(select) {
-    setUserState(select);
-  }
+  
 
   const ansArray = String(onSelected).split(',');
 
@@ -22,9 +19,11 @@ function DisplayResultScreen({onSelected}) {
       style={styles.container}>
       <StatusBar style="auto" />
       <Text style={styles.text}>Do you want to search</Text>
-      <Text style={styles.answer}>{ansArray[1]}</Text>
+      <Text style={styles.answer}>{type}</Text>
       <Text style={styles.text}>sorted by</Text>
-      <Text style={styles.answer}>{ansArray[3]}</Text>
+      <Text style={styles.answer}>{sortBy}</Text>
+      <Text style={styles.text}>Key Search</Text>
+      <Text style={styles.answer}>{onSelected}</Text>
     </LinearGradient>
   ); 
 }

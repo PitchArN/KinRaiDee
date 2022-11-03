@@ -14,7 +14,7 @@ const Ans_right = [];
 Question[0] = "What type of restaurant \n you are going to search?"; 
 Ans_up[0] = "Restaurant";
 Ans_down[0] = "Bar";
-Ans_left[0] = "Bekery";
+Ans_left[0] = "Bakery";
 Ans_right[0] = "Cafe"; 
 
 //Question 2 

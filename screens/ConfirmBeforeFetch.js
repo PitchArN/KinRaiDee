@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 
-function DisplayResultScreen({onSelected}) {
+function ConfirmBeforeFetch({onSelected}) {
   const [userState, setUserState] = useState("");
 
   function SelectedHandler(select) {
@@ -25,7 +25,7 @@ function DisplayResultScreen({onSelected}) {
   );
 }
 
-export default DisplayResultScreen;
+export default ConfirmBeforeFetch;
 
 const styles = StyleSheet.create({
   container: {
