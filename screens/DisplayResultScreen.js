@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
-
+import * as Linking from "expo-linking"
 function DisplayResultScreen({onSelected , sortBy, type}) {
 
   
 
-  const ansArray = String(onSelected).split(',');
+  
 
+  const ansArray = String(onSelected).split(',');
+  
 
 
   return (
@@ -18,7 +20,7 @@ function DisplayResultScreen({onSelected , sortBy, type}) {
       end={{ x: 0, y: 0 }}
       style={styles.container}>
       <StatusBar style="auto" />
-      <Text style={styles.text}>Do you want to search</Text>
+      <Text style={styles.text} onPress={() => Linking.openURL('tel:+66982725713')}>Do you want to search</Text>
       <Text style={styles.answer}>{type}</Text>
       <Text style={styles.text}>sorted by</Text>
       <Text style={styles.answer}>{sortBy}</Text>
