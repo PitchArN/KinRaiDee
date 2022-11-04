@@ -52,14 +52,14 @@ function YesNoChoiceScreen({ onSelected }) {
 
   const [currentQuestion, setCurrentQuestion] = useState(QuestionArray[questionState]);
 
-  function SwipeLeftHandler() {
+  function SwipeUpHandler() {
     //Select No
     setAnswerArray([...answerArray,","+ "-"]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(QuestionArray[questionState + 1]);
   }
 
-  function SwipeRightHandler() {
+  function SwipeDownHandler() {
     //Select Yes
     setAnswerArray([...answerArray,","+ FilterSelectedChoice[questionState]]);
     setQuestionState(questionState + 1);
@@ -77,8 +77,8 @@ function YesNoChoiceScreen({ onSelected }) {
 
   let renderElements = (
     <GestureRecognizer
-      onSwipeLeft={SwipeLeftHandler}
-      onSwipeRight={SwipeRightHandler}
+      onSwipeUp={SwipeUpHandler}
+      onSwipeDown={SwipeDownHandler}
       config={config}
       style={styles.container}
     >
@@ -112,16 +112,16 @@ function YesNoChoiceScreen({ onSelected }) {
               {/* All Elements in swipe area are here*/}
 
               <View style={styles.midArea}>
-                <Text style={styles.text2}>{}</Text>
-              </View>
-
-              <View style={styles.midArea}>
                 <Text style={styles.text2}>No</Text>
-                <Text style={styles.text2}>Yes</Text>
               </View>
 
               <View style={styles.midArea}>
-                <Text style={styles.text2}>{}</Text>
+                <Text style={styles.text2}></Text>
+                <Text style={styles.text2}></Text>
+              </View>
+
+              <View style={styles.midArea}>
+                <Text style={styles.text2}>Yes</Text>
               </View>
             </LinearGradient>
           </LinearGradient>

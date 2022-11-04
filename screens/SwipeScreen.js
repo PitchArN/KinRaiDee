@@ -16,7 +16,7 @@ import {
 
 import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
-import YesNoChoiceScreen from "./ํํYesNoChoiceScreen";
+import YesNoChoiceScreen from "./YesNoChoiceScreen";
 
 function SwipeScreen() {
   const config = {
