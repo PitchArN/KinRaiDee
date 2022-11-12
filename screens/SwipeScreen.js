@@ -17,6 +17,7 @@ import {
 import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
 import YesNoChoiceScreen from "./YesNoChoiceScreen";
+import ConfirmBeforeFetch from "./ConfirmBeforeFetch";
 
 function SwipeScreen() {
   const config = {
@@ -32,29 +33,34 @@ function SwipeScreen() {
     setAnswerArray([...answerArray,Ans_up[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
+    
   }
 
   function SwipeDownHandler() {
     setAnswerArray([...answerArray,  Ans_down[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
+    
   }
 
   function SwipeLeftHandler() {
     setAnswerArray([...answerArray,  Ans_left[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
+    
   }
 
   function SwipeRightHandler() {
     setAnswerArray([...answerArray,  Ans_right[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
+    
   }
 
   function DoubleTapHandler() {
     if (questionState > 0) {
       answerArray.pop();
+      anArray[questionState] = "";
       setQuestionState(questionState - 1);
       setCurrentQuestion(Question[questionState - 1]);
     }
@@ -75,12 +81,6 @@ function SwipeScreen() {
         style={styles.DoubleTapContainer}
       >
         <View style={styles.container}>
-          {/* 
-      Test Display Output
-      <Text style={styles.text}>{console.log(answerArray)}</Text>
-      <Text style={styles.text}>{currentQuestion}</Text>
-      <Text style={styles.text}>{questionState}</Text>  
-    */}
 
           {/*Header Showing Question*/}
           <View style={styles.HeaderRectangle} >
@@ -125,7 +125,8 @@ function SwipeScreen() {
   );
 
   if (questionState > Question.length-1) {
-    renderElements = <YesNoChoiceScreen onSelected={answerArray} />;
+      renderElements = <ConfirmBeforeFetch type={answerArray[0]} sortBy={answerArray[1]}  />;
+
   }
   
   return renderElements;

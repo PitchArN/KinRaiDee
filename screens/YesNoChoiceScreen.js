@@ -19,7 +19,7 @@ import {
 import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
 
-function YesNoChoiceScreen({ onSelected }) {
+function YesNoChoiceScreen({ type,sortBy }) {
   const config = {
     velocityThreshold: 0.2,
     directionalOffsetThreshold: 80,
@@ -32,15 +32,15 @@ function YesNoChoiceScreen({ onSelected }) {
   let QuestionArray = [''];
   let FilterSelectedChoice = [''];
 
-  if (onSelected[0] === "Restaurant") {
+  if (type === "Restaurant") {
     QuestionArray = RestaurantQuestion;
     FilterSelectedChoice = RestaurantKey;
 
-  } else if (onSelected[0] === "Bar") {
+  } else if (type === "Bar") {
     QuestionArray = BarQuestion;
     FilterSelectedChoice = BarKey;
 
-  } else if (onSelected[0] === "Bakery") {
+  } else if (type === "Bakery") {
     QuestionArray = BakeryQuestion;
     FilterSelectedChoice = BakeryKey;
 
@@ -54,14 +54,14 @@ function YesNoChoiceScreen({ onSelected }) {
 
   function SwipeUpHandler() {
     //Select No
-    setAnswerArray([...answerArray,","+ "-"]);
+    setAnswerArray([...answerArray,"-"+FilterSelectedChoice[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(QuestionArray[questionState + 1]);
   }
 
   function SwipeDownHandler() {
     //Select Yes
-    setAnswerArray([...answerArray,","+ FilterSelectedChoice[questionState]]);
+    setAnswerArray([...answerArray,"+"+FilterSelectedChoice[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(QuestionArray[questionState + 1]);
   }
@@ -98,17 +98,19 @@ function YesNoChoiceScreen({ onSelected }) {
           </View>
 
           <LinearGradient
-            colors={["#ff8f8f8c", "#FFFFFF00", "#FFFFFF00", "#ffdb808c"]}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 1 }}
+            colors={["#8fffbc8c", "#FFFFFF", "#FFFFFF", "#ff8f8f"]}
+            start={{ x: 1, y: 1 }}
+            end={{ x: 0, y: 0 }}
             style={styles.swipeArea}
           >
+
             <LinearGradient
-              colors={["#97e0ff8c", "#FFFFFF00", "#FFFFFF00", "#8fffbc8c"]}
-              start={{ x: 1, y: 0.5 }}
-              end={{ x: 0, y: 0.5 }}
+              colors={["#8fffbc8c", "#FFFFFF00", "#FFFFFF00", "#ff8f8f"]}
+              start={{ x: 0, y: 1 }}
+              end={{ x: 1, y: 0 }}
               style={styles.swipeFillArea}
             >
+            
               {/* All Elements in swipe area are here*/}
 
               <View style={styles.midArea}>
@@ -123,7 +125,7 @@ function YesNoChoiceScreen({ onSelected }) {
               <View style={styles.midArea}>
                 <Text style={styles.text2}>Yes</Text>
               </View>
-            </LinearGradient>
+              </LinearGradient>
           </LinearGradient>
 
           <View style={styles.FooterRectangle}>
@@ -135,7 +137,7 @@ function YesNoChoiceScreen({ onSelected }) {
   );
 
   if (questionState > QuestionArray.length - 1) {
-    renderElements = <DisplayResultScreen onSelected={answerArray} type={onSelected[0]} sortBy={onSelected[1]}  />;
+    renderElements = <DisplayResultScreen answerArray={answerArray} type={type} sortBy={sortBy}  />;
   }
 
   return renderElements;

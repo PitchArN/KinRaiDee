@@ -18,6 +18,12 @@ function StartScreen({onStart}) {
       start={{ x: 1, y: 1 }}
       end={{ x: 0, y: 0 }}
       style={styles.container}>
+    <LinearGradient
+              colors={["#8fffbc8c", "#FFFFFF00", "#FFFFFF00", "#97e0ff8c"]}
+              start={{ x: 0, y: 1 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.container}
+            >
       <StatusBar style="auto" />
       <Pressable android_disableSound={true} onPress={PressStartHandler}>
         <View style={styles.logoSpace}>
@@ -28,6 +34,7 @@ function StartScreen({onStart}) {
           <Text style={styles.text}>Tap to start</Text>
         </View>
       </Pressable>
+      </LinearGradient>
     </LinearGradient>
   );
 }

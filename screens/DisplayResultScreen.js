@@ -3,14 +3,19 @@ import { Text, View, StyleSheet, Alert } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Linking from "expo-linking";
+import GestureRecognizer from "react-native-swipe-gestures";
 import {
   getCurrentPositionAsync,
   useForegroundPermissions,
   PermissionStatus,
 } from "expo-location";
 
-function DisplayResultScreen({ onSelected, sortBy, type }) {
-  const ansArray = String(onSelected).split(",");
+function DisplayResultScreen({ answerArray, sortBy, type }) {
+  const config = {
+    velocityThreshold: 0.2,
+    directionalOffsetThreshold: 80,
+  };
+
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
 
@@ -45,13 +50,44 @@ function DisplayResultScreen({ onSelected, sortBy, type }) {
     console.log(location);
   }
 
+  function SwipeUpHandler() {
+
+  }
+
+  function SwipeDownHandler() {
+    
+  }
+
+  //swipe left to call to the restaurant
+  function SwipeLeftHandler() {
+    Linking.openURL("tel:+66982725713");
+  }
+
+  function SwipeRightHandler() {
+
+  }
+
   return (
-    <LinearGradient
-      colors={["#ff8f8f", "#FFFFFF", "#FFFFFF", "#ffdb80"]}
-      start={{ x: 1, y: 1 }}
-      end={{ x: 0, y: 0 }}
+    <GestureRecognizer
+      onSwipeUp={SwipeUpHandler}
+      onSwipeDown={SwipeDownHandler}
+      onSwipeLeft={SwipeLeftHandler}
+      onSwipeRight={SwipeRightHandler}
+      config={config}
       style={styles.container}
     >
+    <LinearGradient
+            colors={["#ff8f8f8c", "#FFFFFF00", "#FFFFFF00", "#ffdb808c"]}
+            start={{ x: 0.5, y: 0 }}
+            end={{ x: 0.5, y: 1 }}
+            style={styles.swipeArea}
+          >
+            <LinearGradient
+              colors={["#97e0ff8c", "#FFFFFF00", "#FFFFFF00", "#8fffbc8c"]}
+              start={{ x: 1, y: 0.5 }}
+              end={{ x: 0, y: 0.5 }}
+              style={styles.swipeFillArea}
+            >
       <StatusBar style="auto" />
       <Text
         style={styles.text}
@@ -69,9 +105,13 @@ function DisplayResultScreen({ onSelected, sortBy, type }) {
       <Text style={styles.text}>sorted by</Text>
       <Text style={styles.answer}>{sortBy}</Text>
       <Text style={styles.text}>Key Search</Text>
-      <Text style={styles.answer}>{onSelected}</Text>
+      <Text style={styles.answer}>{answerArray}</Text>
     </LinearGradient>
+    </LinearGradient>
+    </GestureRecognizer>
   );
+
+
 }
 
 export default DisplayResultScreen;
@@ -98,5 +138,24 @@ const styles = StyleSheet.create({
     fontFamily: "BaiJamBold",
     fontWeight: "bold",
     textAlign: "center",
+  },
+  //Area To Swipe
+  swipeArea: {
+    height: "70%",
+    width: "100%",
+  },
+  swipeFillArea: {
+    height: "100%",
+    width: "100%",
+    flexDirection: "column",
+    flex: 3,
+    justifyContent: "space-around",
+  },
+  midArea: {
+    width: "100%",
+    flexDirection: "row",
+    flex: 2,
+    justifyContent: "space-around",
+    alignItems: "center",
   },
 });
