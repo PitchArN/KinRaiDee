@@ -15,13 +15,13 @@ function StartScreen({onStart}) {
   return (
     <LinearGradient 
       colors={["#ff8f8f", "#FFFFFF", "#FFFFFF", "#ffdb80"]}
-      start={{ x: 1, y: 1 }}
-      end={{ x: 0, y: 0 }}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0.5, y: 1 }}
       style={styles.container}>
     <LinearGradient
               colors={["#8fffbc8c", "#FFFFFF00", "#FFFFFF00", "#97e0ff8c"]}
-              start={{ x: 0, y: 1 }}
-              end={{ x: 1, y: 0 }}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0.75 }}
               style={styles.container}
             >
       <StatusBar style="auto" />

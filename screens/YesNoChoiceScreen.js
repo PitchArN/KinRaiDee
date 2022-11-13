@@ -20,11 +20,9 @@ import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
 
 function YesNoChoiceScreen({ type,sortBy }) {
-  const config = {
-    velocityThreshold: 0.2,
-    directionalOffsetThreshold: 80,
-  };
+  
 
+  //-----------------------------------------  QUESTION SELECTION SECTION
   const [questionState, setQuestionState] = useState(0);
   
   const [answerArray, setAnswerArray] = useState("");
@@ -52,6 +50,12 @@ function YesNoChoiceScreen({ type,sortBy }) {
 
   const [currentQuestion, setCurrentQuestion] = useState(QuestionArray[questionState]);
 
+//-----------------------------------------  SWIPE SCREEN SECTION 
+  const config = {
+    velocityThreshold: 0.2,
+    directionalOffsetThreshold: 80,
+  };
+
   function SwipeUpHandler() {
     //Select No
     setAnswerArray([...answerArray,"-"+FilterSelectedChoice[questionState]]);
@@ -74,8 +78,18 @@ function YesNoChoiceScreen({ type,sortBy }) {
       setCurrentQuestion(QuestionArray[questionState - 1]);
     }
   }
+//-----------------------------------------  API FETCH SECTION 
+
+//----------------------------------------- TEXT TO SPEECH
+// List to speak (in order)
+// {currentQuestion}
+// "swipe up for"    no
+// "swipe down for"   yes
+
+//-----------------------------------------  SCREEN APPEARANCE 
 
   let renderElements = (
+    
     <GestureRecognizer
       onSwipeUp={SwipeUpHandler}
       onSwipeDown={SwipeDownHandler}
@@ -85,20 +99,11 @@ function YesNoChoiceScreen({ type,sortBy }) {
       <StatusBar style="auto" />
       <DoubleTap doubleTap={DoubleTapHandler} style={styles.DoubleTapContainer}>
         <View style={styles.container}>
-          {/* 
-      Test Display Output
-      <Text style={styles.text}>{console.log(answerArray)}</Text>
-      <Text style={styles.text}>{currentQuestion}</Text>
-      <Text style={styles.text}>{questionState}</Text>  
-    */}
-
-          {/*Header Showing Question*/}
-          <View style={styles.HeaderRectangle}>
-            <Text style={styles.whiteText}>{currentQuestion}</Text>
-          </View>
-
+        <View style={styles.HeaderRectangle} >
+            <Text style={styles.whiteText} >{currentQuestion}</Text>
+        </View>
           <LinearGradient
-            colors={["#8fffbc8c", "#FFFFFF", "#FFFFFF", "#ff8f8f"]}
+            colors={["#8fffbc8c", "#ffffffff", "#ffffffff", "#ff8f8f"]}
             start={{ x: 1, y: 1 }}
             end={{ x: 0, y: 0 }}
             style={styles.swipeArea}
@@ -116,11 +121,12 @@ function YesNoChoiceScreen({ type,sortBy }) {
               <View style={styles.midArea}>
                 <Text style={styles.text2}>No</Text>
               </View>
-
+              {/* 
               <View style={styles.midArea}>
-                <Text style={styles.text2}></Text>
-                <Text style={styles.text2}></Text>
+                <Text style={styles.text2}>{currentQuestion}</Text>
               </View>
+              */}
+              
 
               <View style={styles.midArea}>
                 <Text style={styles.text2}>Yes</Text>
@@ -129,13 +135,13 @@ function YesNoChoiceScreen({ type,sortBy }) {
           </LinearGradient>
 
           <View style={styles.FooterRectangle}>
-            <Text Style={styles.whiteText}>Double Tap To Back </Text>
+            <Text style={styles.whiteText}>Double Tap To Back </Text>
           </View>
         </View>
       </DoubleTap>
     </GestureRecognizer>
   );
-
+//-----------------------------------------  SCREEN CHANGING 
   if (questionState > QuestionArray.length - 1) {
     renderElements = <DisplayResultScreen answerArray={answerArray} type={type} sortBy={sortBy}  />;
   }
@@ -144,7 +150,7 @@ function YesNoChoiceScreen({ type,sortBy }) {
 }
 
 export default YesNoChoiceScreen;
-
+//-----------------------------------------  CSS 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -153,7 +159,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
 
-  //texts
+  //texts  
   whiteText: {
     fontSize: 24,
     color: "white",
@@ -174,20 +180,19 @@ const styles = StyleSheet.create({
 
   //header and footer rectangle
   HeaderRectangle: {
-    height: "25%",
+    height: "20%",
     width: "100%",
     alignItems: "center",
     backgroundColor: "#454545",
     justifyContent: "center",
   },
   FooterRectangle: {
-    height: "5%",
+    height: "10%",
     width: "100%",
     alignItems: "center",
     backgroundColor: "#454545",
     justifyContent: "center",
   },
-
   //Area To Swipe
   swipeArea: {
     height: "70%",

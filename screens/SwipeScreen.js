@@ -20,22 +20,30 @@ import YesNoChoiceScreen from "./YesNoChoiceScreen";
 import ConfirmBeforeFetch from "./ConfirmBeforeFetch";
 
 function SwipeScreen() {
+  //-----------------------------------------  SWIPE SECTION 
+  //config for the swipe speed 
   const config = {
     velocityThreshold: 0.2,
     directionalOffsetThreshold: 80,
   };
 
+  //declare variables for pass in each state
+  //define question number
   const [questionState, setQuestionState] = useState(0);
+  //define current question text
   const [currentQuestion, setCurrentQuestion] = useState(Question[0]);
+  //define answer array to forward to next screen
   const [answerArray, setAnswerArray] = useState("");
 
+  //swipe to add the answer to answer array
+  //todo when swipe up
   function SwipeUpHandler() {
     setAnswerArray([...answerArray,Ans_up[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
     
   }
-
+  //todo when swipe down
   function SwipeDownHandler() {
     setAnswerArray([...answerArray,  Ans_down[questionState]]);
     setQuestionState(questionState + 1);
@@ -43,6 +51,7 @@ function SwipeScreen() {
     
   }
 
+  //todo when swipe left
   function SwipeLeftHandler() {
     setAnswerArray([...answerArray,  Ans_left[questionState]]);
     setQuestionState(questionState + 1);
@@ -50,6 +59,7 @@ function SwipeScreen() {
     
   }
 
+  //todo when swipe right
   function SwipeRightHandler() {
     setAnswerArray([...answerArray,  Ans_right[questionState]]);
     setQuestionState(questionState + 1);
@@ -57,14 +67,24 @@ function SwipeScreen() {
     
   }
 
+  //double tap to back to previous question
   function DoubleTapHandler() {
     if (questionState > 0) {
       answerArray.pop();
-      anArray[questionState] = "";
       setQuestionState(questionState - 1);
       setCurrentQuestion(Question[questionState - 1]);
     }
   }
+  //----------------------------------------- TEXT TO SPEECH
+  // List to speak (in order)
+  // currentQuestion
+  // "swipe up for"     Ans_up[questionState]
+  // "swipe down for"   Ans_down[questionState]
+  // "swipe left for"   Ans_left[questionState]
+  // "swipe right for"  Ans_right[questionState]
+  // "Tap twice to back to previous question"
+
+  //----------------------------------------- SCREEN APPEARANCE 
 
   let renderElements = (
     <GestureRecognizer
@@ -107,6 +127,7 @@ function SwipeScreen() {
 
               <View style={styles.midArea} >
                 <Text style={styles.text2}>{Ans_left[questionState]}</Text>
+                
                 <Text style={styles.text2}>{Ans_right[questionState]}</Text>
               </View>
       
@@ -117,24 +138,27 @@ function SwipeScreen() {
           </LinearGradient>
 
           <View style={styles.FooterRectangle}>
-            <Text Style={styles.whiteText}>Double Tap To Back </Text>
+            <Text style={styles.whiteText}>Tap Twice To Back </Text>
           </View>
         </View>
       </DoubleTap>
     </GestureRecognizer>
   );
 
+  //----------------------------------------- Forward Answer to confirm screen
   if (questionState > Question.length-1) {
       renderElements = <ConfirmBeforeFetch type={answerArray[0]} sortBy={answerArray[1]}  />;
 
   }
   
+  //----------------------------------------- Display the screen 
   return renderElements;
   
 }
 
 export default SwipeScreen;
 
+//----------------------------------------- CSS
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -166,14 +190,14 @@ const styles = StyleSheet.create({
 
   //header and footer rectangle
   HeaderRectangle: {
-    height: "25%",
+    height: "20%",
     width: "100%",
     alignItems: "center",
     backgroundColor: "#454545",
     justifyContent: "center",
   },
   FooterRectangle: {
-    height: "5%",
+    height: "10%",
     width: "100%",
     alignItems: "center",
     backgroundColor: "#454545",

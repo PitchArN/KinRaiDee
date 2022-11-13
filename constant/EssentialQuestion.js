@@ -20,7 +20,7 @@ Ans_right[0] = "Cafe";
 //Question 2 
 Question[1] = "How would you like the \n results to be sorted? "; 
 Ans_up[1] = "Score";
-Ans_down[1] = "Just Random!";
+Ans_down[1] = "Random!";
 Ans_left[1] = "Name";
 Ans_right[1] = "Nearby Me"; 
 

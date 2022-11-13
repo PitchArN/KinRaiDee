@@ -11,45 +11,48 @@ import {
 } from "expo-location";
 
 function DisplayResultScreen({ answerArray, sortBy, type }) {
+  
+
+  //-----------------------------------------  GPS PERMISSION SECTION 
+  const [locationPermissionInformation, requestPermission] = useForegroundPermissions();
+    //check and request GPS permission
+    async function verifyPermission() {
+      if (
+        locationPermissionInformation.status === PermissionStatus.UNDETERMINED
+      ) {
+        const permissionRespond = await requestPermission();
+  
+        return permissionRespond.granted;
+      }
+  
+      if (locationPermissionInformation.status === PermissionStatus.DENIED) {
+        Alert.alert(
+          "Permission Denied",
+          "You need to grant location permission to use this app."
+        );
+  
+        return false;
+      }
+      return true;
+    }
+
+    // get the current location
+    async function getLocation() {
+      const hasPermission = await verifyPermission();
+    
+      if(!hasPermission){ //check if dont have permission -> do nothing
+        return;
+      }
+  
+      const location = await getCurrentPositionAsync(); //to get location need some wait
+      console.log(location);
+    }
+
+  //-----------------------------------------  SWIPE SCREEN SECTION 
   const config = {
     velocityThreshold: 0.2,
     directionalOffsetThreshold: 80,
   };
-
-  const [locationPermissionInformation, requestPermission] =
-    useForegroundPermissions();
-
-  async function verifyPermission() {
-    if (
-      locationPermissionInformation.status === PermissionStatus.UNDETERMINED
-    ) {
-      const permissionRespond = await requestPermission();
-
-      return permissionRespond.granted;
-    }
-
-    if (locationPermissionInformation.status === PermissionStatus.DENIED) {
-      Alert.alert(
-        "Permission Denied",
-        "You need to grant location permission to use this app."
-      );
-
-      return false;
-    }
-    return true;
-  }
-
-  async function getLocation() {
-    const hasPermission = await verifyPermission();
-  
-    if(!hasPermission){ //check if dont have permission -> do nothing
-      return;
-    }
-
-    const location = await getCurrentPositionAsync(); //to get location need some wait
-    console.log(location);
-  }
-
   function SwipeUpHandler() {
 
   }
@@ -66,7 +69,16 @@ function DisplayResultScreen({ answerArray, sortBy, type }) {
   function SwipeRightHandler() {
 
   }
+//-----------------------------------------  TEXT TO SPEECH
+// List to speak (in order)
+// {restauarantName}[index]
+// {restaurantInfo}[index]
+// "swipe up to see next result"
+// "swipe down to do search again"
+// "swipe left to call"
+// "swipe right to open map"
 
+//-----------------------------------------  SCREEN APPEARANCE
   return (
     <GestureRecognizer
       onSwipeUp={SwipeUpHandler}
@@ -76,19 +88,46 @@ function DisplayResultScreen({ answerArray, sortBy, type }) {
       config={config}
       style={styles.container}
     >
+    <View style={styles.HeaderRectangle}>
+      <Text style={styles.answer}>{type} | {sortBy}</Text>
+    </View>
     <LinearGradient
-            colors={["#ff8f8f8c", "#FFFFFF00", "#FFFFFF00", "#ffdb808c"]}
-            start={{ x: 0.5, y: 0 }}
-            end={{ x: 0.5, y: 1 }}
-            style={styles.swipeArea}
-          >
-            <LinearGradient
-              colors={["#97e0ff8c", "#FFFFFF00", "#FFFFFF00", "#8fffbc8c"]}
-              start={{ x: 1, y: 0.5 }}
-              end={{ x: 0, y: 0.5 }}
-              style={styles.swipeFillArea}
-            >
+      colors={["#97e0ff8c", "#FFFFFF00", "#FFFFFF00", "#8fffbc8c"]}
+      start={{ x: 1, y: 0.5 }}
+      end={{ x: 0, y: 0.5 }}
+      style={styles.swipeArea}
+    >
+    <LinearGradient
+      colors={["#ff8f8f8c", "#FFFFFF00", "#FFFFFF00", "#ffdb808c"]}
+      start={{ x: 0.5, y: 0 }}
+      end={{ x: 0.5, y: 1 }}
+      style={styles.swipeFillArea}
+    >
+            
       <StatusBar style="auto" />
+      
+
+      <View style={styles.midArea} >
+        <Text style={styles.text2} >{"Next Choice"}</Text>
+      </View>
+
+      <View style={styles.midArea} >
+        <Text style={styles.text2}>{"Call"}</Text>      
+        <View style={styles.resultArea}> 
+          <Text style={styles.text2}>{" Restaurant Name"}</Text>
+          <Text style={styles.text2}>{" Type "}</Text>
+          <Text style={styles.text2}>{" Score"}</Text>
+          <Text style={styles.text2}>{" Address? "}</Text> 
+
+
+        </View>   
+        <Text style={styles.text2}>{"Map"}</Text>
+      </View>
+      
+      <View style={styles.midArea} >
+        <Text style={styles.text2}>{"Search Again"}</Text>
+      </View>
+      {/*
       <Text
         style={styles.text}
         onPress={() => Linking.openURL("tel:+66982725713")}
@@ -101,11 +140,10 @@ function DisplayResultScreen({ answerArray, sortBy, type }) {
       >
         Test getlocation
       </Text>
-      <Text style={styles.answer}>{type}</Text>
-      <Text style={styles.text}>sorted by</Text>
-      <Text style={styles.answer}>{sortBy}</Text>
+      
       <Text style={styles.text}>Key Search</Text>
       <Text style={styles.answer}>{answerArray}</Text>
+      */}
     </LinearGradient>
     </LinearGradient>
     </GestureRecognizer>
@@ -124,6 +162,22 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  //header and footer rectangle
+  HeaderRectangle: {
+    height: "20%",
+    width: "100%",
+    alignItems: "center",
+    backgroundColor: "#454545",
+    justifyContent: "center",
+  },
+  FooterRectangle: {
+    height: "10%",
+    width: "100%",
+    alignItems: "center",
+    backgroundColor: "#454545",
+    justifyContent: "center",
+  },
+  //text
   text: {
     fontSize: 26,
     //paddingTop: 300,
@@ -132,16 +186,42 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  answer: {
-    fontSize: 36,
+  //texts
+  whiteText: {
+    fontSize: 24,
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    verticalAlign: "top",
+    fontFamily: "BaiJamBold",
+    color: "#ffffff",
+  },
+  text2: {
+    fontSize: 24,
+    fontWeight: "bold",
+    textAlign: "center",
+    verticalAlign: "center",
+    fontFamily: "BaiJamBold",
     color: "#000000",
+  },
+  answer: {
+    fontSize: 26,
+    color: "#ffffff",
     fontFamily: "BaiJamBold",
     fontWeight: "bold",
     textAlign: "center",
   },
   //Area To Swipe
+  resultArea:{
+    width: "60%",
+    height: "50%",
+    alignItems: "center",
+    backgroundColor: "#45454540",
+    justifyContent: "center",
+  },
+
   swipeArea: {
-    height: "70%",
+    height: "80%",
     width: "100%",
   },
   swipeFillArea: {
