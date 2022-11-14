@@ -48,15 +48,17 @@ function DisplayResultScreen({ answerArray, sortBy, type }) {
       console.log(location);
     }
 
-  //-----------------------------------------  SWIPE SCREEN SECTION 
+//-----------------------------------------  SWIPE SCREEN SECTION 
+  //config for the swipe speed
   const config = {
     velocityThreshold: 0.2,
     directionalOffsetThreshold: 80,
   };
+  //todo when swipe up
   function SwipeUpHandler() {
 
   }
-
+  //todo when swipe down
   function SwipeDownHandler() {
     
   }
@@ -66,6 +68,7 @@ function DisplayResultScreen({ answerArray, sortBy, type }) {
     Linking.openURL("tel:+66982725713");
   }
 
+  //tod when swipe right
   function SwipeRightHandler() {
 
   }

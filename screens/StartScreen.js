@@ -15,13 +15,13 @@ function StartScreen({onStart}) {
   return (
     <LinearGradient 
       colors={["#ff8f8f", "#FFFFFF", "#FFFFFF", "#ffdb80"]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0.5, y: 1 }}
+      start={{ x: 0, y: 0.5 }}
+      end={{ x: 1, y: 0.5 }}
       style={styles.container}>
     <LinearGradient
               colors={["#8fffbc8c", "#FFFFFF00", "#FFFFFF00", "#97e0ff8c"]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0.75 }}
+              start={{ x: 0.5, y: 0 }}
+              end={{ x: 0.5, y: 1 }}
               style={styles.container}
             >
       <StatusBar style="auto" />
@@ -51,6 +51,8 @@ const styles = StyleSheet.create({
     //backgroundColor: "#FFFFFFFF",
   },
   logoSpace: {
+    width: "100%",
+    height: "50%",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
@@ -59,13 +61,14 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 32,
     paddingTop: 300,
-    color: "#000000",
+    color: "#00000085",
     fontFamily: "BaiJamBold",
     fontWeight: "bold",
     textAlign: "center",
   },
   logo: {
     maxWidth: "100%" ,
+    resizeMethod: "scale",
     resizeMode: "contain",
   }
 });

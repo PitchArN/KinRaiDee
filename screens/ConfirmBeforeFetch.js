@@ -50,7 +50,7 @@ function ConfirmBeforeFetch({ sortBy, type }) {
     }
 
   //-----------------------------------------  SWIPE SECTION 
-  //config for the swipe speed  
+    //config for the swipe speed  
     const config = {
       velocityThreshold: 0.2,
       directionalOffsetThreshold: 80,
