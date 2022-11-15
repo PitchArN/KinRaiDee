@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
@@ -19,38 +19,34 @@ import {
 import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
 
-function YesNoChoiceScreen({ type,sortBy }) {
-  
-
+function YesNoChoiceScreen({ type, sortBy }) {
   //-----------------------------------------  QUESTION SELECTION SECTION
   const [questionState, setQuestionState] = useState(0);
-  
+
   const [answerArray, setAnswerArray] = useState("");
 
-  let QuestionArray = [''];
-  let FilterSelectedChoice = [''];
+  let QuestionArray = [""];
+  let FilterSelectedChoice = [""];
 
   if (type === "Restaurant") {
     QuestionArray = RestaurantQuestion;
     FilterSelectedChoice = RestaurantKey;
-
   } else if (type === "Bar") {
     QuestionArray = BarQuestion;
     FilterSelectedChoice = BarKey;
-
   } else if (type === "Bakery") {
     QuestionArray = BakeryQuestion;
     FilterSelectedChoice = BakeryKey;
-
   } else {
     QuestionArray = CafeQuestion;
     FilterSelectedChoice = CafeKey;
-
   }
 
-  const [currentQuestion, setCurrentQuestion] = useState(QuestionArray[questionState]);
+  const [currentQuestion, setCurrentQuestion] = useState(
+    QuestionArray[questionState]
+  );
 
-//-----------------------------------------  SWIPE SCREEN SECTION 
+  //-----------------------------------------  SWIPE SCREEN SECTION
   const config = {
     velocityThreshold: 0.2,
     directionalOffsetThreshold: 80,
@@ -58,14 +54,14 @@ function YesNoChoiceScreen({ type,sortBy }) {
 
   function SwipeUpHandler() {
     //Select No
-    setAnswerArray([...answerArray,"-"+FilterSelectedChoice[questionState]]);
+    setAnswerArray([...answerArray, "-" + FilterSelectedChoice[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(QuestionArray[questionState + 1]);
   }
 
   function SwipeDownHandler() {
     //Select Yes
-    setAnswerArray([...answerArray,"+"+FilterSelectedChoice[questionState]]);
+    setAnswerArray([...answerArray, "+" + FilterSelectedChoice[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(QuestionArray[questionState + 1]);
   }
@@ -78,18 +74,17 @@ function YesNoChoiceScreen({ type,sortBy }) {
       setCurrentQuestion(QuestionArray[questionState - 1]);
     }
   }
-//-----------------------------------------  API FETCH SECTION 
+  //-----------------------------------------  API FETCH SECTION
 
-//----------------------------------------- TEXT TO SPEECH
-// List to speak (in order)
-// {currentQuestion}
-// "swipe up for"    no
-// "swipe down for"   yes
+  //----------------------------------------- TEXT TO SPEECH
+  // List to speak (in order)
+  // {currentQuestion}
+  // "swipe up for"    no
+  // "swipe down for"   yes
 
-//-----------------------------------------  SCREEN APPEARANCE 
+  //-----------------------------------------  SCREEN APPEARANCE
 
   let renderElements = (
-    
     <GestureRecognizer
       onSwipeUp={SwipeUpHandler}
       onSwipeDown={SwipeDownHandler}
@@ -97,41 +92,47 @@ function YesNoChoiceScreen({ type,sortBy }) {
       style={styles.container}
     >
       <StatusBar style="auto" />
-      <DoubleTap doubleTap={DoubleTapHandler} style={styles.DoubleTapContainer}>
+      <DoubleTap doubleTap={DoubleTapHandler} style={styles.container}>
         <View style={styles.container}>
-        <View style={styles.HeaderRectangle} >
-            <Text style={styles.whiteText} >{currentQuestion}</Text>
-        </View>
+          <View style={styles.HeaderRectangle}>
+            <Text style={styles.whiteText}>{currentQuestion}</Text>
+          </View>
           <LinearGradient
-            colors={["#8fffbc8c", "#ffffffff", "#ffffffff", "#ff8f8f"]}
+            colors={["#8fffbc", "#ffffff00", "#ffffff00", "#ff8f8f"]}
             start={{ x: 1, y: 1 }}
             end={{ x: 0, y: 0 }}
             style={styles.swipeArea}
           >
-
             <LinearGradient
-              colors={["#8fffbc8c", "#FFFFFF00", "#FFFFFF00", "#ff8f8f"]}
+              colors={["#8fffbc", "#FFFFFF00", "#FFFFFF00", "#ff8f8f"]}
               start={{ x: 0, y: 1 }}
               end={{ x: 1, y: 0 }}
               style={styles.swipeFillArea}
             >
-            
               {/* All Elements in swipe area are here*/}
 
               <View style={styles.midArea}>
                 <Text style={styles.text2}>No</Text>
               </View>
-              {/* 
-              <View style={styles.midArea}>
-                <Text style={styles.text2}>{currentQuestion}</Text>
+
+              <View style={styles.resultArea}>
+                <Text style={styles.answer}>
+                  {" "+FilterSelectedChoice[questionState]+" "}
+                </Text>
+
+                <View style={styles.logoSpace}>
+                  <Image
+                    ImageSource={require("../assets/kinraideelogoNotext.png")}
+                    style={styles.logo}
+                    source={require("../assets/kinraideelogoNotext.png")}
+                  ></Image>
+                </View>
               </View>
-              */}
-              
 
               <View style={styles.midArea}>
                 <Text style={styles.text2}>Yes</Text>
               </View>
-              </LinearGradient>
+            </LinearGradient>
           </LinearGradient>
 
           <View style={styles.FooterRectangle}>
@@ -141,16 +142,22 @@ function YesNoChoiceScreen({ type,sortBy }) {
       </DoubleTap>
     </GestureRecognizer>
   );
-//-----------------------------------------  SCREEN CHANGING 
+  //-----------------------------------------  SCREEN CHANGING
   if (questionState > QuestionArray.length - 1) {
-    renderElements = <DisplayResultScreen answerArray={answerArray} type={type} sortBy={sortBy}  />;
+    renderElements = (
+      <DisplayResultScreen
+        answerArray={answerArray}
+        type={type}
+        sortBy={sortBy}
+      />
+    );
   }
 
   return renderElements;
 }
 
 export default YesNoChoiceScreen;
-//-----------------------------------------  CSS 
+//-----------------------------------------  CSS
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -159,7 +166,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
 
-  //texts  
+  //texts
   whiteText: {
     fontSize: 24,
     color: "white",
@@ -177,10 +184,17 @@ const styles = StyleSheet.create({
     fontFamily: "BaiJamBold",
     color: "#000000",
   },
+  answer: {
+    fontSize: 36,
+    color: "#F4722B",
+    fontFamily: "BaiJamBold",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 
   //header and footer rectangle
   HeaderRectangle: {
-    height: "20%",
+    height: "15%",
     width: "100%",
     alignItems: "center",
     backgroundColor: "#454545",
@@ -194,13 +208,37 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   //Area To Swipe
+  resultArea: {
+    maxWidth: "60%",
+    maxHeight: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderWidth: 5,
+    borderColor: "#F4722B",
+    backgroundColor: "#FFFFFF",
+
+    //borderLeftColor: "#8fffbc",
+    //borderBottomColor: "#ffdb80",
+    //borderRightColor: "#97e0ff",
+    //borderTopColor: "#ff8f8f",
+  },
+  //Area To Swipe
   swipeArea: {
-    height: "70%",
-    width: "100%",
+    maxHeight: "75%",
+    maxWidth: "100%",
+    borderTopWidth: 15,
+    borderBottomWidth: 15,
+    borderBottomColor: "#8fffbc",
+    borderTopColor: "#ff8f8f",
   },
   swipeFillArea: {
     height: "100%",
-    width: "100%",
+    maxWidth: "100%",
     flexDirection: "column",
     flex: 3,
     justifyContent: "space-around",

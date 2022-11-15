@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Speech from "expo-speech";
-
 
 import {
   Question,
@@ -20,8 +19,8 @@ import YesNoChoiceScreen from "./YesNoChoiceScreen";
 import ConfirmBeforeFetch from "./ConfirmBeforeFetch";
 
 function SwipeScreen() {
-  //-----------------------------------------  SWIPE SECTION 
-  //config for the swipe speed 
+  //-----------------------------------------  SWIPE SECTION
+  //config for the swipe speed
   const config = {
     velocityThreshold: 0.2,
     directionalOffsetThreshold: 80,
@@ -38,33 +37,29 @@ function SwipeScreen() {
   //swipe to add the answer to answer array
   //todo when swipe up
   function SwipeUpHandler() {
-    setAnswerArray([...answerArray,Ans_up[questionState]]);
+    setAnswerArray([...answerArray, Ans_up[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
-    
   }
   //todo when swipe down
   function SwipeDownHandler() {
-    setAnswerArray([...answerArray,  Ans_down[questionState]]);
+    setAnswerArray([...answerArray, Ans_down[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
-    
   }
 
   //todo when swipe left
   function SwipeLeftHandler() {
-    setAnswerArray([...answerArray,  Ans_left[questionState]]);
+    setAnswerArray([...answerArray, Ans_left[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
-    
   }
 
   //todo when swipe right
   function SwipeRightHandler() {
-    setAnswerArray([...answerArray,  Ans_right[questionState]]);
+    setAnswerArray([...answerArray, Ans_right[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
-    
   }
 
   //double tap to back to previous question
@@ -84,29 +79,23 @@ function SwipeScreen() {
   // "swipe right for"  Ans_right[questionState]
   // "Tap twice to back to previous question"
 
-  //----------------------------------------- SCREEN APPEARANCE 
+  //----------------------------------------- SCREEN APPEARANCE
 
   let renderElements = (
-    <GestureRecognizer
-      onSwipeUp={SwipeUpHandler}
-      onSwipeDown={SwipeDownHandler}
-      onSwipeLeft={SwipeLeftHandler}
-      onSwipeRight={SwipeRightHandler}
-      config={config}
-      style={styles.container}
-    >
-      <StatusBar style="auto" />
-      <DoubleTap
-        doubleTap={DoubleTapHandler}
-        style={styles.DoubleTapContainer}
+    <View style={styles.container}>
+      <GestureRecognizer
+        onSwipeUp={SwipeUpHandler}
+        onSwipeDown={SwipeDownHandler}
+        onSwipeLeft={SwipeLeftHandler}
+        onSwipeRight={SwipeRightHandler}
+        config={config}
       >
-        <View style={styles.container}>
-
+        <StatusBar style="auto" />
+        <DoubleTap doubleTap={DoubleTapHandler} style={styles.container}>
           {/*Header Showing Question*/}
-          <View style={styles.HeaderRectangle} >
-            <Text style={styles.whiteText} >{currentQuestion}</Text>
+          <View style={styles.HeaderRectangle}>
+            <Text style={styles.whiteText}>{currentQuestion}</Text>
           </View>
-
           <LinearGradient
             colors={["#ff8f8f8c", "#FFFFFF00", "#FFFFFF00", "#ffdb808c"]}
             start={{ x: 0.5, y: 0 }}
@@ -121,39 +110,47 @@ function SwipeScreen() {
             >
               {/* All Elements in swipe area are here*/}
 
-              <View style={styles.midArea} >
-                <Text style={styles.text2} >{Ans_up[questionState]}</Text>
+              <View style={styles.midArea}>
+                <Text style={styles.text2}>{Ans_up[questionState]}</Text>
               </View>
 
-              <View style={styles.midArea} >
+              <View style={styles.midArea}>
                 <Text style={styles.text2}>{Ans_left[questionState]}</Text>
-                
+                <View style={styles.resultArea}>
+                  <Text style={styles.answer}> Type </Text>
+                  <View style={styles.logoSpace}>
+                    <Image
+                      ImageSource={require("../assets/kinraideelogoNotext.png")}
+                      style={styles.logo}
+                      source={require("../assets/kinraideelogoNotext.png")}
+                    ></Image>
+                  </View>
+                </View>
                 <Text style={styles.text2}>{Ans_right[questionState]}</Text>
               </View>
-      
-              <View style={styles.midArea} >
+
+              <View style={styles.midArea}>
                 <Text style={styles.text2}>{Ans_down[questionState]}</Text>
               </View>
             </LinearGradient>
           </LinearGradient>
-
           <View style={styles.FooterRectangle}>
             <Text style={styles.whiteText}>Tap Twice To Back </Text>
           </View>
-        </View>
-      </DoubleTap>
-    </GestureRecognizer>
+        </DoubleTap>
+      </GestureRecognizer>
+    </View>
   );
 
   //----------------------------------------- Forward Answer to confirm screen
-  if (questionState > Question.length-1) {
-      renderElements = <ConfirmBeforeFetch type={answerArray[0]} sortBy={answerArray[1]}  />;
-
+  if (questionState > Question.length - 1) {
+    renderElements = (
+      <ConfirmBeforeFetch type={answerArray[0]} sortBy={answerArray[1]} />
+    );
   }
-  
-  //----------------------------------------- Display the screen 
+
+  //----------------------------------------- Display the screen
   return renderElements;
-  
 }
 
 export default SwipeScreen;
@@ -162,20 +159,18 @@ export default SwipeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#FFFFFFFF",
   },
 
-
-
-  //texts  
+  //texts
   whiteText: {
     fontSize: 24,
     color: "white",
     fontWeight: "bold",
     textAlign: "center",
-    verticalAlign: "top",
+    verticalAlign: "center",
     fontFamily: "BaiJamBold",
     color: "#ffffff",
   },
@@ -187,10 +182,17 @@ const styles = StyleSheet.create({
     fontFamily: "BaiJamBold",
     color: "#000000",
   },
+  answer: {
+    fontSize: 36,
+    color: "#F4722B",
+    fontFamily: "BaiJamBold",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
 
   //header and footer rectangle
   HeaderRectangle: {
-    height: "20%",
+    height: "15%",
     width: "100%",
     alignItems: "center",
     backgroundColor: "#454545",
@@ -203,11 +205,35 @@ const styles = StyleSheet.create({
     backgroundColor: "#454545",
     justifyContent: "center",
   },
+  resultArea: {
+    maxWidth: "60%",
+    maxHeight: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderWidth: 5,
+    borderColor: "#F4722B",
+    backgroundColor: "#FFFFFF",
 
+    //borderLeftColor: "#8fffbc",
+    //borderBottomColor: "#ffdb80",
+    //borderRightColor: "#97e0ff",
+    //borderTopColor: "#ff8f8f",
+  },
   //Area To Swipe
   swipeArea: {
-    height: "70%",
-    width: "100%",
+    maxHeight: "75%",
+    maxWidth: "100%",
+    borderWidth: 15,
+    borderLeftColor: "#8fffbc",
+    borderBottomColor: "#ffdb80",
+    borderRightColor: "#97e0ff",
+    borderTopColor: "#ff8f8f",
+    alignSelf: "center",
   },
   swipeFillArea: {
     height: "100%",
@@ -219,7 +245,7 @@ const styles = StyleSheet.create({
   midArea: {
     width: "100%",
     flexDirection: "row",
-    flex: 2,
+    flex: 3,
     justifyContent: "space-around",
     alignItems: "center",
   },

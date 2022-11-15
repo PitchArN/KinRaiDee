@@ -1,32 +1,31 @@
 import { StyleSheet, Text, View } from "react-native";
 import StartScreen from "./screens/StartScreen";
-import {useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from "react";
 import SwipeScreen from "./screens/SwipeScreen";
-import { useFonts } from 'expo-font';
-import {fontToLoad} from "./constant/LoadFont";
+import { useFonts } from "expo-font";
+import { fontToLoad } from "./constant/LoadFont";
 
 export default function App() {
-  const [userState,setUserState] = useState('');
+  const [userState, setUserState] = useState("");
   //Font Setup
   const [fontsLoaded] = useFonts(
     //import from LoadFont - List all of font used in the project
     fontToLoad
   );
-  
+
   //define state of the app
   function StartHandler(state) {
-    setUserState(state);
-  };
+    setUserState(++state);
+  }
 
-
-  let screen =  <StartScreen onStart={StartHandler}/>;
+  let screen = <StartScreen onStart={StartHandler} />;
 
   if (userState) {
-    screen = <SwipeScreen/>;
+    screen = <SwipeScreen />;
   }
 
   //report Error when fonts not loaded
-  if(!fontsLoaded){
+  if (!fontsLoaded) {
     return (
       <View style={styles.rootscreen}>
         <Text>Fonts Not Loaded</Text>
@@ -34,19 +33,16 @@ export default function App() {
     );
   }
 
-  return (
-    <View style={styles.rootscreen}>
-      {screen}
-    </View>
-  );
+  return <View style={styles.rootscreen}>{screen}</View>;
 }
 
 const styles = StyleSheet.create({
-  rootscreen:{
+  rootscreen: {
+    height: "100%",
+    width: "100%",
     flex: 1,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-
-  }
+    backgroundColor: "#FFFFFFFF",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
