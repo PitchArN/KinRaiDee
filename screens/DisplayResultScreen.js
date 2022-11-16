@@ -1,5 +1,13 @@
-import { useState } from "react";
-import { Text, View, StyleSheet, Alert,Image } from "react-native";
+import { useState, useRef } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Alert,
+  Image,
+  Animated,
+  PanResponder,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Linking from "expo-linking";
@@ -82,6 +90,7 @@ function DisplayResultScreen({ answerArray, sortBy, type }) {
   // "swipe right to open map"
 
   //-----------------------------------------  SCREEN APPEARANCE
+
   let renderElements = (
     <GestureRecognizer
       onSwipeUp={SwipeUpHandler}
@@ -93,8 +102,8 @@ function DisplayResultScreen({ answerArray, sortBy, type }) {
     >
       <View style={styles.HeaderRectangle}>
         <Text style={styles.answer}>
-        
-          <Text style={styles.whiteText}>Search {" | "}</Text>{type}
+          <Text style={styles.whiteText}>Search {" | "}</Text>
+          {type}
         </Text>
       </View>
       <LinearGradient
@@ -118,14 +127,14 @@ function DisplayResultScreen({ answerArray, sortBy, type }) {
           <View style={styles.midArea}>
             <Text style={styles.text2}>{"Call"}</Text>
             <View style={styles.resultArea}>
-            <View style={styles.swipeFillArea}>
-              <Text style={styles.answer}>{" Restaurant Name "}</Text>
-              <Text style={styles.text2}>{" Type "}</Text>
-              <Text style={styles.text2}>{" Score "}</Text>
-              <Text style={styles.text2}>{" Address? "}</Text>
-              <Text></Text>
-              <Text></Text>
-            </View>
+                <View style={styles.swipeFillArea}>
+                  <Text style={styles.answer}>{" Restaurant Name "}</Text>
+                  <Text style={styles.text2}>{" Type "}</Text>
+                  <Text style={styles.text2}>{" Score "}</Text>
+                  <Text style={styles.text2}>{" Address? "}</Text>
+                  <Text></Text>
+                  <Text></Text>
+                </View>
             </View>
             <Text style={styles.text2}>{"Map"}</Text>
           </View>
@@ -153,11 +162,10 @@ function DisplayResultScreen({ answerArray, sortBy, type }) {
         </LinearGradient>
       </LinearGradient>
       <View style={styles.FooterRectangle}>
-        <Text style={styles.whiteText}>Sort By{" | "} 
-        <Text style={styles.answer}>
-           {sortBy}
-        </Text></Text>
-        
+        <Text style={styles.whiteText}>
+          Sort By{" | "}
+          <Text style={styles.answer}>{sortBy}</Text>
+        </Text>
       </View>
     </GestureRecognizer>
   );
@@ -250,7 +258,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     borderWidth: 5,
     borderColor: "#F4722B",
-    backgroundColor:"#FFFFFF",
+    backgroundColor: "#FFFFFF",
     //borderLeftColor: "#8fffbc",
     //borderBottomColor: "#ffdb80",
     //borderRightColor: "#97e0ff",
@@ -275,7 +283,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   midArea: {
-    maxHeight:"60%",
+    maxHeight: "60%",
     width: "100%",
     flexDirection: "row",
     flex: 2,

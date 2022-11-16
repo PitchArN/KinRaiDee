@@ -115,18 +115,20 @@ function YesNoChoiceScreen({ type, sortBy }) {
                 <Text style={styles.text2}>No</Text>
               </View>
 
+              <View style={styles.midArea}>
               <View style={styles.resultArea}>
                 <Text style={styles.answer}>
                   {" "+FilterSelectedChoice[questionState]+" "}
                 </Text>
 
-                <View style={styles.logoSpace}>
+               
                   <Image
                     ImageSource={require("../assets/kinraideelogoNotext.png")}
                     style={styles.logo}
-                    source={require("../assets/kinraideelogoNotext.png")}
+                    source={require("../assets/request.png")}
                   ></Image>
-                </View>
+
+              </View>
               </View>
 
               <View style={styles.midArea}>
@@ -191,6 +193,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
+  logo: {
+    maxWidth:"60%",
+    maxHeight:"60%",
+    resizeMode: "contain",
+    borderColor: "#ffffffff",
+  },
 
   //header and footer rectangle
   HeaderRectangle: {
@@ -212,7 +220,7 @@ const styles = StyleSheet.create({
     maxWidth: "60%",
     maxHeight: "100%",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignSelf: "center",
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
@@ -222,10 +230,6 @@ const styles = StyleSheet.create({
     borderColor: "#F4722B",
     backgroundColor: "#FFFFFF",
 
-    //borderLeftColor: "#8fffbc",
-    //borderBottomColor: "#ffdb80",
-    //borderRightColor: "#97e0ff",
-    //borderTopColor: "#ff8f8f",
   },
   //Area To Swipe
   swipeArea: {
