@@ -10,6 +10,61 @@ const BakeryQuestion=[]; const BakeryKey=[];
 const CafeQuestion=[]; const CafeKey=[];
 const BarQuestion=[]; const BarKey=[];
 
+
+const Restaurant=[];
+const Bakery=[];
+const Cafe =[];
+const Bar = [];
+
+// CategorySet : RESTAURANT
+// "Categories" : tons of categories
+Restaurant[0] = {Question:"Do you want to call to the restaurant?", Key: "phone"};
+//struct include question and key for filter
+
+//nationalities
+Restaurant[1] = {Question:"Do you want to eat Chinese food?", Key: "chinese"};
+Restaurant[2] = {Question:"Do you want to eat Japanese Food?", Key: "japanese"};
+Restaurant[3] = {Question:"Do you want to eat Thai food?", Key: "thai"};
+Restaurant[4] = {Question:"Do you want to eat Korean Food?", Key: "korean"};
+//catetories
+Restaurant[5] = {Question:"Do you want to eat pizza?", Key: "pizza"};
+Restaurant[6] = {Question:"Do you want to eat grill?", Key: "grill"};
+Restaurant[7] = {Question:"Do you want to eat buffet?", Key: "buffet"};
+Restaurant[8] = {Question:"Do you want to eat sushi?", Key: "sushi"};
+Restaurant[9] = {Question:"Do you want to eat seafood?", Key: "seafood"};
+Restaurant[10] = {Question:"Do you want to eat hot pot?", Key: "hot pot"};
+Restaurant[11] = {Question:"Do you want to eat hamburgers?", Key: "hamburgers"};
+Restaurant[12] = {Question:"Do you want to eat doughnuts?", Key: "doughnuts"};
+Restaurant[13] = {Question:"Do you want to eat organic food?", Key: "organic"};
+Restaurant[14] = {Question:"Do you want to eat steak?", Key: "stake house"};
+Restaurant[15] = {Question:"Do you want to take away?", Key: "take away"};
+Restaurant[16] = {Question:"Do you want to eat barbecue?", Key: "barbecue"};
+Restaurant[17] = {Question:"Do you want to eat snacks?", Key: "snacks"};
+Restaurant[18] = {Question:"Do you want to eat chicken?", Key: "chicken"};
+Restaurant[19] = {Question:"Do you want to go to a cafeteria?", Key: "cafeterias"};
+
+//Bakery
+// CategorySet : SHOP 
+// "Categories" : "food drinks: bakers"
+Bakery[0] = {Question:"Do you want to call to the bakery?",Key:"phone"};//phone filter
+
+
+//Cafe
+// CategorySet : CAFE_PUB
+// "Categories" : "cafe", "cafe/pub" , "tea house" , "coffee shop"
+Cafe[0] = {Question:"Do you want to call to the cafe?",Key:"phone"};//phone filter
+Cafe[1] = {Question:"Do you want to go tea house?",Key:"tea house"};
+Cafe[2] = {Question:"Do you want to go coffee shop?",Key:"coffee shop"};
+
+
+//Bar
+// CategorySet : NIGHTLIFE
+// "Categories" : "bar" , "wine bar" , "cocktail bar" , "nightlife"
+Bar[0]={Question:"Do you want to call to the bar?",Key:"phone"};//phone filter
+Bar[1]={Question:"Do you want to go wine bar?",Key:"wine bar"};
+Bar[2]={Question:"Do you want to go cocktail bar?",Key:"cocktail bar"};
+
+/* In Case of old code 
 // CategorySet : RESTAURANT
 // "Categories" : tons of categories
 RestaurantQuestion[0]="Do you want to call to the restaurant?";//phone filter
@@ -60,7 +115,7 @@ BarKey[0]="phone";
 BarQuestion[1]="Do you want to go wine bar?";BarKey[1]="wine bar";
 BarQuestion[2]="Do you want to go cocktail bar?";BarKey[2]="cocktail bar";
 
+*/
 
 
-
-export { RestaurantQuestion,BakeryQuestion,CafeQuestion,BarQuestion,RestaurantKey,BakeryKey,CafeKey,BarKey };
+export { Restaurant,Bakery,Cafe,Bar};
