@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
@@ -18,6 +18,9 @@ import {
 
 import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
+
+
+
 
 function YesNoChoiceScreen({ type, sortBy }) {
   //-----------------------------------------  QUESTION SELECTION SECTION
@@ -45,6 +48,7 @@ function YesNoChoiceScreen({ type, sortBy }) {
   const [currentQuestion, setCurrentQuestion] = useState(
     QuestionArray[questionState]
   );
+
 
   //-----------------------------------------  SWIPE SCREEN SECTION
   const config = {
@@ -74,7 +78,20 @@ function YesNoChoiceScreen({ type, sortBy }) {
       setCurrentQuestion(QuestionArray[questionState - 1]);
     }
   }
-  //-----------------------------------------  API FETCH SECTION
+
+  // -------------------------------- API FETCH SECTION
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+ // console.log(data);
+  
+  useEffect(() => {
+    fetch('https://api.tomtom.com/search/2/nearbySearch/.json?lat=13.653326055392348&lon=100.48949374994433&limit=100&radius=10000&categorySet=9361018&view=Unified&key=iH9pB0bmpwepXVcXaGC6uNRKvhl8emRg')
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, [])
+ 
 
   //----------------------------------------- TEXT TO SPEECH
   // List to speak (in order)
@@ -116,19 +133,19 @@ function YesNoChoiceScreen({ type, sortBy }) {
               </View>
 
               <View style={styles.midArea}>
-              <View style={styles.resultArea}>
-                <Text style={styles.answer}>
-                  {" "+FilterSelectedChoice[questionState]+" "}
-                </Text>
+                <View style={styles.resultArea}>
+                  <Text style={styles.answer}>
+                    {" " + FilterSelectedChoice[questionState] + " "}
+                  </Text>
 
-               
+
                   <Image
                     ImageSource={require("../assets/kinraideelogoNotext.png")}
                     style={styles.logo}
                     source={require("../assets/request.png")}
                   ></Image>
 
-              </View>
+                </View>
               </View>
 
               <View style={styles.midArea}>
@@ -194,8 +211,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   logo: {
-    maxWidth:"60%",
-    maxHeight:"60%",
+    maxWidth: "60%",
+    maxHeight: "60%",
     resizeMode: "contain",
     borderColor: "#ffffffff",
   },
