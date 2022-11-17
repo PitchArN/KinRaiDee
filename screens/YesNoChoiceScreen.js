@@ -26,7 +26,7 @@ function YesNoChoiceScreen({ type, sortBy }) {
   const [answerArray, setAnswerArray] = useState("");
 
   let QuestionArray = [""];
-  let length=0;
+  let length = 0;
 
   if (type === "Restaurant") {
     //QuestionArray = arrayShuffle (Restaurant);
@@ -37,16 +37,19 @@ function YesNoChoiceScreen({ type, sortBy }) {
     //QuestionArray = arrayShuffle(Bar);
     QuestionArray = Bar;
     length = 3;
+    QuestionArray[length] = {Question:"",Key:""};
     //FilterSelectedChoice = BarKey;
   } else if (type === "Bakery") {
     //QuestionArray = arrayShuffle(Bar);
     QuestionArray = Bakery;
     length = 1;
+    QuestionArray[length] = {Question:"",Key:""};
     //FilterSelectedChoice = BakeryKey;
   } else {
     //QuestionArray = arrayShuffle(Bar);
     QuestionArray = Cafe;
     length = 3;
+    QuestionArray[length] = {Question:"",Key:""};
     //FilterSelectedChoice = CafeKey;
   }
 
@@ -150,7 +153,7 @@ function YesNoChoiceScreen({ type, sortBy }) {
 
               <View style={styles.midArea}>
                 <View style={styles.resultArea}>
-                  <Text>{ /*QuestionArray.length-1} | {questionState} | {length-1*/}</Text>
+                  <Text>{ QuestionArray.length-1} | {questionState} | {length-1}</Text>
                   <Text style={styles.answer}>
                     {" " + QuestionArray[questionState].Key + " "}
                   </Text>
