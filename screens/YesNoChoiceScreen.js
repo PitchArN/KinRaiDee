@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
@@ -82,8 +82,8 @@ function YesNoChoiceScreen({ type, sortBy }) {
   // -------------------------------- API FETCH SECTION
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
- // console.log(data);
-  
+  // console.log(data);
+
   useEffect(() => {
     fetch('https://api.tomtom.com/search/2/nearbySearch/.json?lat=13.653326055392348&lon=100.48949374994433&limit=100&radius=10000&categorySet=9361018&view=Unified&key=iH9pB0bmpwepXVcXaGC6uNRKvhl8emRg')
       .then((response) => response.json())
@@ -91,7 +91,15 @@ function YesNoChoiceScreen({ type, sortBy }) {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, [])
- 
+
+  /*
+  data = data.filter(function(item){
+     return item.poi.name == 'wine bar';
+  }).map(function({id, name, city}){
+      return {id, name, city};
+  });
+  */
+
 
   //----------------------------------------- TEXT TO SPEECH
   // List to speak (in order)
