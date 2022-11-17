@@ -4,16 +4,13 @@ import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Speech from "expo-speech";
+import arrayShuffle from 'array-shuffle';
 
 import {
-  RestaurantQuestion,
-  CafeQuestion,
-  BakeryQuestion,
-  BarQuestion,
-  BarKey,
-  CafeKey,
-  BakeryKey,
-  RestaurantKey,
+  Restaurant,
+  Cafe,
+  Bakery,
+  Bar,
 } from "../constant/FilterQuestion";
 
 import DisplayResultScreen from "./DisplayResultScreen";
@@ -29,24 +26,32 @@ function YesNoChoiceScreen({ type, sortBy }) {
   const [answerArray, setAnswerArray] = useState("");
 
   let QuestionArray = [""];
-  let FilterSelectedChoice = [""];
+  let length=0;
 
   if (type === "Restaurant") {
-    QuestionArray = RestaurantQuestion;
-    FilterSelectedChoice = RestaurantKey;
+    //QuestionArray = arrayShuffle (Restaurant);
+    QuestionArray = Restaurant;
+    length = 5;
+    //FilterSelectedChoice = RestaurantKey;
   } else if (type === "Bar") {
-    QuestionArray = BarQuestion;
-    FilterSelectedChoice = BarKey;
+    //QuestionArray = arrayShuffle(Bar);
+    QuestionArray = Bar;
+    length = 3;
+    //FilterSelectedChoice = BarKey;
   } else if (type === "Bakery") {
-    QuestionArray = BakeryQuestion;
-    FilterSelectedChoice = BakeryKey;
+    //QuestionArray = arrayShuffle(Bar);
+    QuestionArray = Bakery;
+    length = 1;
+    //FilterSelectedChoice = BakeryKey;
   } else {
-    QuestionArray = CafeQuestion;
-    FilterSelectedChoice = CafeKey;
+    //QuestionArray = arrayShuffle(Bar);
+    QuestionArray = Cafe;
+    length = 3;
+    //FilterSelectedChoice = CafeKey;
   }
 
   const [currentQuestion, setCurrentQuestion] = useState(
-    QuestionArray[questionState]
+      QuestionArray[questionState]
   );
 
 
@@ -58,16 +63,16 @@ function YesNoChoiceScreen({ type, sortBy }) {
 
   function SwipeUpHandler() {
     //Select No
-    setAnswerArray([...answerArray, "-" + FilterSelectedChoice[questionState]]);
+    setAnswerArray([...answerArray, "-" + QuestionArray[questionState].Key]);
     setQuestionState(questionState + 1);
-    setCurrentQuestion(QuestionArray[questionState + 1]);
+    setCurrentQuestion(QuestionArray[questionState+1]);
   }
 
   function SwipeDownHandler() {
     //Select Yes
-    setAnswerArray([...answerArray, "+" + FilterSelectedChoice[questionState]]);
+    setAnswerArray([...answerArray, "+" + QuestionArray[questionState].Key]);
     setQuestionState(questionState + 1);
-    setCurrentQuestion(QuestionArray[questionState + 1]);
+    setCurrentQuestion(QuestionArray[questionState+1]);
   }
 
   function DoubleTapHandler() {
@@ -75,14 +80,14 @@ function YesNoChoiceScreen({ type, sortBy }) {
     if (questionState > 0) {
       answerArray.pop();
       setQuestionState(questionState - 1);
-      setCurrentQuestion(QuestionArray[questionState - 1]);
+      setCurrentQuestion(QuestionArray[questionState-1]);
     }
   }
 
   // -------------------------------- API FETCH SECTION
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  // console.log(data);
+  //console.log(data);
 
   useEffect(() => {
     fetch('https://api.tomtom.com/search/2/nearbySearch/.json?lat=13.653326055392348&lon=100.48949374994433&limit=100&radius=10000&categorySet=9361018&view=Unified&key=iH9pB0bmpwepXVcXaGC6uNRKvhl8emRg')
@@ -90,7 +95,7 @@ function YesNoChoiceScreen({ type, sortBy }) {
       .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
-  }, [])
+  }, []);
 
   /*
   data = data.filter(function(item){
@@ -109,6 +114,9 @@ function YesNoChoiceScreen({ type, sortBy }) {
 
   //-----------------------------------------  SCREEN APPEARANCE
 
+  console.log(QuestionArray);
+  console.log(currentQuestion);
+
   let renderElements = (
     <GestureRecognizer
       onSwipeUp={SwipeUpHandler}
@@ -120,7 +128,7 @@ function YesNoChoiceScreen({ type, sortBy }) {
       <DoubleTap doubleTap={DoubleTapHandler} style={styles.container}>
         <View style={styles.container}>
           <View style={styles.HeaderRectangle}>
-            <Text style={styles.whiteText}>{currentQuestion}</Text>
+            <Text style={styles.whiteText}>{currentQuestion.Question}</Text>
           </View>
           <LinearGradient
             colors={["#8fffbc", "#ffffff00", "#ffffff00", "#ff8f8f"]}
@@ -142,8 +150,9 @@ function YesNoChoiceScreen({ type, sortBy }) {
 
               <View style={styles.midArea}>
                 <View style={styles.resultArea}>
+                  <Text>{ /*QuestionArray.length-1} | {questionState} | {length-1*/}</Text>
                   <Text style={styles.answer}>
-                    {" " + FilterSelectedChoice[questionState] + " "}
+                    {" " + QuestionArray[questionState].Key + " "}
                   </Text>
 
 
@@ -170,7 +179,7 @@ function YesNoChoiceScreen({ type, sortBy }) {
     </GestureRecognizer>
   );
   //-----------------------------------------  SCREEN CHANGING
-  if (questionState > QuestionArray.length - 1) {
+  if (questionState >length-1) {
     renderElements = (
       <DisplayResultScreen
         answerArray={answerArray}
