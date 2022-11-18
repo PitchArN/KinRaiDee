@@ -28,12 +28,12 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   if (type === "Restaurant") {
     //ask 5 question
     length = 5;
-    const temp = useMemo(() => returnQuestionArray(Restaurant), length);
+    const temp = useMemo(() => returnQuestionArray(Restaurant), [length]);
     QuestionArray = temp;
   } else if (type === "Bar") {
     //ask 3 question
     length = 3;
-    const temp = useMemo(() => returnQuestionArray(Bar), length);
+    const temp = useMemo(() => returnQuestionArray(Bar), [length]);
     QuestionArray = temp;
     //prevent error when update state
     QuestionArray[length] = { Question: "", Key: "" };
@@ -47,7 +47,7 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   } else {
     //ask 3 question
     length = 3;
-    const temp = useMemo(() => returnQuestionArray(Cafe), length);
+    const temp = useMemo(() => returnQuestionArray(Cafe), [length]);
     QuestionArray = temp;
     //prevent error when update state
     QuestionArray[length] = { Question: "", Key: "" };
@@ -65,14 +65,14 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
 
   function SwipeUpHandler() {
     //Select No
-    setAnswerArray([...answerArray, "-" + QuestionArray[questionState].Key]);
+    setAnswerArray([...answerArray,QuestionArray[questionState].Key]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(QuestionArray[questionState + 1]);
   }
 
   function SwipeDownHandler() {
     //Select Yes
-    setAnswerArray([...answerArray, "+" + QuestionArray[questionState].Key]);
+    //setAnswerArray([...answerArray, "+" + QuestionArray[questionState].Key]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(QuestionArray[questionState + 1]);
   }
