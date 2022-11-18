@@ -1,54 +1,34 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Alert, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import GestureRecognizer from "react-native-swipe-gestures";
 import * as Linking from "expo-linking";
-import {
-  getCurrentPositionAsync,
-  useForegroundPermissions,
-  PermissionStatus,
-} from "expo-location";
+import * as Location from "expo-location";
 import YesNoChoiceScreen from "./YesNoChoiceScreen";
 import SwipeScreen from "./SwipeScreen";
 
 function ConfirmBeforeFetch({ sortBy, type }) {
   //-----------------------------------------  GPS PERMISSION SECTION
-  const [locationPermissionInformation, requestPermission] =
-    useForegroundPermissions();
+
+  const [currentLocation, setCurrentLocation] = useState("");
+
   //check and request GPS permission
-  async function verifyPermission() {
-    if (
-      locationPermissionInformation.status === PermissionStatus.UNDETERMINED
-    ) {
-      const permissionRespond = await requestPermission();
-
-      return permissionRespond.granted;
-    }
-
-    if (locationPermissionInformation.status === PermissionStatus.DENIED) {
-      Alert.alert(
-        "Permission Denied",
-        "You need to grant location permission to use this app."
-      );
-
-      return false;
-    }
-    return true;
-  }
-
-  // get the current location
   async function getLocation() {
-    const hasPermission = await verifyPermission();
-
-    if (!hasPermission) {
-      //check if dont have permission -> do nothing
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permission to access location was denied");
       return;
     }
 
-    const location = await getCurrentPositionAsync(); //to get location need some wait
-    console.log(location);
+    const location = await Location.getCurrentPositionAsync({
+      accuracy: Location.Accuracy.Highest,
+      maximumAge: 10000,
+    });
+    setCurrentLocation(location);
   }
+
+  //console.log(currentLocation);
 
   //-----------------------------------------  SWIPE SECTION
   //config for the swipe speed
@@ -68,6 +48,7 @@ function ConfirmBeforeFetch({ sortBy, type }) {
 
   function SwipeDownHandler() {
     //Select Yes
+    getLocation();
     setConfirmAnswer(1);
   }
   //----------------------------------------- TEXT TO SPEECH
@@ -94,7 +75,6 @@ function ConfirmBeforeFetch({ sortBy, type }) {
           sorted by <Text style={styles.answer}>{sortBy}</Text> ?
         </Text>
         */}
-        
       </View>
 
       <LinearGradient
@@ -115,20 +95,19 @@ function ConfirmBeforeFetch({ sortBy, type }) {
           </View>
 
           <View style={styles.resultArea}>
-            
             <Text style={styles.text2}>
-           Search <Text style={styles.answer}>{type + " \n"} </Text>
-           sorted by <Text style={styles.answer}>{sortBy}</Text>{" ? "}  
-        </Text>
-        <View style={styles.logoSpace}>
-          
-              <Image 
-                ImageSource = {require("../assets/kinraideelogoNotext.png")}
+              Search <Text style={styles.answer}>{type + " \n"} </Text>
+              sorted by <Text style={styles.answer}>{sortBy}</Text>
+              {" ? "}
+            </Text>
+            <View style={styles.logoSpace}>
+              <Image
+                ImageSource={require("../assets/kinraideelogoNotext.png")}
                 style={styles.logo}
                 source={require("../assets/kinraideelogoNotext.png")}
               ></Image>
             </View>
-        </View>
+          </View>
 
           <View style={styles.midArea}>
             <Text style={styles.text2}>Confirm!</Text>
@@ -143,7 +122,19 @@ function ConfirmBeforeFetch({ sortBy, type }) {
   //-----------------------------------------  SCREEN CHANGING
   //forward to filter question
   if (ConfirmAnswer > 0) {
-    renderElements = <YesNoChoiceScreen type={type} sortBy={sortBy} />;
+
+    renderElements = <Text>Loading...</Text>; //waiting for gps location
+
+    if (currentLocation) {   //done get location go to next screen
+      renderElements = (
+        <YesNoChoiceScreen
+          type={type}
+          sortBy={sortBy}
+          lat={currentLocation.coords.latitude}
+          lng={currentLocation.coords.longitude}
+        />
+      );
+    }
     //back to ask essential question again
   } else if (ConfirmAnswer < 0) {
     renderElements = <SwipeScreen />;
@@ -178,21 +169,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-    //Area To Swipe
+  //Area To Swipe
   resultArea: {
     maxWidth: "60%",
     maxHeight: "100%",
     maxHeight: "100%",
     alignItems: "center",
     justifyContent: "center",
-    alignSelf:"center",
+    alignSelf: "center",
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     borderWidth: 5,
     borderColor: "#F4722B",
-    backgroundColor:"#FFFFFF",
+    backgroundColor: "#FFFFFF",
   },
   //texts
   whiteText: {

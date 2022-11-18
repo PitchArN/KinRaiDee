@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Speech from "expo-speech";
-import arrayShuffle from 'array-shuffle';
+//import arrayShuffle from 'array-shuffle';
 
 import {
   Restaurant,
@@ -19,7 +19,7 @@ import DoubleTap from "../components/DoubleTap";
 
 
 
-function YesNoChoiceScreen({ type, sortBy }) {
+function YesNoChoiceScreen({ type, sortBy, lat, lng}) {
   //-----------------------------------------  QUESTION SELECTION SECTION
   const [questionState, setQuestionState] = useState(0);
 
@@ -30,24 +30,24 @@ function YesNoChoiceScreen({ type, sortBy }) {
   let length = 0;
 
   if (type === "Restaurant") {
-    QuestionArray=   arrayShuffle(Restaurant);
+    QuestionArray=   Restaurant;
     //QuestionArray = arrayShuffle(Restaurant);
     length = 5;
     //FilterSelectedChoice = RestaurantKey;
   } else if (type === "Bar") {
-    QuestionArray =  arrayShuffle(Bar);
+    QuestionArray =  Bar;
     //QuestionArray = Bar;
     length = 3;
     QuestionArray[length] = {Question:"",Key:""};
     //FilterSelectedChoice = BarKey;
   } else if (type === "Bakery") {
-    QuestionArray = arrayShuffle(Bakery);
+    QuestionArray = Bakery;
     //QuestionArray = Bakery;
     length = 1;
     QuestionArray[length] = {Question:"",Key:""};
     //FilterSelectedChoice = BakeryKey;
   } else {
-    QuestionArray = arrayShuffle(Cafe);
+    QuestionArray = Cafe;
     //QuestionArray = Cafe;
     length = 3;
     QuestionArray[length] = {Question:"",Key:""};
@@ -91,10 +91,17 @@ function YesNoChoiceScreen({ type, sortBy }) {
   // -------------------------------- API FETCH SECTION
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  //console.log(data);
+
+
+  const API_KEY = 'iH9pB0bmpwepXVcXaGC6uNRKvhl8emRg';
+  const CategoriesSet = '9361018';
+  
+  const API_REQUEST_URL = `https://api.tomtom.com/search/2/nearbySearch/.json?lat=${lat}&lon=${lng}
+                            &limit=100&radius=10000&categorySet=${CategoriesSet}&view=Unified&key=${API_KEY}`
+  
 
   useEffect(() => {
-    fetch('https://api.tomtom.com/search/2/nearbySearch/.json?lat=13.653326055392348&lon=100.48949374994433&limit=100&radius=10000&categorySet=9361018&view=Unified&key=iH9pB0bmpwepXVcXaGC6uNRKvhl8emRg')
+    fetch(API_REQUEST_URL)
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))
@@ -119,9 +126,9 @@ function YesNoChoiceScreen({ type, sortBy }) {
   //-----------------------------------------  SCREEN APPEARANCE
 
   //console.log("Question Array:\n");
-  //console.log(QuestionArray);
-  console.log("CurrentQuestion:\n");
-  console.log(currentQuestion);
+  console.log(data);
+  // console.log("CurrentQuestion:\n");
+  // console.log(currentQuestion);
 
   let renderElements = (
     <GestureRecognizer

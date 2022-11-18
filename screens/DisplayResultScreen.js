@@ -19,8 +19,7 @@ import {
 } from "expo-location";
 import StartScreen from "./StartScreen";
 import App from "../App";
-import SwipeScreen from "./SwipeScreen";
-import RNRestart from "react-native-restart";
+
 
 function DisplayResultScreen({ answerArray, sortBy, type }) {
   //-----------------------------------------  GPS PERMISSION SECTION
