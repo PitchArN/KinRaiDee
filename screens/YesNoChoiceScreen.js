@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Speech from "expo-speech";
-//import arrayShuffle from 'array-shuffle';
+import arrayShuffle from '../components/array-shuffle';
 
 import {
   Restaurant,
@@ -30,24 +30,24 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng}) {
   let length = 0;
 
   if (type === "Restaurant") {
-    QuestionArray=   Restaurant;
+    QuestionArray=   arrayShuffle(Restaurant);
     //QuestionArray = arrayShuffle(Restaurant);
     length = 5;
     //FilterSelectedChoice = RestaurantKey;
   } else if (type === "Bar") {
-    QuestionArray =  Bar;
+    QuestionArray =  arrayShuffle(Bar);
     //QuestionArray = Bar;
     length = 3;
     QuestionArray[length] = {Question:"",Key:""};
     //FilterSelectedChoice = BarKey;
   } else if (type === "Bakery") {
-    QuestionArray = Bakery;
+    QuestionArray = arrayShuffle(Bakery);
     //QuestionArray = Bakery;
     length = 1;
     QuestionArray[length] = {Question:"",Key:""};
     //FilterSelectedChoice = BakeryKey;
   } else {
-    QuestionArray = Cafe;
+    QuestionArray = arrayShuffle(Cafe);
     //QuestionArray = Cafe;
     length = 3;
     QuestionArray[length] = {Question:"",Key:""};

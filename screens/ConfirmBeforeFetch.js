@@ -122,10 +122,15 @@ function ConfirmBeforeFetch({ sortBy, type }) {
   //-----------------------------------------  SCREEN CHANGING
   //forward to filter question
   if (ConfirmAnswer > 0) {
+    renderElements = (
+      <Image
+        style={styles.logo}
+        source={require("../assets/kinraideelogoNotext.png")}
+      />
+    ); //waiting for gps location
 
-    renderElements = <Text>Loading...</Text>; //waiting for gps location
-
-    if (currentLocation) {   //done get location go to next screen
+    if (currentLocation) {
+      //done get location go to next screen
       renderElements = (
         <YesNoChoiceScreen
           type={type}
