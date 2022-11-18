@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
   },
   swipeFillArea: {
     height: "100%",
-    width: "100%",
+    maxWidth: "100%",
     flexDirection: "column",
     flex: 3,
     justifyContent: "space-around",

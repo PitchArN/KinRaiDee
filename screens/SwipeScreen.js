@@ -7,6 +7,7 @@ import * as Speech from "expo-speech";
 
 import {
   Question,
+  Icon,
   Ans_up,
   Ans_down,
   Ans_left,
@@ -114,10 +115,12 @@ function SwipeScreen() {
                 <Text style={styles.text2}>{Ans_up[questionState]}</Text>
               </View>
 
-              <View style={styles.midArea}>
-                <Text style={styles.text2}>{Ans_left[questionState]}</Text>
+              <View style={styles.midArea} >
+                <View width="20%" maxWidth="30%">
+                <Text style={styles.text2} >{Ans_left[questionState]}</Text>
+                </View>
                 <View style={styles.resultArea}>
-                  <Text style={styles.answer}> Type </Text>
+                  <Text style={styles.answer}> {Icon[questionState]} </Text>
                   <View style={styles.logoSpace}>
                     <Image
                       ImageSource={require("../assets/kinraideelogoNotext.png")}
@@ -126,7 +129,9 @@ function SwipeScreen() {
                     ></Image>
                   </View>
                 </View>
+                <View width="20%" maxWidth="30%">
                 <Text style={styles.text2}>{Ans_right[questionState]}</Text>
+                </View>
               </View>
 
               <View style={styles.midArea}>
@@ -206,7 +211,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   resultArea: {
-    maxWidth: "60%",
+    maxWidth: "50%",
+    width: "40%",
     maxHeight: "100%",
     alignItems: "center",
     justifyContent: "center",
@@ -218,6 +224,7 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "#F4722B",
     backgroundColor: "#FFFFFF",
+    
 
     //borderLeftColor: "#8fffbc",
     //borderBottomColor: "#ffdb80",
@@ -248,5 +255,6 @@ const styles = StyleSheet.create({
     flex: 3,
     justifyContent: "space-around",
     alignItems: "center",
+    //alignSelf:"center"
   },
 });

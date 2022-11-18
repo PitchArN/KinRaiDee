@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo  } from "react";
 import { Text, View, StyleSheet, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
@@ -24,30 +24,31 @@ function YesNoChoiceScreen({ type, sortBy }) {
   const [questionState, setQuestionState] = useState(0);
 
   const [answerArray, setAnswerArray] = useState("");
+  
 
   let QuestionArray = [""];
   let length = 0;
 
   if (type === "Restaurant") {
-    //QuestionArray = arrayShuffle (Restaurant);
-    QuestionArray = Restaurant;
+    QuestionArray=   arrayShuffle(Restaurant);
+    //QuestionArray = arrayShuffle(Restaurant);
     length = 5;
     //FilterSelectedChoice = RestaurantKey;
   } else if (type === "Bar") {
-    //QuestionArray = arrayShuffle(Bar);
-    QuestionArray = Bar;
+    QuestionArray =  arrayShuffle(Bar);
+    //QuestionArray = Bar;
     length = 3;
     QuestionArray[length] = {Question:"",Key:""};
     //FilterSelectedChoice = BarKey;
   } else if (type === "Bakery") {
-    //QuestionArray = arrayShuffle(Bar);
-    QuestionArray = Bakery;
+    QuestionArray = arrayShuffle(Bakery);
+    //QuestionArray = Bakery;
     length = 1;
     QuestionArray[length] = {Question:"",Key:""};
     //FilterSelectedChoice = BakeryKey;
   } else {
-    //QuestionArray = arrayShuffle(Bar);
-    QuestionArray = Cafe;
+    QuestionArray = arrayShuffle(Cafe);
+    //QuestionArray = Cafe;
     length = 3;
     QuestionArray[length] = {Question:"",Key:""};
     //FilterSelectedChoice = CafeKey;
@@ -117,7 +118,9 @@ function YesNoChoiceScreen({ type, sortBy }) {
 
   //-----------------------------------------  SCREEN APPEARANCE
 
-  console.log(QuestionArray);
+  //console.log("Question Array:\n");
+  //console.log(QuestionArray);
+  console.log("CurrentQuestion:\n");
   console.log(currentQuestion);
 
   let renderElements = (
@@ -175,7 +178,7 @@ function YesNoChoiceScreen({ type, sortBy }) {
           </LinearGradient>
 
           <View style={styles.FooterRectangle}>
-            <Text style={styles.whiteText}>Double Tap To Back </Text>
+            <Text style={styles.whiteText}>Tap Twice To Back </Text>
           </View>
         </View>
       </DoubleTap>

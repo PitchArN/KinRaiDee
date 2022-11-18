@@ -182,6 +182,7 @@ const styles = StyleSheet.create({
   resultArea: {
     maxWidth: "60%",
     maxHeight: "100%",
+    maxHeight: "100%",
     alignItems: "center",
     justifyContent: "center",
     alignSelf:"center",
@@ -192,10 +193,6 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "#F4722B",
     backgroundColor:"#FFFFFF",
-    //borderLeftColor: "#8fffbc",
-    //borderBottomColor: "#ffdb80",
-    //borderRightColor: "#97e0ff",
-    //borderTopColor: "#ff8f8f",
   },
   //texts
   whiteText: {
