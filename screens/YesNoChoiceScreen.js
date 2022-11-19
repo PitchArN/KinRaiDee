@@ -91,7 +91,16 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   const [data, setData] = useState([]);
 
   const API_KEY = "iH9pB0bmpwepXVcXaGC6uNRKvhl8emRg";
-  const CategoriesSet = "9361018";
+
+  if(type === "Restaurant"){
+    var CategoriesSet = "7315";
+  }else if(type === "Cafe"){
+    var CategoriesSet = "9367";
+  }else if(type === "Bar"){
+    var CategoriesSet = "9379";
+  }else{
+    var CategoriesSet = "9361";
+  }
 
   const API_REQUEST_URL = `https://api.tomtom.com/search/2/nearbySearch/.json?lat=${lat}&lon=${lng}
                             &limit=100&radius=10000&categorySet=${CategoriesSet}&view=Unified&key=${API_KEY}`;
@@ -119,7 +128,10 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   // "swipe down for"   yes
 
   //-----------------------------------------  SCREEN APPEARANCE
-
+  if(isLoading != true){
+    
+    console.log(data);
+  }
   //console.log("Question Array:\n");
   //console.log(QuestionArray);
   // console.log("CurrentQuestion:\n");
