@@ -1,0 +1,841 @@
+{
+  "summary": {
+    "query": "restaurant",
+    "queryType": "NON_NEAR",
+    "queryTime": 488,
+    "numResults": 20,
+    "offset": 0,
+    "totalResults": 6273286,
+    "fuzzyLevel": 1,
+    "geoBias": { "lat": 13.653326055392348, "lon": 100.48949374994433 }
+  },
+  "results": [
+    {
+      "type": "POI",
+      "id": "764009000831655",
+      "score": 2.5745120049,
+      "dist": 221.40918393556285,
+      "info": "search:ta:764009000831655-TH",
+      "poi": {
+        "name": "Monkey's House",
+        "categorySet": [{ "id": 7315 }],
+        "categories": ["restaurant"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [{ "nameLocale": "en-US", "name": "restaurant" }]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65138, "lon": 100.48906 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65236, "lon": 100.48805 },
+        "btmRightPoint": { "lat": 13.6504, "lon": 100.49007 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.6504, "lon": 100.48907 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000484265",
+      "score": 2.5745110512,
+      "dist": 227.57440311477097,
+      "info": "search:ta:764009000484265-TH",
+      "poi": {
+        "name": "Ban Kan Eng",
+        "categorySet": [{ "id": 7315 }],
+        "categories": ["restaurant"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [{ "nameLocale": "en-US", "name": "restaurant" }]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65129, "lon": 100.48928 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65219, "lon": 100.48835 },
+        "btmRightPoint": { "lat": 13.65039, "lon": 100.49021 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.6505, "lon": 100.48886 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000589731",
+      "score": 2.5745093822,
+      "dist": 239.22248342201914,
+      "info": "search:ta:764009000589731-TH",
+      "poi": {
+        "name": "Kae Bua",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65119, "lon": 100.48923 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65209, "lon": 100.4883 },
+        "btmRightPoint": { "lat": 13.65029, "lon": 100.49016 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.6505, "lon": 100.48886 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000733889",
+      "score": 2.5745072365,
+      "dist": 252.04075671121413,
+      "info": "search:ta:764009000733889-TH",
+      "poi": {
+        "name": "Indy Bar Garden",
+        "categorySet": [{ "id": 7315 }],
+        "categories": ["restaurant"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [{ "nameLocale": "en-US", "name": "restaurant" }]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65108, "lon": 100.48918 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65198, "lon": 100.48825 },
+        "btmRightPoint": { "lat": 13.65018, "lon": 100.49011 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.6505, "lon": 100.48886 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000557610",
+      "score": 2.5745067596,
+      "dist": 255.49239629422638,
+      "info": "search:ta:764009000557610-TH",
+      "poi": {
+        "name": "Red Dragon",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetNumber": "513/134-5",
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "513/134-5, Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65105, "lon": 100.48917 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65195, "lon": 100.48824 },
+        "btmRightPoint": { "lat": 13.65015, "lon": 100.4901 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.6505, "lon": 100.48886 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000752996",
+      "score": 2.5745036602,
+      "dist": 273.8713248673619,
+      "info": "search:ta:764009000752996-TH",
+      "poi": {
+        "name": "Golden Grill",
+        "categorySet": [{ "id": 7315020 }],
+        "categories": ["grill", "restaurant"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "restaurant" },
+              { "nameLocale": "en-US", "name": "grill" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetNumber": "36",
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "36, Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65089, "lon": 100.48912 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65179, "lon": 100.48819 },
+        "btmRightPoint": { "lat": 13.64999, "lon": 100.49005 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.6505, "lon": 100.48886 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009004134707",
+      "score": 2.5745036602,
+      "dist": 273.27031920719116,
+      "info": "search:ta:764009004134707-TH",
+      "poi": {
+        "name": "Thek No Kho Khun",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Soi Phuttha Bucha 49",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Soi Phuttha Bucha 49, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.6509, "lon": 100.48909 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.6518, "lon": 100.48816 },
+        "btmRightPoint": { "lat": 13.65, "lon": 100.49002 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.65082, "lon": 100.48927 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000689253",
+      "score": 2.5745024681,
+      "dist": 280.89786968565335,
+      "info": "search:ta:764009000689253-TH",
+      "poi": {
+        "name": "Chafe",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65094, "lon": 100.48864 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65184, "lon": 100.48771 },
+        "btmRightPoint": { "lat": 13.65004, "lon": 100.48957 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.65067, "lon": 100.48851 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000718086",
+      "score": 2.5745017529,
+      "dist": 283.6715504868008,
+      "info": "search:ta:764009000718086-TH",
+      "poi": {
+        "name": "Jia Tei",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65081, "lon": 100.48906 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65171, "lon": 100.48813 },
+        "btmRightPoint": { "lat": 13.64991, "lon": 100.48999 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.6505, "lon": 100.48886 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009003225499",
+      "score": 2.5745007992,
+      "dist": 289.11191067545275,
+      "info": "search:ta:764009003225499-TH",
+      "poi": {
+        "name": "Ant-Ni-Mal",
+        "categorySet": [{ "id": 7315 }],
+        "categories": ["restaurant"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [{ "nameLocale": "en-US", "name": "restaurant" }]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.6508, "lon": 100.48886 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.6517, "lon": 100.48793 },
+        "btmRightPoint": { "lat": 13.6499, "lon": 100.48979 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.65056, "lon": 100.48874 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000921837",
+      "score": 2.5745005608,
+      "dist": 290.69093098067293,
+      "info": "search:ta:764009000921837-TH",
+      "poi": {
+        "name": "Baan Kafae Eakkanak",
+        "categorySet": [{ "id": 7315 }],
+        "categories": ["restaurant"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [{ "nameLocale": "en-US", "name": "restaurant" }]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Soi Ban Suan Thon 2",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Soi Ban Suan Thon 2, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65109, "lon": 100.4881 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65199, "lon": 100.48717 },
+        "btmRightPoint": { "lat": 13.65019, "lon": 100.48903 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.65125, "lon": 100.48817 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009004137393",
+      "score": 2.5744998455,
+      "dist": 294.0811968437195,
+      "info": "search:ta:764009004137393-TH",
+      "poi": {
+        "name": "Gu Ma Shabu",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Soi Phuttha Bucha 49",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Soi Phuttha Bucha 49, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65072, "lon": 100.48903 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65162, "lon": 100.4881 },
+        "btmRightPoint": { "lat": 13.64982, "lon": 100.48996 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.65065, "lon": 100.48919 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009003199979",
+      "score": 2.5744993687,
+      "dist": 297.95763162444956,
+      "info": "search:ta:764009003199979-TH",
+      "poi": {
+        "name": "Krua Kook Kui",
+        "phone": "+66 89 213 1898",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetNumber": "365/1664",
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "365/1664, Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65092, "lon": 100.48828 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65182, "lon": 100.48735 },
+        "btmRightPoint": { "lat": 13.65002, "lon": 100.48921 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.6508, "lon": 100.48822 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000706945",
+      "score": 2.5744988918,
+      "dist": 299.74378285574113,
+      "info": "search:ta:764009000706945-TH",
+      "poi": {
+        "name": "Sincere",
+        "categorySet": [{ "id": 7315 }],
+        "categories": ["restaurant"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [{ "nameLocale": "en-US", "name": "restaurant" }]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65067, "lon": 100.48902 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65157, "lon": 100.48809 },
+        "btmRightPoint": { "lat": 13.64977, "lon": 100.48995 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.6505, "lon": 100.48886 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009004135563",
+      "score": 2.574498415,
+      "dist": 301.2325952214318,
+      "info": "search:ta:764009004135563-TH",
+      "poi": {
+        "name": "Che O",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Soi Phuttha Bucha 49",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Soi Phuttha Bucha 49, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65065, "lon": 100.48906 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65155, "lon": 100.48813 },
+        "btmRightPoint": { "lat": 13.64975, "lon": 100.48999 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.6506, "lon": 100.48917 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000497362",
+      "score": 2.5744967461,
+      "dist": 310.86113118208556,
+      "info": "search:ta:764009000497362-TH",
+      "poi": {
+        "name": "Lung Fai",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Soi Phuttha Bucha 47",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Soi Phuttha Bucha 47, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65118, "lon": 100.48765 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65208, "lon": 100.48672 },
+        "btmRightPoint": { "lat": 13.65028, "lon": 100.48858 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.65121, "lon": 100.48756 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000491989",
+      "score": 2.5744967461,
+      "dist": 310.86113118208556,
+      "info": "search:ta:764009000491989-TH",
+      "poi": {
+        "name": "Bami Hong Te",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Soi Phuttha Bucha 47",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Soi Phuttha Bucha 47, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65118, "lon": 100.48765 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65208, "lon": 100.48672 },
+        "btmRightPoint": { "lat": 13.65028, "lon": 100.48858 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.65121, "lon": 100.48756 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009003197016",
+      "score": 2.5744965076,
+      "dist": 311.44701423244163,
+      "info": "search:ta:764009003197016-TH",
+      "poi": {
+        "name": "Khrua Nai Phan",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65057, "lon": 100.48898 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65147, "lon": 100.48805 },
+        "btmRightPoint": { "lat": 13.64967, "lon": 100.48991 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.65047, "lon": 100.48892 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009000801991",
+      "score": 2.5744965076,
+      "dist": 311.44701423244163,
+      "info": "search:ta:764009000801991-TH",
+      "poi": {
+        "name": "Ko Khun Lamun Lin",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetNumber": "2",
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "2, Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65057, "lon": 100.48898 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65147, "lon": 100.48805 },
+        "btmRightPoint": { "lat": 13.64967, "lon": 100.48991 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.6505, "lon": 100.48886 } }
+      ]
+    },
+    {
+      "type": "POI",
+      "id": "764009003185868",
+      "score": 2.5744907856,
+      "dist": 338.8604821449126,
+      "info": "search:ta:764009003185868-TH",
+      "poi": {
+        "name": "Phi Noi",
+        "categorySet": [{ "id": 7315048 }],
+        "categories": ["restaurant", "thai"],
+        "classifications": [
+          {
+            "code": "RESTAURANT",
+            "names": [
+              { "nameLocale": "en-US", "name": "thai" },
+              { "nameLocale": "en-US", "name": "restaurant" }
+            ]
+          }
+        ]
+      },
+      "address": {
+        "streetName": "Thanon Phuttha Bucha",
+        "municipalitySubdivision": "Thung Khru",
+        "municipality": "Krungthepmahanakhon",
+        "countrySecondarySubdivision": "Krungthepmahanakhon",
+        "countrySubdivision": "Krung Thep Maha Nakhon",
+        "postalCode": "10140",
+        "countryCode": "TH",
+        "country": "Prathet Thai",
+        "countryCodeISO3": "THA",
+        "freeformAddress": "Thanon Phuttha Bucha, Thung Khru Sub District, Krungthepmahanakhon District, Krung Thep Maha Nakhon 10140",
+        "localName": "Krungthepmahanakhon"
+      },
+      "position": { "lat": 13.65084, "lon": 100.48768 },
+      "viewport": {
+        "topLeftPoint": { "lat": 13.65174, "lon": 100.48675 },
+        "btmRightPoint": { "lat": 13.64994, "lon": 100.48861 }
+      },
+      "entryPoints": [
+        { "type": "main", "position": { "lat": 13.651, "lon": 100.48773 } }
+      ]
+    }
+  ]
+}

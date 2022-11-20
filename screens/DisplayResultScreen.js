@@ -20,8 +20,7 @@ import {
 import StartScreen from "./StartScreen";
 import App from "../App";
 
-
-function DisplayResultScreen({ answerArray, sortBy, type }) {
+function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   //-----------------------------------------  GPS PERMISSION SECTION
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
@@ -88,6 +87,92 @@ function DisplayResultScreen({ answerArray, sortBy, type }) {
   // "swipe left to call"
   // "swipe right to open map"
 
+  //----------------------------------------- Filter
+  //answerArray
+  //data
+
+  //diplay data check
+  //console.log("data:");
+  //console.log(data);
+  //console.log("data results:");
+  //console.log(data.results);
+
+  let resultList = [];
+  var jmespath = require("jmespath");
+
+  //check the result length
+  let to = jmespath.search(data, "length(results)");
+  console.log(to);
+  //create array that contain all answer index
+  resultList = Array.from(Array(to).keys());
+
+  answerArray.forEach((filterKey) => {
+    resultList = filterResult(resultList, data, filterKey);
+    console.log(resultList.length);
+  });
+
+  //filter trough every index in resultList
+  //reuseable when update the result list
+  function filterResult(list, data, filterKey) {
+    let tempList = [];
+    //run through every index in result list
+    for (var i = 0; i < list.length; i++) {
+      if (filterKey != "phone") {
+        //return array of categories
+        let a = jmespath.search(
+          data,
+          "results[" + list[i] + "].poi.categories"
+        );
+        //console.log(a);
+        //loop into categories and check
+        if (!a.includes(filterKey)) {
+          tempList.push(list[i]);
+          //var toPush = jmespath.search(data, "{results :results[" + i + "]}");
+          //resultList.push(toPush);
+        } else {
+          console.log(a);
+          console.log(data.results[list[i]].poi.name + " -- removed");
+        }
+      //phone filter
+      }else{
+        let a = jmespath.search(data,"results["+list[i]+"].poi.phone"); 
+        if (a!=null) {
+          tempList.push(list[i]);
+        }else {
+          console.log(data.results[list[i]].poi.name + " -- removed due no phone");
+        }
+      }
+    }
+    return tempList;
+  }
+
+  //brute force test
+  //loop into every results
+  /*
+  for (var i = 0; i < to; i++) {
+    //return array of categories
+    let a = jmespath.search(data, "results[" + i + "].poi.categories");
+    console.log(a);
+    //loop into categories and check
+    if (!a.includes("fast food")) {
+      console.log(data.results[i].poi.name + " -- not contain fast food");
+      //var toPush = jmespath.search(data, "{results :results[" + i + "]}");
+      //resultList.push(toPush);
+    }
+  }
+  */
+  console.log(resultList);
+  //----------------------------------------- RESULT REARRANGE FOR DISPLAY
+  //use every result(index) from resultList
+  //use resultList.foreach() to list all the index we will show
+  //then put all in a struct array below
+  let resultToDisplay=[];
+  resultList.forEach(re => {
+    //use jmespath to reach each data
+    //let a = jmespath.search(data,"results["+list[i]+"].poi.phone");
+    
+  });
+
   //-----------------------------------------  SCREEN APPEARANCE
 
   let renderElements = (
@@ -126,14 +211,14 @@ function DisplayResultScreen({ answerArray, sortBy, type }) {
           <View style={styles.midArea}>
             <Text style={styles.text2}>{"Call"}</Text>
             <View style={styles.resultArea}>
-                <View style={styles.swipeFillArea}>
-                  <Text style={styles.answer}>{" Restaurant Name "}</Text>
-                  <Text style={styles.text2}>{" Type "}</Text>
-                  <Text style={styles.text2}>{" Score "}</Text>
-                  <Text style={styles.text2}>{" Address? "}</Text>
-                  <Text></Text>
-                  <Text></Text>
-                </View>
+              <View style={styles.swipeFillArea}>
+                <Text style={styles.answer}>{" Restaurant Name "}</Text>
+                <Text style={styles.text2}>{" Type "}</Text>
+                <Text style={styles.text2}>{" Score "}</Text>
+                <Text style={styles.text2}>{" Address? "}</Text>
+                <Text></Text>
+                <Text></Text>
+              </View>
             </View>
             <Text style={styles.text2}>{"Map"}</Text>
           </View>

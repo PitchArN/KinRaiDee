@@ -99,11 +99,11 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   }else if(type === "Bar"){
     var CategoriesSet = "9379";
   }else{
-    var CategoriesSet = "9361";
+    var CategoriesSet = "9361018";
   }
 
   const API_REQUEST_URL = `https://api.tomtom.com/search/2/nearbySearch/.json?lat=${lat}&lon=${lng}
-                            &limit=100&radius=10000&categorySet=${CategoriesSet}&view=Unified&key=${API_KEY}`;
+                            &limit=50&radius=10000&categorySet=${CategoriesSet}&view=Unified&key=${API_KEY}`;
 
   useEffect(() => {
     fetch(API_REQUEST_URL)
@@ -130,7 +130,7 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   //-----------------------------------------  SCREEN APPEARANCE
   if(isLoading != true){
     
-    console.log(data);
+    //console.log(data);
   }
   //console.log("Question Array:\n");
   //console.log(QuestionArray);
@@ -205,6 +205,7 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
         answerArray={answerArray}
         type={type}
         sortBy={sortBy}
+        data={data}
       />
     );
   }
