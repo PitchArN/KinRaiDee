@@ -65,14 +65,18 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
 
   function SwipeUpHandler() {
     //Select No
-    setAnswerArray([...answerArray,QuestionArray[questionState].Key]);
+    if (QuestionArray[questionState].Key != "phone") {
+      setAnswerArray([...answerArray, QuestionArray[questionState].Key]);
+    }
     setQuestionState(questionState + 1);
     setCurrentQuestion(QuestionArray[questionState + 1]);
   }
 
   function SwipeDownHandler() {
     //Select Yes
-    //setAnswerArray([...answerArray, "+" + QuestionArray[questionState].Key]);
+    if (QuestionArray[questionState].Key == "phone") {
+      setAnswerArray([...answerArray, QuestionArray[questionState].Key]);
+    }
     setQuestionState(questionState + 1);
     setCurrentQuestion(QuestionArray[questionState + 1]);
   }
@@ -92,13 +96,13 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
 
   const API_KEY = "iH9pB0bmpwepXVcXaGC6uNRKvhl8emRg";
 
-  if(type === "Restaurant"){
+  if (type === "Restaurant") {
     var CategoriesSet = "7315";
-  }else if(type === "Cafe"){
-    var CategoriesSet = "9367";
-  }else if(type === "Bar"){
+  } else if (type === "Cafe") {
+    var CategoriesSet = "9376";
+  } else if (type === "Bar") {
     var CategoriesSet = "9379";
-  }else{
+  } else {
     var CategoriesSet = "9361018";
   }
 
@@ -128,10 +132,7 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   // "swipe down for"   yes
 
   //-----------------------------------------  SCREEN APPEARANCE
-  if(isLoading != true){
-    
-    //console.log(data);
-  }
+
   //console.log("Question Array:\n");
   //console.log(QuestionArray);
   // console.log("CurrentQuestion:\n");
@@ -199,17 +200,21 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
     </GestureRecognizer>
   );
   //-----------------------------------------  SCREEN CHANGING
-  if (questionState > length - 1) {
-    renderElements = (
-      <DisplayResultScreen
-        answerArray={answerArray}
-        type={type}
-        sortBy={sortBy}
-        data={data}
-      />
-    );
-  }
 
+  if (questionState > length - 1) {
+    if (isLoading != true) {
+      renderElements = (
+        <DisplayResultScreen
+          answerArray={answerArray}
+          type={type}
+          sortBy={sortBy}
+          data={data}
+        />
+      );
+    }
+
+    //console.log(data);
+  }
   return renderElements;
 }
 

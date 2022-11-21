@@ -73,11 +73,20 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
 
   //swipe left to call to the restaurant
   function SwipeLeftHandler() {
-    Linking.openURL("tel:+66982725713");
+    Linking.openURL("tel:" + info.phone);
   }
 
   //todo when swipe right
-  function SwipeRightHandler() {}
+  function SwipeRightHandler() {
+    Linking.openURL(
+      "https://www.google.com/maps/search/?api=1&query=" +
+        info.lat +
+        "%2C" +
+        info.lon
+    );
+    console.log(info.lat);
+    console.log(info.lon);
+  }
   //-----------------------------------------  TEXT TO SPEECH
   // List to speak (in order)
   // {restauarantName}[index]
@@ -99,17 +108,25 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
 
   let resultList = [];
   var jmespath = require("jmespath");
-
+  console.log(answerArray);
   //check the result length
   let to = jmespath.search(data, "length(results)");
   console.log(to);
   //create array that contain all answer index
   resultList = Array.from(Array(to).keys());
 
-  answerArray.forEach((filterKey) => {
-    resultList = filterResult(resultList, data, filterKey);
-    console.log(resultList.length);
-  });
+  if (answerArray != null) {
+    for (const filterKey of answerArray) {
+      resultList = filterResult(resultList, data, filterKey);
+      console.log(resultList.length);
+    }
+    /*
+    answerArray.forEach((filterKey) => {
+      resultList = filterResult(resultList, data, filterKey);
+      console.log(resultList.length);
+    });
+    */
+  }
 
   //filter trough every index in resultList
   //reuseable when update the result list
@@ -133,13 +150,15 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
           console.log(a);
           console.log(data.results[list[i]].poi.name + " -- removed");
         }
-      //phone filter
-      }else{
-        let a = jmespath.search(data,"results["+list[i]+"].poi.phone"); 
-        if (a!=null) {
+        //phone filter
+      } else {
+        let a = jmespath.search(data, "results[" + list[i] + "].poi.phone");
+        if (a != null) {
           tempList.push(list[i]);
-        }else {
-          console.log(data.results[list[i]].poi.name + " -- removed due no phone");
+        } else {
+          console.log(
+            data.results[list[i]].poi.name + " -- removed due no phone"
+          );
         }
       }
     }
@@ -166,12 +185,37 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   //use every result(index) from resultList
   //use resultList.foreach() to list all the index we will show
   //then put all in a struct array below
-  let resultToDisplay=[];
-  resultList.forEach(re => {
+  let resultToDisplay = [];
+  resultList.forEach((re) => {
     //use jmespath to reach each data
-    //let a = jmespath.search(data,"results["+list[i]+"].poi.phone");
-    
+    //let a = jmespath.search(data,"results["+re+"].poi.phone");
+    //data need:
+    // id,score,dist
+    //  poi. name,phone
+    //  position. lat, lon
+    //  address. all
+
+    let name = jmespath.search(data, "results[" + re + "].poi.name");
+    let id = jmespath.search(data, "results[" + re + "].id");
+    let dist = jmespath.search(data, "results[" + re + "].dist");
+    let score = jmespath.search(data, "results[" + re + "].score");
+    let phone = jmespath.search(data, "results[" + re + "].poi.phone");
+    //position
+    let lat = jmespath.search(data, "results[" + re + "].position.lat");
+    let lon = jmespath.search(data, "results[" + re + "].position.lon");
+    resultToDisplay.push({
+      name: name,
+      id: id,
+      phone: phone,
+      score: score,
+      dist: dist,
+      lat: lat,
+      lon: lon,
+    });
   });
+
+  //console.log(resultToDisplay);
+  const [info, setInfo] = useState(resultToDisplay[0]);
 
   //-----------------------------------------  SCREEN APPEARANCE
 
@@ -210,12 +254,16 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
 
           <View style={styles.midArea}>
             <Text style={styles.text2}>{"Call"}</Text>
+            {/* for showing search result one by one */}
             <View style={styles.resultArea}>
               <View style={styles.swipeFillArea}>
-                <Text style={styles.answer}>{" Restaurant Name "}</Text>
-                <Text style={styles.text2}>{" Type "}</Text>
-                <Text style={styles.text2}>{" Score "}</Text>
-                <Text style={styles.text2}>{" Address? "}</Text>
+                <Text style={styles.answer}>{" " + info.name + " "}</Text>
+                <Text style={styles.text2}>
+                  {" " + (info.score / 20).toFixed(1) + " "}
+                </Text>
+                <Text style={styles.text2}>
+                  {" " + (info.dist / 1000).toFixed(2) + "km. "}
+                </Text>
                 <Text></Text>
                 <Text></Text>
               </View>
