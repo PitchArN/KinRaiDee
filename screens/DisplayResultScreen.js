@@ -65,7 +65,10 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
     directionalOffsetThreshold: 80,
   };
   //todo when swipe up
-  function SwipeUpHandler() {}
+  function SwipeUpHandler() {
+    SetresultState(resultState+1);
+    setInfo(resultToDisplay[resultState+1]);
+  }
   //todo when swipe down
   function SwipeDownHandler() {
     setsearchAgain(1);
@@ -215,7 +218,9 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   });
 
   //console.log(resultToDisplay);
-  const [info, setInfo] = useState(resultToDisplay[0]);
+  const [resultState,SetresultState] = useState(0);
+  const [info, setInfo] = useState(resultToDisplay[resultState]);
+  
 
   //-----------------------------------------  SCREEN APPEARANCE
 
