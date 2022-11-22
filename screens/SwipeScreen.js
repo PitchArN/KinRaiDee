@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
-import * as Speech from "expo-speech";
+import * as speech from "expo-speech";
 
 import {
   Question,
@@ -14,9 +14,9 @@ import {
   Ans_right,
 } from "../constant/EssentialQuestion";
 
-import DisplayResultScreen from "./DisplayResultScreen";
+//import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
-import YesNoChoiceScreen from "./YesNoChoiceScreen";
+//import YesNoChoiceScreen from "./YesNoChoiceScreen";
 import ConfirmBeforeFetch from "./ConfirmBeforeFetch";
 
 function SwipeScreen() {
@@ -41,12 +41,20 @@ function SwipeScreen() {
     setAnswerArray([...answerArray, Ans_up[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
+    //speakQuestionAndChoice();
+    //if(speech.isSpeakingAsync()){
+      speech.stop;
+    //}
   }
   //todo when swipe down
   function SwipeDownHandler() {
     setAnswerArray([...answerArray, Ans_down[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
+    //if(speech.isSpeakingAsync()){
+      speech.stop;
+    //}
+    //speakQuestionAndChoice();
   }
 
   //todo when swipe left
@@ -54,6 +62,10 @@ function SwipeScreen() {
     setAnswerArray([...answerArray, Ans_left[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
+    //if(speech.isSpeakingAsync()){
+      speech.stop;
+    //}
+    //speakQuestionAndChoice();
   }
 
   //todo when swipe right
@@ -61,6 +73,10 @@ function SwipeScreen() {
     setAnswerArray([...answerArray, Ans_right[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
+    //if(speech.isSpeakingAsync()){
+      speech.stop;
+    //}
+    //speakQuestionAndChoice();
   }
 
   //double tap to back to previous question
@@ -69,7 +85,12 @@ function SwipeScreen() {
       answerArray.pop();
       setQuestionState(questionState - 1);
       setCurrentQuestion(Question[questionState - 1]);
+      if(speech.isSpeakingAsync()){
+        speech.stop;
+      }
+      //speakQuestionAndChoice();
     }
+    
   }
   //----------------------------------------- TEXT TO SPEECH
   // List to speak (in order)
@@ -79,7 +100,18 @@ function SwipeScreen() {
   // "swipe left for"   Ans_left[questionState]
   // "swipe right for"  Ans_right[questionState]
   // "Tap twice to back to previous question"
-
+  speakQuestionAndChoice();
+  function speakQuestionAndChoice(){
+  if(speech.isSpeakingAsync()){
+    speech.stop;
+  }
+  speech.speak(currentQuestion);
+  speech.speak("swipe up for "+ Ans_up[questionState]);
+  speech.speak("swipe down for "+ Ans_down[questionState]);
+  speech.speak("swipe left for "+ Ans_left[questionState]);
+  speech.speak("swipe right for "+ Ans_right[questionState]);
+  speech.speak("\n Tap twice to back to previous question");
+  }
   //----------------------------------------- SCREEN APPEARANCE
 
   let renderElements = (

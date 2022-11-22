@@ -18,8 +18,10 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   };
   //todo when swipe up
   function SwipeUpHandler() {
-    SetresultState(resultState + 1);
-    setInfo(resultToDisplay[resultState + 1]);
+      SetresultState(resultState + 1);
+      setInfo(resultToDisplay[resultState + 1]);
+
+    
   }
   //todo when swipe down
   function SwipeDownHandler() {
@@ -208,6 +210,7 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   
   
   console.log(resultToDisplay);
+  console.log(resultToDisplay.length);
 
 
 
@@ -215,9 +218,7 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   const [resultState, SetresultState] = useState(0);
   const [info, setInfo] = useState(resultToDisplay[resultState]);
 
-  if (resultState > resultToDisplay.length - 1) {
-    renderElements = <LastScreen />;
-  }
+  
 
   let renderElements = (
     <GestureRecognizer
@@ -307,6 +308,9 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   //send state to start screen
   if (searchAgain > 0) {
     renderElements = <App />;
+  }
+  if (resultState > (resultToDisplay.length- 2)) {
+    renderElements = <LastScreen />;
   }
 
 

@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import * as speech from "expo-speech";
 
 function StartScreen({ onStart }) {
   const [userState, setUserState] = useState("");
@@ -9,6 +10,8 @@ function StartScreen({ onStart }) {
     let state = "1";
     onStart(state);
   };
+
+  speech.speak("Welcome To Kin Rai Dee App\n press anywhere to start searching");
 
   let renderElements = (
     <Pressable
