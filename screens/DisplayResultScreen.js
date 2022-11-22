@@ -168,6 +168,7 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
     });
   });
 
+
   //console.log(resultToDisplay);
   //----------------------------------------SORTING SECTION
 
@@ -191,8 +192,22 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
     resultToDisplay = arrayShuffle(resultToSort);
     //console.log("sortBy : Random");
   }//SORT BY nearby is already sorted from API
+  else{
+    resultToDisplay = resultToSort;
+  }
 
-  //console.log(resultToDisplay)
+  resultToDisplay.push({ 
+    name: ' ',
+    id: ' ',
+    phone: ' ',
+    score: ' ',
+    dist: ' ',
+    lat: ' ',
+    lon: ' ',
+  });
+  
+  
+  console.log(resultToDisplay);
 
 
 
@@ -200,7 +215,7 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   const [resultState, SetresultState] = useState(0);
   const [info, setInfo] = useState(resultToDisplay[resultState]);
 
-  if (resultState > resultToDisplay.length - 2) {
+  if (resultState > resultToDisplay.length - 1) {
     renderElements = <LastScreen />;
   }
 
