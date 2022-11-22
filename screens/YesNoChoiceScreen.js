@@ -202,6 +202,11 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   //-----------------------------------------  SCREEN CHANGING
 
   if (questionState > length - 1) {
+    renderElements = (
+      <Image
+        style={styles.logo}
+        source={require("../assets/kinraideelogoNotext.png")}
+      />);
     if (isLoading != true) {
       renderElements = (
         <DisplayResultScreen

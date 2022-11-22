@@ -1,63 +1,15 @@
-import { useState, useRef } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Alert,
-  Image,
-  Animated,
-  PanResponder,
-} from "react-native";
+import { useState } from "react";
+import { Text, View, StyleSheet } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Linking from "expo-linking";
 import GestureRecognizer from "react-native-swipe-gestures";
-import {
-  getCurrentPositionAsync,
-  useForegroundPermissions,
-  PermissionStatus,
-} from "expo-location";
-import StartScreen from "./StartScreen";
+
 import App from "../App";
+import LastScreen from "./LastScreen";
+import arrayShuffle from "../components/array-shuffle";
 
 function DisplayResultScreen({ answerArray, sortBy, type, data }) {
-  //-----------------------------------------  GPS PERMISSION SECTION
-  const [locationPermissionInformation, requestPermission] =
-    useForegroundPermissions();
-  //check and request GPS permission
-  async function verifyPermission() {
-    if (
-      locationPermissionInformation.status === PermissionStatus.UNDETERMINED
-    ) {
-      const permissionRespond = await requestPermission();
-
-      return permissionRespond.granted;
-    }
-
-    if (locationPermissionInformation.status === PermissionStatus.DENIED) {
-      Alert.alert(
-        "Permission Denied",
-        "You need to grant location permission to use this app."
-      );
-
-      return false;
-    }
-    return true;
-  }
-
-  // get the current location
-  async function getLocation() {
-    const hasPermission = await verifyPermission();
-
-    if (!hasPermission) {
-      //check if dont have permission -> do nothing
-      return;
-    }
-
-    const location = await getCurrentPositionAsync(); //to get location need some wait
-    console.log(location);
-  }
-
   //-----------------------------------------  SWIPE SCREEN SECTION
   //config for the swipe speed
   const config = {
@@ -66,8 +18,8 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   };
   //todo when swipe up
   function SwipeUpHandler() {
-    SetresultState(resultState+1);
-    setInfo(resultToDisplay[resultState+1]);
+    SetresultState(resultState + 1);
+    setInfo(resultToDisplay[resultState + 1]);
   }
   //todo when swipe down
   function SwipeDownHandler() {
@@ -76,16 +28,15 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
 
   //swipe left to call to the restaurant
   function SwipeLeftHandler() {
-    Linking.openURL("tel:" + info.phone);
+    if (info.phone != null) {
+      Linking.openURL("tel:" + info.phone);
+    }
   }
 
   //todo when swipe right
   function SwipeRightHandler() {
     Linking.openURL(
-      "https://www.google.com/maps/search/?api=1&query=" +
-        info.lat +
-        "%2C" +
-        info.lon
+      `https://www.google.com/maps/search/?api=1&query=${info.lat}%2C${info.lon}`
     );
     console.log(info.lat);
     console.log(info.lon);
@@ -188,7 +139,7 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   //use every result(index) from resultList
   //use resultList.foreach() to list all the index we will show
   //then put all in a struct array below
-  let resultToDisplay = [];
+  let resultToSort = [];
   resultList.forEach((re) => {
     //use jmespath to reach each data
     //let a = jmespath.search(data,"results["+re+"].poi.phone");
@@ -206,7 +157,7 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
     //position
     let lat = jmespath.search(data, "results[" + re + "].position.lat");
     let lon = jmespath.search(data, "results[" + re + "].position.lon");
-    resultToDisplay.push({
+    resultToSort.push({
       name: name,
       id: id,
       phone: phone,
@@ -218,11 +169,40 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   });
 
   //console.log(resultToDisplay);
-  const [resultState,SetresultState] = useState(0);
-  const [info, setInfo] = useState(resultToDisplay[resultState]);
+  //----------------------------------------SORTING SECTION
+
   
+  //console.log(sortBy);
+
+  if(sortBy === "Name"){ //SORT BY Name (A-Z)
+    resultToDisplay = resultToSort.sort(
+      function(a, b){
+      let x = a.name.toLowerCase();
+      let y = b.name.toLowerCase();
+      if (x < y) {return -1;}
+      if (x > y) {return 1;}
+      return 0;
+    });
+    //console.log("sortBy : Name");
+  }else if(sortBy === "Score"){ //SORT BY Score descending
+    resultToDisplay = resultToSort.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+    //console.log("sortBy : Score");
+  }else if(sortBy === "Random!"){ //Random array
+    resultToDisplay = arrayShuffle(resultToSort);
+    //console.log("sortBy : Random");
+  }//SORT BY nearby is already sorted from API
+
+  //console.log(resultToDisplay)
+
+
 
   //-----------------------------------------  SCREEN APPEARANCE
+  const [resultState, SetresultState] = useState(0);
+  const [info, setInfo] = useState(resultToDisplay[resultState]);
+
+  if (resultState > resultToDisplay.length - 2) {
+    renderElements = <LastScreen />;
+  }
 
   let renderElements = (
     <GestureRecognizer
@@ -313,6 +293,7 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   if (searchAgain > 0) {
     renderElements = <App />;
   }
+
 
   return renderElements;
 }
