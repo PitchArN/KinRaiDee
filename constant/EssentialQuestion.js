@@ -12,7 +12,7 @@ const Ans_left = [];
 const Ans_right = [];
 
 //Question 1
-Question[0] = "What type of restaurant \n you are going to search?";
+Question[0] = "What type of restaurant \n are you going to search?";
 Icon[0] = "Type";
 Ans_up[0] = "Restaurant";
 Ans_down[0] = "Bar";
@@ -20,7 +20,7 @@ Ans_left[0] = "Bakery";
 Ans_right[0] = "Cafe";
 
 //Question 2
-Question[1] = "How would you like the \n results to be sorted? ";
+Question[1] = "How would you like the results\n to be sorted? ";
 Icon[1] = "Sort By";
 Ans_up[1] = "Score";
 Ans_down[1] = "Random!";

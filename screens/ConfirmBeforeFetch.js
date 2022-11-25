@@ -7,6 +7,7 @@ import * as Linking from "expo-linking";
 import * as Location from "expo-location";
 import YesNoChoiceScreen from "./YesNoChoiceScreen";
 import SwipeScreen from "./SwipeScreen";
+import * as speech from "expo-speech";
 
 function ConfirmBeforeFetch({ sortBy, type }) {
   //-----------------------------------------  GPS PERMISSION SECTION
@@ -56,6 +57,14 @@ function ConfirmBeforeFetch({ sortBy, type }) {
   // Do you want to search {type} sorted by {sortBy}
   // "swipe up to"     cancel
   // "swipe down to"   confirm
+  // stop previous speak
+  if(speech.isSpeakingAsync()){
+    speech.stop();
+  }
+  // confirm question
+  speech.speak("Do you want to search "+type+ " sorted by "+sortBy+" ?");
+  speech.speak("swipe up to cancel");
+  speech.speak("swipe down to confirm");
 
   //-----------------------------------------  SCREEN APPEARANCE
   // set icon show on the screen
@@ -69,12 +78,6 @@ function ConfirmBeforeFetch({ sortBy, type }) {
     >
       {/* Header Question */}
       <View style={styles.HeaderRectangle}>
-        {/* 
-        <Text style={styles.whiteText}>
-          Search <Text style={styles.answer}>{type + "\n"}</Text>
-          sorted by <Text style={styles.answer}>{sortBy}</Text> ?
-        </Text>
-        */}
       </View>
 
       <LinearGradient

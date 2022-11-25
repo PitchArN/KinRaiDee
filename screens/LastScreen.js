@@ -2,14 +2,15 @@ import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import StartScreen from "./StartScreen";
+//import StartScreen from "./StartScreen";
+import App from "../App";
 
-function LastScreen(){ 
+function LastScreen() {
   const [userState, setUserState] = useState();
   const PressStartHandler = () => {
     setUserState(1);
   };
-    
+
   let renderElements = (
     <Pressable
       android_disableSound={true}
@@ -18,9 +19,9 @@ function LastScreen(){
     >
       <StatusBar style="auto" />
       <View style={styles.HeaderRectangle}>
-        <Text style={styles.whiteText}>Search What To Eat</Text>
+        <Text style={styles.whiteText}></Text>
       </View>
-      
+
       <LinearGradient
         colors={["#ff8f8f8c", "#FFFFFFFF", "#FFFFFFFF", "#ffdb808c"]}
         start={{ x: 0.5, y: 0 }}
@@ -33,16 +34,16 @@ function LastScreen(){
           end={{ x: 1, y: 0.5 }}
           style={styles.swipeFillArea}
         >
-          
           <View style={styles.logoSpace}>
+            <Text style={styles.answer}>
+              Not found your restaurant yet?{"\n"}
+            </Text>
             <Image
               style={styles.logo}
-              source={require("../assets/kinraideelogo.png")}
+              source={require("../assets/sorry.png")}
             />
-           <Text style={styles.answer}>{"\n\n"}Tap to start</Text>
-          </View> 
-          
-          
+            <Text style={styles.answer}>{"\n\n"}Try search again</Text>
+          </View>
         </LinearGradient>
       </LinearGradient>
 
@@ -51,15 +52,14 @@ function LastScreen(){
       </View>
     </Pressable>
   );
-  if (userState==1) {
-    <StartScreen />
+  if (userState == 1) {
+    renderElements = <App />;
   }
 
   return renderElements;
 }
 
 export default LastScreen;
-
 
 const styles = StyleSheet.create({
   container: {
@@ -123,10 +123,12 @@ const styles = StyleSheet.create({
     fontFamily: "BaiJamBold",
     fontWeight: "bold",
     textAlign: "center",
+    textBreakStrategy: "simple",
   },
-  
+
   logo: {
-    maxWidth: "100%",
+    height: "35%",
+    maxWidth: "40%",
     resizeMethod: "auto",
     resizeMode: "cover",
     borderColor: "#ffffffff",

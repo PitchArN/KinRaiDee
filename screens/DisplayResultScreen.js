@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Linking from "expo-linking";
 import GestureRecognizer from "react-native-swipe-gestures";
-
+import {stopPreviousVoice, resultReading} from "../constant/textToSpeech";
 import App from "../App";
 import LastScreen from "./LastScreen";
 import arrayShuffle from "../components/array-shuffle";
@@ -18,10 +18,8 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   };
   //todo when swipe up
   function SwipeUpHandler() {
-      SetresultState(resultState + 1);
-      setInfo(resultToDisplay[resultState + 1]);
-
-    
+    SetresultState(resultState + 1);
+    setInfo(resultToDisplay[resultState + 1]);
   }
   //todo when swipe down
   function SwipeDownHandler() {
@@ -40,17 +38,9 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
     Linking.openURL(
       `https://www.google.com/maps/search/?api=1&query=${info.lat}%2C${info.lon}`
     );
-    console.log(info.lat);
-    console.log(info.lon);
   }
-  //-----------------------------------------  TEXT TO SPEECH
-  // List to speak (in order)
-  // {restauarantName}[index]
-  // {restaurantInfo}[index]
-  // "swipe up to see next result"
-  // "swipe down to do search again"
-  // "swipe left to call"
-  // "swipe right to open map"
+ 
+  
 
   //----------------------------------------- Filter
   //answerArray
@@ -76,12 +66,6 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
       resultList = filterResult(resultList, data, filterKey);
       console.log(resultList.length);
     }
-    /*
-    answerArray.forEach((filterKey) => {
-      resultList = filterResult(resultList, data, filterKey);
-      console.log(resultList.length);
-    });
-    */
   }
 
   //filter trough every index in resultList
@@ -163,61 +147,74 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
       name: name,
       id: id,
       phone: phone,
-      score: score,
-      dist: dist,
+      score: (score/ 20).toFixed(1),
+      dist: (dist/ 1000).toFixed(2),
       lat: lat,
       lon: lon,
     });
   });
 
-
   //console.log(resultToDisplay);
   //----------------------------------------SORTING SECTION
 
-  
   //console.log(sortBy);
 
-  if(sortBy === "Name"){ //SORT BY Name (A-Z)
-    resultToDisplay = resultToSort.sort(
-      function(a, b){
+  if (sortBy === "Name") {
+    //SORT BY Name (A-Z)
+    resultToDisplay = resultToSort.sort(function (a, b) {
       let x = a.name.toLowerCase();
       let y = b.name.toLowerCase();
-      if (x < y) {return -1;}
-      if (x > y) {return 1;}
+      if (x < y) {
+        return -1;
+      }
+      if (x > y) {
+        return 1;
+      }
       return 0;
     });
     //console.log("sortBy : Name");
-  }else if(sortBy === "Score"){ //SORT BY Score descending
-    resultToDisplay = resultToSort.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
+  } else if (sortBy === "Score") {
+    //SORT BY Score descending
+    resultToDisplay = resultToSort.sort(
+      (a, b) => parseFloat(b.score) - parseFloat(a.score)
+    );
     //console.log("sortBy : Score");
-  }else if(sortBy === "Random!"){ //Random array
+  } else if (sortBy === "Random!") {
+    //Random array
     resultToDisplay = arrayShuffle(resultToSort);
     //console.log("sortBy : Random");
-  }//SORT BY nearby is already sorted from API
-  else{
+  } //SORT BY nearby is already sorted from API
+  else {
     resultToDisplay = resultToSort;
   }
 
-  resultToDisplay.push({ 
-    name: ' ',
-    id: ' ',
-    phone: ' ',
-    score: ' ',
-    dist: ' ',
-    lat: ' ',
-    lon: ' ',
+  resultToDisplay.push({
+    name: " ",
+    id: " ",
+    phone: " ",
+    score: " ",
+    dist: " ",
+    lat: " ",
+    lon: " ",
   });
-  
-  
-  console.log(resultToDisplay);
+
+  //console.log(resultToDisplay);
   console.log(resultToDisplay.length);
-
-
-
-  //-----------------------------------------  SCREEN APPEARANCE
+  //-----------------------------------------  TEXT TO SPEECH
+  // List to speak (in order)
+  // {restauarantName}[index]
+  // {restaurantScore}[index]
+  // {restaurantDistance}[index]
+  // "swipe up to see next result"
+  // "swipe down to do search again"
+  // "swipe left to call"
+  // "swipe right to open map"
   const [resultState, SetresultState] = useState(0);
   const [info, setInfo] = useState(resultToDisplay[resultState]);
-
+  stopPreviousVoice();
+  resultReading(info.name,info.dist,info.score,info.phone);
+  
+  //-----------------------------------------  SCREEN APPEARANCE
   
 
   let renderElements = (
@@ -260,10 +257,10 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
               <View style={styles.swipeFillArea}>
                 <Text style={styles.answer}>{" " + info.name + " "}</Text>
                 <Text style={styles.text2}>
-                  {" " + (info.score / 20).toFixed(1) + " "}
+                  {" " + info.score + " "}
                 </Text>
                 <Text style={styles.text2}>
-                  {" " + (info.dist / 1000).toFixed(2) + "km. "}
+                  {" " + info.dist + " km. "}
                 </Text>
                 <Text></Text>
                 <Text></Text>
@@ -275,23 +272,6 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
           <View style={styles.midArea}>
             <Text style={styles.text2}>{"Search Again"}</Text>
           </View>
-          {/*
-      <Text
-        style={styles.text}
-        onPress={() => Linking.openURL("tel:+66982725713")}
-      >
-        Do you want to search
-      </Text>
-      <Text
-        style={styles.text}
-        onPress={() => getLocation()}
-      >
-        Test getlocation
-      </Text>
-      
-      <Text style={styles.text}>Key Search</Text>
-      <Text style={styles.answer}>{answerArray}</Text>
-      */}
         </LinearGradient>
       </LinearGradient>
       <View style={styles.FooterRectangle}>
@@ -309,10 +289,9 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   if (searchAgain > 0) {
     renderElements = <App />;
   }
-  if (resultState > (resultToDisplay.length- 2)) {
+  if (resultState > resultToDisplay.length - 2) {
     renderElements = <LastScreen />;
   }
-
 
   return renderElements;
 }
@@ -375,6 +354,7 @@ const styles = StyleSheet.create({
     fontFamily: "BaiJamBold",
     fontWeight: "bold",
     textAlign: "center",
+    textBreakStrategy: "simple",
   },
   logo: {
     maxHeight: "100%",

@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
 import * as speech from "expo-speech";
-
+import { stopPreviousVoice, fourWayQuestion } from "../constant/textToSpeech";
 import {
   Question,
   Icon,
@@ -41,20 +41,14 @@ function SwipeScreen() {
     setAnswerArray([...answerArray, Ans_up[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
-    //speakQuestionAndChoice();
-    //if(speech.isSpeakingAsync()){
-      speech.stop;
-    //}
+    stopPreviousVoice();
   }
   //todo when swipe down
   function SwipeDownHandler() {
     setAnswerArray([...answerArray, Ans_down[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
-    //if(speech.isSpeakingAsync()){
-      speech.stop;
-    //}
-    //speakQuestionAndChoice();
+    stopPreviousVoice();
   }
 
   //todo when swipe left
@@ -62,10 +56,7 @@ function SwipeScreen() {
     setAnswerArray([...answerArray, Ans_left[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
-    //if(speech.isSpeakingAsync()){
-      speech.stop;
-    //}
-    //speakQuestionAndChoice();
+    stopPreviousVoice();
   }
 
   //todo when swipe right
@@ -73,10 +64,7 @@ function SwipeScreen() {
     setAnswerArray([...answerArray, Ans_right[questionState]]);
     setQuestionState(questionState + 1);
     setCurrentQuestion(Question[questionState + 1]);
-    //if(speech.isSpeakingAsync()){
-      speech.stop;
-    //}
-    //speakQuestionAndChoice();
+    stopPreviousVoice();
   }
 
   //double tap to back to previous question
@@ -85,12 +73,8 @@ function SwipeScreen() {
       answerArray.pop();
       setQuestionState(questionState - 1);
       setCurrentQuestion(Question[questionState - 1]);
-      if(speech.isSpeakingAsync()){
-        speech.stop;
-      }
-      //speakQuestionAndChoice();
+      stopPreviousVoice();
     }
-    
   }
   //----------------------------------------- TEXT TO SPEECH
   // List to speak (in order)
@@ -100,18 +84,13 @@ function SwipeScreen() {
   // "swipe left for"   Ans_left[questionState]
   // "swipe right for"  Ans_right[questionState]
   // "Tap twice to back to previous question"
-  speakQuestionAndChoice();
-  function speakQuestionAndChoice(){
-  if(speech.isSpeakingAsync()){
-    speech.stop;
-  }
-  speech.speak(currentQuestion);
-  speech.speak("swipe up for "+ Ans_up[questionState]);
-  speech.speak("swipe down for "+ Ans_down[questionState]);
-  speech.speak("swipe left for "+ Ans_left[questionState]);
-  speech.speak("swipe right for "+ Ans_right[questionState]);
-  speech.speak("\n Tap twice to back to previous question");
-  }
+  fourWayQuestion(
+    currentQuestion,
+    Ans_up[questionState],
+    Ans_down[questionState],
+    Ans_left[questionState],
+    Ans_right[questionState]
+  );
   //----------------------------------------- SCREEN APPEARANCE
 
   let renderElements = (
@@ -147,9 +126,9 @@ function SwipeScreen() {
                 <Text style={styles.text2}>{Ans_up[questionState]}</Text>
               </View>
 
-              <View style={styles.midArea} >
+              <View style={styles.midArea}>
                 <View width="20%" maxWidth="30%">
-                <Text style={styles.text2} >{Ans_left[questionState]}</Text>
+                  <Text style={styles.text2}>{Ans_left[questionState]}</Text>
                 </View>
                 <View style={styles.resultArea}>
                   <Text style={styles.answer}> {Icon[questionState]} </Text>
@@ -162,7 +141,7 @@ function SwipeScreen() {
                   </View>
                 </View>
                 <View width="20%" maxWidth="30%">
-                <Text style={styles.text2}>{Ans_right[questionState]}</Text>
+                  <Text style={styles.text2}>{Ans_right[questionState]}</Text>
                 </View>
               </View>
 
@@ -256,7 +235,6 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "#F4722B",
     backgroundColor: "#FFFFFF",
-    
 
     //borderLeftColor: "#8fffbc",
     //borderBottomColor: "#ffdb80",

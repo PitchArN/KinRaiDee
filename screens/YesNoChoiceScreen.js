@@ -5,7 +5,7 @@ import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Speech from "expo-speech";
 import arrayShuffle from "../components/array-shuffle";
-
+import {stopPreviousVoice,twoWayQuestion} from "../constant/textToSpeech";
 import { Restaurant, Cafe, Bakery, Bar } from "../constant/FilterQuestion";
 
 import DisplayResultScreen from "./DisplayResultScreen";
@@ -117,19 +117,14 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
       .finally(() => setLoading(false));
   }, []);
 
-  /*
-  data = data.filter(function(item){
-     return item.poi.name == 'wine bar';
-  }).map(function({id, name, city}){
-      return {id, name, city};
-  });
-  */
-
   //----------------------------------------- TEXT TO SPEECH
   // List to speak (in order)
   // {currentQuestion}
   // "swipe up for"    no
   // "swipe down for"   yes
+  stopPreviousVoice();
+  twoWayQuestion(currentQuestion.Question);
+
 
   //-----------------------------------------  SCREEN APPEARANCE
 
