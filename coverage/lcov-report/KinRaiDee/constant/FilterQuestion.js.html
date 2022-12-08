@@ -1,0 +1,445 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for KinRaiDee/constant/FilterQuestion.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">KinRaiDee/constant</a> FilterQuestion.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>0/39</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/0</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>0/35</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input oninput="onInput()" type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">//List All Question With 2 Choice 
+//These question will be use to filter the result
+&nbsp;
+//create array for questions and their 4 choice that recive from earlier question
+// ...Key use to check the condition in the api result 
+// ...Key[0] is checking phone number
+// ...Key[1++] is checking type of the result in ***category field
+const RestaurantQuestion = <span class="cstat-no" title="statement not covered" >[];</span> const RestaurantKey =<span class="cstat-no" title="statement not covered" >[];</span>
+const BakeryQuestion=<span class="cstat-no" title="statement not covered" >[];</span> const BakeryKey=<span class="cstat-no" title="statement not covered" >[];</span>
+const CafeQuestion=<span class="cstat-no" title="statement not covered" >[];</span> const CafeKey=<span class="cstat-no" title="statement not covered" >[];</span>
+const BarQuestion=<span class="cstat-no" title="statement not covered" >[];</span> const BarKey=<span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+&nbsp;
+const Restaurant=<span class="cstat-no" title="statement not covered" >[];</span>
+const Bakery=<span class="cstat-no" title="statement not covered" >[];</span>
+const Cafe =<span class="cstat-no" title="statement not covered" >[];</span>
+const Bar = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+// CategorySet : RESTAURANT
+// "Categories" : tons of categories
+<span class="cstat-no" title="statement not covered" >Restaurant[0] = {Question:"Do you want to call to the restaurant?", Key: "phone"};</span>
+//struct include question and key for filter
+&nbsp;
+//nationalities
+<span class="cstat-no" title="statement not covered" >Restaurant[1] = {Question:"Do you want to eat Chinese food?", Key: "chinese"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[2] = {Question:"Do you want to eat Japanese Food?", Key: "japanese"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[3] = {Question:"Do you want to eat Thai food?", Key: "thai"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[4] = {Question:"Do you want to eat Korean Food?", Key: "korean"};</span>
+//catetories
+<span class="cstat-no" title="statement not covered" >Restaurant[5] = {Question:"Do you want to eat pizza?", Key: "pizza"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[6] = {Question:"Do you want to eat grill?", Key: "grill"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[7] = {Question:"Do you want to eat buffet?", Key: "buffet"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[8] = {Question:"Do you want to eat sushi?", Key: "sushi"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[9] = {Question:"Do you want to eat seafood?", Key: "seafood"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[10] = {Question:"Do you want to eat hot pot?", Key: "hot pot"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[11] = {Question:"Do you want to eat hamburgers?", Key: "hamburgers"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[12] = {Question:"Do you want to eat doughnuts?", Key: "doughnuts"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[13] = {Question:"Do you want to eat organic food?", Key: "organic"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[14] = {Question:"Do you want to eat steak?", Key: "stake house"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[15] = {Question:"Do you want to take away?", Key: "take away"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[16] = {Question:"Do you want to eat barbecue?", Key: "barbecue"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[17] = {Question:"Do you want to eat snacks?", Key: "snacks"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[18] = {Question:"Do you want to eat chicken?", Key: "chicken"};</span>
+<span class="cstat-no" title="statement not covered" >Restaurant[19] = {Question:"Do you want to go to a cafeteria?", Key: "cafeterias"};</span>
+&nbsp;
+//Bakery
+// CategorySet : SHOP 
+// "Categories" : "food drinks: bakers"
+<span class="cstat-no" title="statement not covered" >Bakery[0] = {Question:"Do you want to call to the bakery?",Key:"phone"};/</span>/phone filter
+&nbsp;
+&nbsp;
+//Cafe
+// CategorySet : CAFE_PUB
+// "Categories" : "cafe", "cafe/pub" , "tea house" , "coffee shop"
+<span class="cstat-no" title="statement not covered" >Cafe[0] = {Question:"Do you want to call to the cafe?",Key:"phone"};/</span>/phone filter
+<span class="cstat-no" title="statement not covered" >Cafe[1] = {Question:"Do you want to go tea house?",Key:"tea house"};</span>
+<span class="cstat-no" title="statement not covered" >Cafe[2] = {Question:"Do you want to go coffee shop?",Key:"coffee shop"};</span>
+&nbsp;
+&nbsp;
+//Bar
+// CategorySet : NIGHTLIFE
+// "Categories" : "bar" , "wine bar" , "cocktail bar" , "nightlife"
+<span class="cstat-no" title="statement not covered" >Bar[0]={Question:"Do you want to call to the bar?",Key:"phone"};/</span>/phone filter
+<span class="cstat-no" title="statement not covered" >Bar[1]={Question:"Do you want to go wine bar?",Key:"wine bar"};</span>
+<span class="cstat-no" title="statement not covered" >Bar[2]={Question:"Do you want to go cocktail bar?",Key:"cocktail bar"};</span>
+&nbsp;
+/* In Case of old code 
+// CategorySet : RESTAURANT
+// "Categories" : tons of categories
+RestaurantQuestion[0]="Do you want to call to the restaurant?";//phone filter
+RestaurantKey[0] ="phone";
+//nationalities (categories)
+RestaurantQuestion[1]="Do you want to eat Chinese food?";       RestaurantKey[1] ="chinese";
+RestaurantQuestion[2]="Do you want to eat Thai food?";          RestaurantKey[2] ="thai";
+RestaurantQuestion[3]="Do you want to eat Japanese Food?";      RestaurantKey[3] ="japanese";
+RestaurantQuestion[4]="Do you want to eat Korean Food?";        RestaurantKey[4] ="korean";
+//categories
+RestaurantQuestion[5]="Do you want to eat pizza?";              RestaurantKey[5] ="pizza";
+RestaurantQuestion[6]="Do you want to eat grill?";              RestaurantKey[6] ="grill";
+RestaurantQuestion[7]="Do you want to eat buffet?";             RestaurantKey[7] ="buffet";
+RestaurantQuestion[8]="Do you want to eat sushi?";              RestaurantKey[8] ="sushi";
+RestaurantQuestion[9]="Do you want to eat seafood?";            RestaurantKey[9] ="seafood";
+RestaurantQuestion[10]="Do you want to eat hot pot?";           RestaurantKey[10] ="hot pot";
+RestaurantQuestion[11]="Do you want to eat hamburgers?";        RestaurantKey[11] ="hamburgers";
+RestaurantQuestion[12]="Do you want to eat doughnuts?";         RestaurantKey[12] ="doughnuts";
+RestaurantQuestion[13]="Do you want to eat organic food?";      RestaurantKey[13] ="organic";
+RestaurantQuestion[14]="Do you want to eat steak?";             RestaurantKey[14] ="stake house";
+RestaurantQuestion[15]="Do you want to take away?";             RestaurantKey[15] ="take away";
+RestaurantQuestion[16]="Do you want to eat barbecue?";          RestaurantKey[16] ="barbecue";
+RestaurantQuestion[17]="Do you want to eat snacks?";            RestaurantKey[17] ="snacks";
+RestaurantQuestion[18]="Do you want to eat chicken?";           RestaurantKey[18] ="chicken";
+RestaurantQuestion[19]="Do you want to go to a cafeteria?";     RestaurantKey[19]="cafeterias";
+&nbsp;
+//Bakery
+// CategorySet : SHOP 
+// "Categories" : "food drinks: bakers"
+BakeryQuestion[0]= "Do you want to call to the bakery?";//phone filter
+BakeryKey[0]="phone";
+&nbsp;
+//Cafe
+// CategorySet : CAFE_PUB
+// "Categories" : "cafe", "cafe/pub" , "tea house" , "coffee shop"
+CafeQuestion[0]="Do you want to call to the cafe?";//phone filter
+CafeKey[0]="phone";
+&nbsp;
+CafeQuestion[1]= "Do you want to go tea house?"; CafeKey[1]="tea house";
+CafeQuestion[2]= "Do you want to go coffee shop?"; CafeKey[2]="coffee shop";
+&nbsp;
+//Bar
+// CategorySet : NIGHTLIFE
+// "Categories" : "bar" , "wine bar" , "cocktail bar" , "nightlife"
+BarQuestion[0]="Do you want to call to the bar?";//phone filter
+BarKey[0]="phone";
+&nbsp;
+BarQuestion[1]="Do you want to go wine bar?";BarKey[1]="wine bar";
+BarQuestion[2]="Do you want to go cocktail bar?";BarKey[2]="cocktail bar";
+&nbsp;
+*/
+&nbsp;
+&nbsp;
+export { Restaurant,Bakery,Cafe,Bar};</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2022-12-07T09:20:00.177Z
+            </div>
+        <script src="../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
+    </body>
+</html>
+    
