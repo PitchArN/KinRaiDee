@@ -5,11 +5,12 @@ import GestureRecognizer from "react-native-swipe-gestures";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Speech from "expo-speech";
 import arrayShuffle from "../components/array-shuffle";
-import {stopPreviousVoice,twoWayQuestion} from "../constant/textToSpeech";
+import { stopPreviousVoice, twoWayQuestion } from "../constant/textToSpeech";
 import { Restaurant, Cafe, Bakery, Bar } from "../constant/FilterQuestion";
 
 import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
+import FetchAPI from "../constant/FetchAPI";
 
 function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   //-----------------------------------------  QUESTION SELECTION SECTION
@@ -91,31 +92,9 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   }
 
   // -------------------------------- API FETCH SECTION
-  const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
 
-  const API_KEY = "iH9pB0bmpwepXVcXaGC6uNRKvhl8emRg";
-
-  if (type === "Restaurant") {
-    var CategoriesSet = "7315";
-  } else if (type === "Cafe") {
-    var CategoriesSet = "9376";
-  } else if (type === "Bar") {
-    var CategoriesSet = "9379";
-  } else {
-    var CategoriesSet = "9361018";
-  }
-
-  const API_REQUEST_URL = `https://api.tomtom.com/search/2/nearbySearch/.json?lat=${lat}&lon=${lng}
-                            &limit=50&radius=10000&categorySet=${CategoriesSet}&view=Unified&key=${API_KEY}`;
-
-  useEffect(() => {
-    fetch(API_REQUEST_URL)
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  }, []);
+  const { data, isLoading } = FetchAPI(type, lat, lng);
+  //console.log(data)
 
   //----------------------------------------- TEXT TO SPEECH
   // List to speak (in order)
@@ -124,7 +103,6 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   // "swipe down for"   yes
   stopPreviousVoice();
   twoWayQuestion(currentQuestion.Question);
-
 
   //-----------------------------------------  SCREEN APPEARANCE
 
@@ -201,7 +179,8 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
       <Image
         style={styles.logo}
         source={require("../assets/kinraideelogoNotext.png")}
-      />);
+      />
+    );
     if (isLoading != true) {
       renderElements = (
         <DisplayResultScreen
