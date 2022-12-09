@@ -13,11 +13,11 @@
     {
       "type": "POI",
       "id": "764009000831655",
-      "score": 2.5745120049,
+      "score": 5,
       "dist": 221.40918393556285,
       "info": "search:ta:764009000831655-TH",
       "poi": {
-        "name": "Monkey's House",
+        "name": "a",
         "categorySet": [{ "id": 7315 }],
         "categories": ["restaurant"],
         "classifications": [
@@ -52,11 +52,11 @@
     {
       "type": "POI",
       "id": "764009000484265",
-      "score": 2.5745110512,
+      "score": 4.5,
       "dist": 227.57440311477097,
       "info": "search:ta:764009000484265-TH",
       "poi": {
-        "name": "Ban Kan Eng",
+        "name": "b",
         "categorySet": [{ "id": 7315 }],
         "categories": ["restaurant"],
         "classifications": [
@@ -91,11 +91,11 @@
     {
       "type": "POI",
       "id": "764009000589731",
-      "score": 2.5745093822,
+      "score": 4,
       "dist": 239.22248342201914,
       "info": "search:ta:764009000589731-TH",
       "poi": {
-        "name": "Kae Bua",
+        "name": "c",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [
@@ -133,11 +133,11 @@
     {
       "type": "POI",
       "id": "764009000733889",
-      "score": 2.5745072365,
+      "score": 3,
       "dist": 252.04075671121413,
       "info": "search:ta:764009000733889-TH",
       "poi": {
-        "name": "Indy Bar Garden",
+        "name": "d",
         "categorySet": [{ "id": 7315 }],
         "categories": ["restaurant"],
         "classifications": [
@@ -172,11 +172,11 @@
     {
       "type": "POI",
       "id": "764009000557610",
-      "score": 2.5745067596,
+      "score": 2,
       "dist": 255.49239629422638,
       "info": "search:ta:764009000557610-TH",
       "poi": {
-        "name": "Red Dragon",
+        "name": "e",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [
@@ -215,11 +215,11 @@
     {
       "type": "POI",
       "id": "764009000752996",
-      "score": 2.5745036602,
+      "score": 1.6,
       "dist": 273.8713248673619,
       "info": "search:ta:764009000752996-TH",
       "poi": {
-        "name": "Golden Grill",
+        "name": "f",
         "categorySet": [{ "id": 7315020 }],
         "categories": ["grill", "restaurant"],
         "classifications": [
@@ -258,11 +258,11 @@
     {
       "type": "POI",
       "id": "764009004134707",
-      "score": 2.5745036602,
+      "score": 1.5,
       "dist": 273.27031920719116,
       "info": "search:ta:764009004134707-TH",
       "poi": {
-        "name": "Thek No Kho Khun",
+        "name": "g",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [
@@ -300,11 +300,11 @@
     {
       "type": "POI",
       "id": "764009000689253",
-      "score": 2.5745024681,
+      "score": 1.4,
       "dist": 280.89786968565335,
       "info": "search:ta:764009000689253-TH",
       "poi": {
-        "name": "Chafe",
+        "name": "h",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [
@@ -342,11 +342,11 @@
     {
       "type": "POI",
       "id": "764009000718086",
-      "score": 2.5745017529,
+      "score": 1.3,
       "dist": 283.6715504868008,
       "info": "search:ta:764009000718086-TH",
       "poi": {
-        "name": "Jia Tei",
+        "name": "i",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [
@@ -384,11 +384,11 @@
     {
       "type": "POI",
       "id": "764009003225499",
-      "score": 2.5745007992,
+      "score": 1.2,
       "dist": 289.11191067545275,
       "info": "search:ta:764009003225499-TH",
       "poi": {
-        "name": "Ant-Ni-Mal",
+        "name": "j",
         "categorySet": [{ "id": 7315 }],
         "categories": ["restaurant"],
         "classifications": [
@@ -423,11 +423,11 @@
     {
       "type": "POI",
       "id": "764009000921837",
-      "score": 2.5745005608,
+      "score": 1,
       "dist": 290.69093098067293,
       "info": "search:ta:764009000921837-TH",
       "poi": {
-        "name": "Baan Kafae Eakkanak",
+        "name": "k",
         "categorySet": [{ "id": 7315 }],
         "categories": ["restaurant"],
         "classifications": [
@@ -462,11 +462,11 @@
     {
       "type": "POI",
       "id": "764009004137393",
-      "score": 2.5744998455,
+      "score": 0.5,
       "dist": 294.0811968437195,
       "info": "search:ta:764009004137393-TH",
       "poi": {
-        "name": "Gu Ma Shabu",
+        "name": "m",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [
@@ -504,11 +504,11 @@
     {
       "type": "POI",
       "id": "764009003199979",
-      "score": 2.5744993687,
+      "score": 0.3,
       "dist": 297.95763162444956,
       "info": "search:ta:764009003199979-TH",
       "poi": {
-        "name": "Krua Kook Kui",
+        "name": "l",
         "phone": "+66 89 213 1898",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
@@ -548,11 +548,11 @@
     {
       "type": "POI",
       "id": "764009000706945",
-      "score": 2.5744988918,
+      "score": 0.2,
       "dist": 299.74378285574113,
       "info": "search:ta:764009000706945-TH",
       "poi": {
-        "name": "Sincere",
+        "name": "n",
         "categorySet": [{ "id": 7315 }],
         "categories": ["restaurant"],
         "classifications": [
@@ -587,11 +587,11 @@
     {
       "type": "POI",
       "id": "764009004135563",
-      "score": 2.574498415,
+      "score": 0.1,
       "dist": 301.2325952214318,
       "info": "search:ta:764009004135563-TH",
       "poi": {
-        "name": "Che O",
+        "name": "p",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [
@@ -629,11 +629,11 @@
     {
       "type": "POI",
       "id": "764009000497362",
-      "score": 2.5744967461,
+      "score": 0.04,
       "dist": 310.86113118208556,
       "info": "search:ta:764009000497362-TH",
       "poi": {
-        "name": "Lung Fai",
+        "name": "o",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [
@@ -671,11 +671,11 @@
     {
       "type": "POI",
       "id": "764009000491989",
-      "score": 2.5744967461,
+      "score": 0.03,
       "dist": 310.86113118208556,
       "info": "search:ta:764009000491989-TH",
       "poi": {
-        "name": "Bami Hong Te",
+        "name": "q",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [
@@ -713,11 +713,11 @@
     {
       "type": "POI",
       "id": "764009003197016",
-      "score": 2.5744965076,
+      "score": 0.02,
       "dist": 311.44701423244163,
       "info": "search:ta:764009003197016-TH",
       "poi": {
-        "name": "Khrua Nai Phan",
+        "name": "s",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [
@@ -755,11 +755,11 @@
     {
       "type": "POI",
       "id": "764009000801991",
-      "score": 2.5744965076,
+      "score": 0.01,
       "dist": 311.44701423244163,
       "info": "search:ta:764009000801991-TH",
       "poi": {
-        "name": "Ko Khun Lamun Lin",
+        "name": "r",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [
@@ -798,11 +798,11 @@
     {
       "type": "POI",
       "id": "764009003185868",
-      "score": 2.5744907856,
+      "score": 0,
       "dist": 338.8604821449126,
       "info": "search:ta:764009003185868-TH",
       "poi": {
-        "name": "Phi Noi",
+        "name": "t",
         "categorySet": [{ "id": 7315048 }],
         "categories": ["restaurant", "thai"],
         "classifications": [

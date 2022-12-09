@@ -1,3 +1,4 @@
+import arrayShuffle from "../components/array-shuffle";
 //----------------------------------------- Filter
 //answerArray
 //data
@@ -25,8 +26,8 @@ function filterResult(list, data, filterKey) {
         //var toPush = jmespath.search(data, "{results :results[" + i + "]}");
         //resultList.push(toPush);
       } else {
-        console.log(a);
-        console.log(data.results[list[i]].poi.name + " -- removed");
+        //console.log(a);
+        //console.log(data.results[list[i]].poi.name + " -- removed");
       }
       //phone filter
     } else {
@@ -34,9 +35,9 @@ function filterResult(list, data, filterKey) {
       if (a != null) {
         tempList.push(list[i]);
       } else {
-        console.log(
-          data.results[list[i]].poi.name + " -- removed due no phone"
-        );
+        //console.log(
+          //data.results[list[i]].poi.name + " -- removed due no phone"
+        //);
       }
     }
   }
@@ -51,14 +52,14 @@ function filter(answerArray, data) {
   console.log(answerArray);
   //check the result length
   let to = jmespath.search(data, "length(results)");
-  console.log(to);
+  //console.log(to);
   //create array that contain all answer index
   resultList = Array.from(Array(to).keys());
 
   if (answerArray != null) {
     for (const filterKey of answerArray) {
       resultList = filterResult(resultList, data, filterKey);
-      console.log(resultList.length);
+      //console.log(resultList.length);
     }
   }
 
@@ -162,12 +163,11 @@ function resultArrange(sortBy,resultToSort){
       });
       
       //console.log(resultToDisplay);
-      console.log(resultToDisplay.length);
+      //console.log(resultToDisplay.length);
       return resultToDisplay;
 }
 
 export {filterResult,filter,resultArrange,preSortArrange};
-module.exports = resultTODisplay;
 
 //console.log(resultToDisplay);
 //----------------------------------------SORTING SECTION
