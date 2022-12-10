@@ -38,13 +38,13 @@ describe("Result filter and sort", () => {
     expect(temp.length).toBe(7);
   });
   //keys are thai and phone
-  let filterThaiPhoneKey = ["thai","grill"]
+  let filterThaiPhoneKey = ["thai","grill"];
   it("multiple filter - remove thai grill", () => {
     const temp = filter(filterThaiPhoneKey,data);
     expect(temp.length).toBe(6);
   });
   //keys are thai phone and grill
-  let filterThaiPhoneGrillKey = ["thai","phone","grill"]
+  let filterThaiPhoneGrillKey = ["thai","phone","grill"];
   it("multiple filter - remove thai grill phone", () => {
     const temp = filter(filterThaiPhoneGrillKey,data);
     expect(temp.length).toBe(0);

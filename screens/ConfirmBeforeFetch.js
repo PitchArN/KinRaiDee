@@ -9,6 +9,10 @@ import YesNoChoiceScreen from "./YesNoChoiceScreen";
 import SwipeScreen from "./SwipeScreen";
 import * as speech from "expo-speech";
 
+import {unsubscribe} from "../constant/checkConnection";
+import NetInfo from '@react-native-community/netinfo';
+
+
 function ConfirmBeforeFetch({ sortBy, type }) {
   //-----------------------------------------  GPS PERMISSION SECTION
 
@@ -68,7 +72,8 @@ function ConfirmBeforeFetch({ sortBy, type }) {
 
   //-----------------------------------------  SCREEN APPEARANCE
   // set icon show on the screen
-
+  
+  unsubscribe();
   let renderElements = (
     <GestureRecognizer
       onSwipeUp={SwipeUpHandler}

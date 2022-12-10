@@ -9,6 +9,9 @@ import App from "../App";
 import LastScreen from "./LastScreen";
 import arrayShuffle from "../components/array-shuffle";
 import {filterResult,filter,resultArrange,preSortArrange} from "../constant/ResultToDisplay";
+import {unsubscribe} from "../constant/checkConnection";
+import NetInfo from '@react-native-community/netinfo';
+
 
 function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   //-----------------------------------------  SWIPE SCREEN SECTION
@@ -79,6 +82,7 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
   
   //-----------------------------------------  SCREEN APPEARANCE
   
+  unsubscribe();
 
   let renderElements = (
     <GestureRecognizer

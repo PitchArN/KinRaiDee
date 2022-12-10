@@ -14,6 +14,10 @@ import {
   Ans_right,
 } from "../constant/EssentialQuestion";
 
+import {unsubscribe} from "../constant/checkConnection";
+import NetInfo from '@react-native-community/netinfo';
+
+
 //import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
 //import YesNoChoiceScreen from "./YesNoChoiceScreen";
@@ -93,6 +97,7 @@ function SwipeScreen() {
   );
   //----------------------------------------- SCREEN APPEARANCE
 
+  unsubscribe();
   let renderElements = (
     <View style={styles.container}>
       <GestureRecognizer

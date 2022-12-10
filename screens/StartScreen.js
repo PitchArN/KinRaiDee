@@ -3,7 +3,9 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import * as speech from "expo-speech";
-import {stopPreviousVoice} from "../constant/textToSpeech";
+import {stopPreviousVoice} from "../constant/textToSpeech";  
+import {unsubscribe} from "../constant/checkConnection";
+import NetInfo from '@react-native-community/netinfo';
 function StartScreen({ onStart }) {
   const [userState, setUserState] = useState("");
   const PressStartHandler = () => {
@@ -13,6 +15,10 @@ function StartScreen({ onStart }) {
 
   stopPreviousVoice();
   speech.speak("Welcome To Kin Rai Dee App\n press anywhere to start searching");
+
+  
+
+  unsubscribe();
 
   let renderElements = (
     <Pressable

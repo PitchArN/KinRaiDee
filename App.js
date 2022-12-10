@@ -12,6 +12,8 @@ export default function App() {
     //import from LoadFont - List all of font used in the project
     fontToLoad
   );
+  
+  
 
   //define state of the app
   function StartHandler(state) {
@@ -23,6 +25,8 @@ export default function App() {
   if (userState) {
     screen = <SwipeScreen />;
   }
+
+  
 
   //report Error when fonts not loaded
   if (!fontsLoaded) {

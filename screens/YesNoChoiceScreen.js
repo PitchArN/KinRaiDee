@@ -12,6 +12,10 @@ import DisplayResultScreen from "./DisplayResultScreen";
 import DoubleTap from "../components/DoubleTap";
 import FetchAPI from "../constant/FetchAPI";
 
+
+import {unsubscribe} from "../constant/checkConnection";
+import NetInfo from '@react-native-community/netinfo';
+
 function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   //-----------------------------------------  QUESTION SELECTION SECTION
   const [questionState, setQuestionState] = useState(0);
@@ -110,7 +114,8 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
   //console.log(QuestionArray);
   // console.log("CurrentQuestion:\n");
   // console.log(currentQuestion);
-
+  
+  unsubscribe();
   let renderElements = (
     <GestureRecognizer
       onSwipeUp={SwipeUpHandler}

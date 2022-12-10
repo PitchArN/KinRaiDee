@@ -5,11 +5,17 @@ import { LinearGradient } from "expo-linear-gradient";
 //import StartScreen from "./StartScreen";
 import App from "../App";
 
+import {unsubscribe} from "../constant/checkConnection";
+import NetInfo from '@react-native-community/netinfo';
+
+
 function LastScreen() {
   const [userState, setUserState] = useState();
   const PressStartHandler = () => {
     setUserState(1);
   };
+
+  unsubscribe();
 
   let renderElements = (
     <Pressable
