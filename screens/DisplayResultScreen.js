@@ -118,19 +118,20 @@ function DisplayResultScreen({ answerArray, sortBy, type, data }) {
           </View>
 
           <View style={styles.midArea}>
-            <Text style={styles.text2}>{"Call"}</Text>
+            <Text style={styles.text2}>{" Call "}</Text>
             {/* for showing search result one by one */}
             <View style={styles.resultArea}>
               <View style={styles.swipeFillArea}>
                 <Text style={styles.answer}>{" " + info.name + " "}</Text>
                 <Text style={styles.text2}>
-                  {" " + info.score + " "}
+                  {"\n Score:" + info.score + " | " + info.dist + " km. "}
                 </Text>
                 <Text style={styles.text2}>
-                  {" " + info.dist + " km. "}
+                  {
+                  //" " + info.dist + " km. "
+                  }
                 </Text>
-                <Text></Text>
-                <Text></Text>
+                <Text> </Text>
               </View>
             </View>
             <Text style={styles.text2}>{"Map"}</Text>
@@ -232,6 +233,7 @@ const styles = StyleSheet.create({
 
   //Area To Swipe
   resultArea: {
+    height: "100%",
     maxWidth: "60%",
     maxHeight: "100%",
     alignItems: "center",
@@ -267,7 +269,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   midArea: {
-    maxHeight: "60%",
+    maxHeight: "70%",
     width: "100%",
     flexDirection: "row",
     flex: 2,

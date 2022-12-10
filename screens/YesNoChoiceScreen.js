@@ -161,6 +161,7 @@ function YesNoChoiceScreen({ type, sortBy, lat, lng }) {
                     style={styles.logo}
                     source={require("../assets/request.png")}
                   ></Image>
+                  <Text>{"\n"}</Text>
                 </View>
               </View>
 
@@ -261,7 +262,7 @@ const styles = StyleSheet.create({
   },
   //Area To Swipe
   resultArea: {
-    maxWidth: "60%",
+    maxWidth: "70%",
     maxHeight: "100%",
     alignItems: "center",
     justifyContent: "space-around",
@@ -291,6 +292,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   midArea: {
+    maxHeight: "70%",
     width: "100%",
     flexDirection: "row",
     flex: 2,
